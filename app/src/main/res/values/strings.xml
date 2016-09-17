@@ -8,4 +8,7 @@
     <string name="title_activity_my_profile">MyProfile</string>
     <string name="title_activity_maps">Map</string>
     <string name="title_activity_search_page">SearchPage</string>
+    <string name="title_activity_maps_">Map</string>
+    <string name="title_activity_product_page">ProductPage</string>
+    <string name="title_activity_contact_us">ContactUs</string>
 </resources>

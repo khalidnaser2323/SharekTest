@@ -30,49 +30,53 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
        homepage = (Button)findViewById(R.id.LoginPage_Skip_button);
         homepage.setOnClickListener(this);
+        loginbtn=(Button)findViewById(R.id.LoginPage_Login_button);
+        loginbtn.setOnClickListener(this);
 
     }
 
     @Override
     public void onClick(View v) {
         if (v==homepage){
-//            Intent intent = new Intent(this,HomePage.class);
-//            startActivity(intent);
-            final String URL = "http://api.sharekeg.com/";
-
-            JsonObjectRequest req = new JsonObjectRequest(URL, null,
-                    new Response.Listener<JSONObject>() {
-                        @Override
-                        public void onResponse(JSONObject response) {
-                            Log.i("response", response.toString());
-
-                            try {
-                                String message =response.getString("message");
-                                Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
-
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-                            // handle response
-                        }
-                    }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    // handle error
-                    Log.i("error",error.toString());
-                }
-            }) {
-
-                @Override
-                public Map<String, String> getHeaders() throws AuthFailureError {
-                    HashMap<String, String> headers = new HashMap<String, String>();
-//                    headers.put("CUSTOM_HEADER", "Yahoo");
-                    headers.put("Authorization", "Bearer");
-                    return headers;
-                }
-            };
-            AppController.getInstance().addToRequestQueue(req);
+           Intent intent = new Intent(this,HomePage.class);
+            startActivity(intent);
+//            final String URL = "http://api.sharekeg.com/";
+//
+//            JsonObjectRequest req = new JsonObjectRequest(URL, null,
+//                    new Response.Listener<JSONObject>() {
+//                        @Override
+//                        public void onResponse(JSONObject response) {
+//                            Log.i("response", response.toString());
+//
+//                            try {
+//                                String message =response.getString("message");
+//                                Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
+//
+//                            } catch (JSONException e) {
+//                                e.printStackTrace();
+//                            }
+//                            // handle response
+//                        }
+//                    }, new Response.ErrorListener() {
+//                @Override
+//                public void onErrorResponse(VolleyError error) {
+//                    // handle error
+//                    Log.i("error",error.toString());
+//                }
+//            }) {
+//
+//                @Override
+//                public Map<String, String> getHeaders() throws AuthFailureError {
+//                    HashMap<String, String> headers = new HashMap<String, String>();
+////                    headers.put("CUSTOM_HEADER", "Yahoo");
+//                    headers.put("Authorization", "Bearer");
+//                    return headers;
+//                }
+//            };
+//            AppController.getInstance().addToRequestQueue(req);
 
         }
+        if (v==loginbtn){
+            }
 }
 }
