@@ -77,6 +77,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         }
         if (v==loginbtn){
-            }
+            Intent intent=new Intent(this,ProductPage.class);
+            startActivity(intent);
+
+        }
 }
 }
