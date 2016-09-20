@@ -7,8 +7,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.khalid.sharektest.AddIntrest">
-
+    tools:context=".AddShare">
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="40dp"
@@ -33,15 +32,16 @@
         <Spinner
             android:layout_width="wrap_content"
             android:layout_height="40dp"
-            android:id="@+id/addintrest_catagory_spinner"
+            android:id="@+id/addshare_catagory_spinner"
             android:layout_weight=".5"
             android:spinnerMode="dropdown" />
 
         <Spinner
             android:layout_width="wrap_content"
             android:layout_height="40dp"
-            android:id="@+id/addintrest_gender_spinner2"
-            android:layout_weight=".5" />
+            android:id="@+id/addshare_gender_spinner2"
+            android:layout_weight=".5"
+            android:spinnerMode="dropdown" />
     </LinearLayout>
 
     <LinearLayout
@@ -53,21 +53,22 @@
         android:layout_alignParentStart="true"
         android:id="@+id/linearLayout4">
 
-        <Spinner
-            android:layout_width="160dp"
-            android:layout_height="match_parent"
-            android:id="@+id/addintrest__duration_spinner3"
-            android:layout_weight="0.16"
-            android:layout_gravity="center_vertical"
-            android:spinnerMode="dropdown" />
-
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:id="@+id/addintrest_durationtime_textView13"
+            android:id="@+id/addshare_price_textView13"
             android:layout_weight="0.79"
-            android:hint="Duration Time" />
+            android:hint="Price" />
+
+        <Spinner
+            android:layout_width="160dp"
+            android:layout_height="match_parent"
+            android:id="@+id/addshare__duration_spinner3"
+            android:layout_weight="0.16"
+            android:layout_gravity="center_vertical"
+            android:spinnerMode="dropdown" />
+
     </LinearLayout>
 
     <LinearLayout
@@ -83,7 +84,7 @@
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:id="@+id/addintrest_Country_textView14"
+            android:id="@+id/addshare_Country_textView14"
             android:layout_weight="0.77"
             android:hint="Country" />
 
@@ -91,7 +92,7 @@
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:id="@+id/addintrest_city_textView15"
+            android:id="@+id/addshare_city_textView15"
             android:layout_weight="1"
             android:hint="City" />
     </LinearLayout>
@@ -128,7 +129,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:id="@+id/addintrest_name_textView17"
+            android:id="@+id/addshare_name_textView17"
             android:inputType="textPersonName"
             android:hint="Name" />
 
@@ -137,7 +138,7 @@
             android:layout_height="50dp"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:inputType="textEmailAddress"
-            android:id="@+id/addintrest_email_textView18"
+            android:id="@+id/addshare_email_textView18"
             android:hint="Email" />
 
         <EditText
@@ -145,14 +146,14 @@
             android:layout_height="50dp"
             android:inputType="phone"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:id="@+id/addintrest_phone_textView19"
+            android:id="@+id/addshare_phone_textView19"
             android:hint="Phone" />
 
         <CheckBox
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:text="I agree to the terms and conditions"
-            android:id="@+id/addintrest_checkBox2"
+            android:id="@+id/addshare_checkBox2"
             android:checked="false" />
 
     </LinearLayout>
@@ -160,7 +161,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Post Intrest"
+        android:text="Post the share"
         android:id="@+id/addshare_post_button"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />

@@ -12,8 +12,8 @@ import android.widget.Toast;
 
 import com.example.khalid.sharektest.Utils.SpinnerCustomArrayAdapter;
 
-public class AddIntrest extends AppCompatActivity implements AdapterView.OnItemSelectedListener ,View.OnClickListener {
-    EditText name, phone, mail, intrestTitle, description, time, country, city;
+public class AddShare extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener {
+    EditText name, phone, mail, ShareTitle, description, price, country, city;
     Spinner gender, duration, catagory;
     CheckBox checkBox;
     Button post;
@@ -23,21 +23,21 @@ public class AddIntrest extends AppCompatActivity implements AdapterView.OnItemS
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_intrest);
-        name = (EditText) findViewById(R.id.addintrest_name_textView17);
-        phone = (EditText) findViewById(R.id.addintrest_phone_textView19);
-        mail = (EditText) findViewById(R.id.addintrest_email_textView18);
-        intrestTitle = (EditText) findViewById(R.id.addshare_sharetitle_textView12);
+        setContentView(R.layout.activity_add_share);
+        name = (EditText) findViewById(R.id.addshare_name_textView17);
+        phone = (EditText) findViewById(R.id.addshare_phone_textView19);
+        mail = (EditText) findViewById(R.id.addshare_email_textView18);
+        ShareTitle = (EditText) findViewById(R.id.addshare_sharetitle_textView12);
         description = (EditText) findViewById(R.id.addshare_description_textView16);
-        time = (EditText) findViewById(R.id.addintrest_durationtime_textView13);
-        country = (EditText) findViewById(R.id.addintrest_Country_textView14);
-        city = (EditText) findViewById(R.id.addintrest_city_textView15);
-        checkBox = (CheckBox) findViewById(R.id.addintrest_checkBox2);
+        price = (EditText) findViewById(R.id.addshare_price_textView13);
+        country = (EditText) findViewById(R.id.addshare_Country_textView14);
+        city = (EditText) findViewById(R.id.addshare_city_textView15);
+        checkBox = (CheckBox) findViewById(R.id.addshare_checkBox2);
         post = (Button) findViewById(R.id.addshare_post_button);
         post.setOnClickListener(this);
 
-        gender = (Spinner) findViewById(R.id.addintrest_gender_spinner2);
-        catagory = (Spinner) findViewById(R.id.addintrest_catagory_spinner);
+        gender = (Spinner) findViewById(R.id.addshare_gender_spinner2);
+        catagory = (Spinner) findViewById(R.id.addshare_catagory_spinner);
         catagory.setOnItemSelectedListener(this);
 
 
@@ -73,12 +73,12 @@ public class AddIntrest extends AppCompatActivity implements AdapterView.OnItemS
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         Spinner spinner = (Spinner) parent;
-        if (spinner.getId() == R.id.addintrest_gender_spinner2) {
+        if (spinner.getId() == R.id.addshare_gender_spinner2) {
             genderitem = parent.getItemAtPosition(position).toString();
 
             // Showing selected spinner item
 
-        } else if (spinner.getId() == R.id.addintrest_catagory_spinner) {
+        } else if (spinner.getId() == R.id.addshare_catagory_spinner) {
             catitem = parent.getItemAtPosition(position).toString();
         }
 
@@ -96,22 +96,25 @@ public class AddIntrest extends AppCompatActivity implements AdapterView.OnItemS
             String Sname = name.getText().toString();
             String Sphone = phone.getText().toString();
             String Smail = mail.getText().toString();
-            String SintrestTitle = intrestTitle.getText().toString();
+            String SshareTitle = ShareTitle.getText().toString();
             String Sdescription = description.getText().toString();
-            String Stime = time.getText().toString();
+            String Sprice = price.getText().toString();
             String Scountry = country.getText().toString();
             String Scity = city.getText().toString();
+            if (genderitem.equals("Gender")){
+            Toast.makeText(AddShare.this, "Please select gender", Toast.LENGTH_SHORT).show();}
+            if (catitem.equals("Catagory")){Toast.makeText(AddShare.this, "Please select catagory", Toast.LENGTH_SHORT).show();}
+
+
             if (check = checkBox.isChecked()) {
-                Toast.makeText(AddIntrest.this, Sname + " .." + '\n' + Sphone + " .." + '\n' +
-                                Smail + " .." + '\n' + Scity + " .." + '\n' + Scountry + " .." + '\n' + Stime + " .." + '\n' + Sdescription + " .." + '\n' + SintrestTitle + " .." + '\n' + catitem + " .." + '\n' + genderitem
+                Toast.makeText(this, Sname + " .." + '\n' + Sphone + " .." + '\n' +
+                                Smail + " .." + '\n' + Scity + " .." + '\n' + Scountry + " .." + '\n' + Sprice + " .." + '\n' + Sdescription + " .." + '\n' + SshareTitle + " .." + '\n' + catitem + " .." + '\n' + genderitem
                         , Toast.LENGTH_LONG).show();
             } else {
-                Toast.makeText(AddIntrest.this, "Please", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Please", Toast.LENGTH_SHORT).show();
             }
 
 
         }
     }
-
-
 }

@@ -11,4 +11,5 @@
     <string name="title_activity_maps_">Map</string>
     <string name="title_activity_product_page">ProductPage</string>
     <string name="title_activity_contact_us">ContactUs</string>
+    <string name="title_activity_add_share">AddShare</string>
 </resources>
