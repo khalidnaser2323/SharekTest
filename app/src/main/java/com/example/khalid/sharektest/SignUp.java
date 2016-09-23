@@ -14,7 +14,7 @@ import com.example.khalid.sharektest.Utils.GPSTracker;
 import com.example.khalid.sharektest.Utils.SpinnerCustomArrayAdapter;
 
 public class SignUp extends AppCompatActivity implements View.OnClickListener,AdapterView.OnItemSelectedListener{
-    EditText fname,lname,uname,email,phone,day,year,month;
+    EditText fname,lname,uname,email,phone,day,year,month,pass,repass;
     Spinner gender;
     CheckBox checkBox;
     Button sign,getlocation;
@@ -34,6 +34,8 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener,Ad
         day=(EditText)findViewById(R.id.signup_day_editText);
         year=(EditText)findViewById(R.id.signup_year_editText);
         month=(EditText)findViewById(R.id.signup_month_editText);
+        pass=(EditText)findViewById(R.id.signup_password_editText);
+        repass=(EditText)findViewById(R.id.signup_repassword_editText2);
         gender=(Spinner) findViewById(R.id.signup_gender_spinner);
         checkBox=(CheckBox) findViewById(R.id.signup_checkBox);
         sign=(Button) findViewById(R.id.signup_signup_button);
@@ -75,7 +77,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener,Ad
             }
         else {gps.showSettingsAlert();}}
         else if (v==sign){
-            if (check=checkBox.isChecked()&&longitude!=latitude){
+            if (check=checkBox.isChecked()&&longitude!=latitude&&pass.equals(repass)){
             String t =fname.getText().toString()+'\n'+phone.getText().toString()+'\n'+String.valueOf(latitude)+'\n'+String.valueOf(longitude);
                 Toast.makeText(SignUp.this, t, Toast.LENGTH_LONG).show();}
             else {
