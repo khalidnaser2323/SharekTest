@@ -2,6 +2,8 @@ package com.example.khalid.sharektest;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.JsonToken;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -10,8 +12,19 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.example.khalid.sharektest.Utils.AppController;
 import com.example.khalid.sharektest.Utils.GPSTracker;
 import com.example.khalid.sharektest.Utils.SpinnerCustomArrayAdapter;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class SignUp extends AppCompatActivity implements View.OnClickListener,AdapterView.OnItemSelectedListener{
     EditText fname,lname,uname,email,phone,day,year,month,pass,repass;
@@ -21,6 +34,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener,Ad
     String genderitem;
     Boolean check;
     double latitude=0 ,longitude = 0;
+    JSONObject jsonObject;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +71,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener,Ad
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
          
-            genderitem = parent.getItemAtPosition(position).toString();}
+            genderitem = parent.getItemAtPosition(position).toString().toLowerCase();}
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
@@ -73,16 +87,87 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener,Ad
 
             latitude = gps.getLatitude();
             longitude = gps.getLongitude();
+            String params_Date=
+                  ("{"
+            +" \"user\":" +"\""+uname.getText().toString()+"\""+","
+                    +" \"pass\":" +"\""+pass.getText().toString()+"\""+","
+                    +"     \"name\": {"
+                    +" \"first\":"+"\""+fname.getText().toString()+"\""+","
+                    +"    \"last\":"+"\""+lname.getText().toString()+"\""
+                    +"},"
+                    +"\"email\":"+"\""+email.getText().toString()+"\""+","
+                    +"    \"birth\": {"
+                    +"\"day\":"+"\""+day.getText().toString()+"\""+","
+                    +"        \"month\":"+"\""+month.getText().toString()+"\""+","
+                    +"        \"year\":"+"\""+year.getText().toString()+"\""
+                    +"} ,"
+                    +"\"location\": {"
+                    +"\"latitude\":"+"\""+longitude+"\""+","
+                    +"        \"longitude\":"+"\""+longitude+"\""
+                    +"},"
+                    +"\"phone\":"+"\""+phone.getText().toString()+"\""+","
+                    +"    \"gender\":"+"\""+genderitem+"\""
+
+                    +"}");
+            try {
+                jsonObject = new JSONObject(params_Date);
+                Log.i("hph","fhdhf");
+                Log.i("hhh",jsonObject.toString());
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
 
             }
         else {gps.showSettingsAlert();}}
         else if (v==sign){
-            if (check=checkBox.isChecked()&&longitude!=latitude&&pass.equals(repass)){
-            String t =fname.getText().toString()+'\n'+phone.getText().toString()+'\n'+String.valueOf(latitude)+'\n'+String.valueOf(longitude);
-                Toast.makeText(SignUp.this, t, Toast.LENGTH_LONG).show();}
+            if (pass.equals(repass)){
+
+            if (check=checkBox.isChecked()&&longitude!=latitude){
+
+
+
+
+
+                final String URL = "http://api.sharekeg.com/user";
+
+            final JsonObjectRequest req = new JsonObjectRequest(URL, jsonObject,
+                    new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            Log.i("response", response.toString());
+                            Toast.makeText(SignUp.this, "Welcome to sharekeg", Toast.LENGTH_SHORT).show();
+
+
+                            // handle response
+                        }
+                    }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    // handle error
+                    Log.i("error",error.toString());
+                }
+            }) {
+
+                public String getBodyContentType()
+                {
+                    return "application/json";
+                }
+                @Override
+                public Map<String, String> getHeaders() throws AuthFailureError {
+                    HashMap<String, String> headers = new HashMap<String, String>();
+                    headers.put("Content-Type", "application/json");
+                    return headers;
+                }
+            };
+            AppController.getInstance().addToRequestQueue(req);}
             else {
-                Toast.makeText(this, "Review your Data", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Review your Data and Recheck your Location", Toast.LENGTH_LONG).show();
             }
         }
+            else {
+                Toast.makeText(SignUp.this, " Invalid Password ", Toast.LENGTH_LONG).show();
+            }
 
-}}
+}
+    }
+}
