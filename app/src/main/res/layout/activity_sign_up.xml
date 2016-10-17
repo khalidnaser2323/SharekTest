@@ -10,7 +10,7 @@
     tools:context="com.example.khalid.sharektest.SignUp">
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
 
 
@@ -32,7 +32,8 @@
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="Frist Name"
                 android:id="@+id/textView12"
-                android:layout_column="0" />
+                android:layout_column="0"
+                android:textSize="15sp" />
 
             <EditText
                 android:layout_width="wrap_content"
@@ -41,6 +42,7 @@
                 android:ems="10"
                 android:id="@+id/signup_fristname_editText"
                 android:layout_column="1"
+                android:textSize="15sp"
                 android:hint="Frist Name" />
         </TableRow>
 
@@ -51,6 +53,7 @@
             <TextView
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="Last Name"
+                android:textSize="15sp"
                 android:id="@+id/textView13"
                 android:layout_column="0" />
 
@@ -59,6 +62,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName"
                 android:ems="10"
+                android:textSize="15sp"
                 android:id="@+id/signup_lastname_editText"
                 android:layout_column="1"
                 android:hint="Last Name" />
@@ -74,6 +78,7 @@
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="User Name"
                 android:id="@+id/textView14"
+                android:textSize="15sp"
                 android:layout_column="0" />
 
             <EditText
@@ -81,6 +86,7 @@
                 android:ems="10"
                 android:id="@+id/signup_username_editText"
                 android:layout_column="1"
+                android:textSize="15sp"
                 android:hint="User Name" />
         </TableRow>
 
@@ -93,6 +99,7 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="Password"
+                android:textSize="15sp"
                 android:id="@+id/textView19"
                 android:layout_column="0" />
 
@@ -103,6 +110,7 @@
                 android:ems="10"
                 android:id="@+id/signup_password_editText"
                 android:layout_column="1"
+                android:textSize="15sp"
                 android:hint="Password" />
         </TableRow>
 
@@ -116,6 +124,7 @@
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="Repassword"
                 android:id="@+id/textView20"
+                android:textSize="15sp"
                 android:layout_column="0" />
 
             <EditText
@@ -123,6 +132,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
                 android:ems="10"
+                android:textSize="15sp"
                 android:id="@+id/signup_repassword_editText2"
                 android:layout_column="1"
                 android:hint="Repassword" />
@@ -137,6 +147,7 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="Email"
+                android:textSize="15sp"
                 android:id="@+id/textView16" />
 
             <EditText
@@ -144,6 +155,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress"
                 android:ems="10"
+                android:textSize="15sp"
                 android:id="@+id/signup_email_editText"
                 android:hint="shark@example.com" />
         </TableRow>
@@ -157,6 +169,7 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="Phone"
+                android:textSize="15sp"
                 android:id="@+id/textView17" />
 
             <EditText
@@ -164,6 +177,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="phone"
                 android:ems="10"
+                android:textSize="15sp"
                 android:id="@+id/signup_phone_editText"
                 android:layout_column="1"
                 android:hint="Your Phone" />
@@ -176,6 +190,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
+                android:textSize="15sp"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="Gender"
                 android:id="@+id/textView18"
@@ -186,6 +201,7 @@
                 android:layout_height="40dp"
                 android:id="@+id/signup_gender_spinner"
                 android:layout_column="1"
+                android:textSize="15sp"
                 android:layout_weight=".5" />
         </TableRow>
 
@@ -205,12 +221,14 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="Brithday"
+            android:textSize="15sp"
             android:id="@+id/textView15" />
 
         <EditText
             android:layout_width="45dp"
             android:layout_height="wrap_content"
             android:inputType="date"
+            android:textSize="15sp"
             android:ems="10"
             android:id="@+id/signup_day_editText"
             android:hint="Day" />
@@ -220,6 +238,7 @@
             android:layout_height="wrap_content"
             android:inputType="date"
             android:ems="10"
+            android:textSize="15sp"
             android:id="@+id/signup_month_editText"
             android:hint="Month" />
 
@@ -228,6 +247,7 @@
             android:layout_height="wrap_content"
             android:inputType="date"
             android:ems="10"
+            android:textSize="15sp"
             android:id="@+id/signup_year_editText"
             android:layout_weight="1"
             android:hint="Year" />

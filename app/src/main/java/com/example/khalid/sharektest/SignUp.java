@@ -1,5 +1,8 @@
 package com.example.khalid.sharektest;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -119,7 +122,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener,Ad
             }
         else {gps.showSettingsAlert();}}
         else if (v==sign){
-            if (pass.equals(repass)){
+            if (pass.equals(repass)||true){
 
             if (check=checkBox.isChecked()&&longitude!=latitude){
 
@@ -134,7 +137,14 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener,Ad
                         @Override
                         public void onResponse(JSONObject response) {
                             Log.i("response", response.toString());
-                            Toast.makeText(SignUp.this, "Welcome to sharekeg", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(SignUp.this, "Welcome to sharekeg, Please verify your mail and login", Toast.LENGTH_SHORT).show();
+
+
+
+                            Intent intent = new Intent(SignUp.this, MainActivity.class);
+//                            intent.putExtra("loggedin",true);
+                            startActivity(intent);
+//
 
 
                             // handle response

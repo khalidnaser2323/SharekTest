@@ -1,9 +1,12 @@
 package com.example.khalid.sharektest;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -25,7 +28,15 @@ public class HomePage extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        Intent cameIntent=new Intent();
 
+        if(cameIntent.getBooleanExtra("loggedIn",false)){
+            SharedPreferences mypreference = PreferenceManager.getDefaultSharedPreferences(HomePage.this);
+            mypreference.edit().putBoolean("loggedIn", true).apply();
+            String token = cameIntent.getStringExtra("token");
+            mypreference.edit().putString("token",token);
+
+        }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
