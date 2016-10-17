@@ -88,6 +88,12 @@ public class HomePage extends AppCompatActivity
 
         } else if (id == R.id.nav_contact_us) {
             Intent intent = new Intent(this,ContactUs.class);
+            startActivity(intent);}
+        else if (id == R.id.nav_add_intrest) {
+            Intent intent = new Intent(this,AddIntrest.class);
+            startActivity(intent);}
+        else if (id == R.id.nav_add_share) {
+            Intent intent = new Intent(this,AddShare.class);
             startActivity(intent);
 
         }

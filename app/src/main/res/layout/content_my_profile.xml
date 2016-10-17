@@ -16,9 +16,11 @@
         <RelativeLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="220dp"
             android:weightSum="1"
             android:id="@+id/linearLayout"
+            android:background="#a9a4a4"
+            android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true">
 
@@ -64,6 +66,17 @@
                 android:layout_alignRight="@+id/myprofile_profipic_imageView2"
                 android:layout_alignEnd="@+id/myprofile_profipic_imageView2"
                 />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Level 1 - 30 Points"
+                android:id="@+id/myprofile_levelpoints_textView"
+                android:layout_gravity="center|bottom"
+                android:layout_below="@+id/myprofile_name_textView"
+                android:layout_centerHorizontal="true" />
+
         </RelativeLayout>
 
         <android.support.v4.view.ViewPager
@@ -82,7 +95,8 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/linearLayout"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+            android:layout_alignParentStart="true"
+            android:background="#a9a4a4" />
 
     </RelativeLayout>
 

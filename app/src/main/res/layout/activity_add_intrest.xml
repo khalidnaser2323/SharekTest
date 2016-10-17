@@ -111,9 +111,9 @@
         android:background="#c0c0c0"
         android:layout_above="@+id/linearLayout6"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
+        android:layout_alignParentStart="false"
         android:layout_below="@+id/addshare_description_textView16"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="false" />
 
     <LinearLayout
         android:orientation="vertical"

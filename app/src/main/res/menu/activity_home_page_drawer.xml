@@ -24,6 +24,14 @@
                 android:id="@+id/nav_contact_us"
                 android:icon="@drawable/ic_menu_send"
                 android:title="Contact us" />
+            <item
+                android:id="@+id/nav_add_share"
+                android:icon="@drawable/ic_menu_send"
+                android:title="Add Share" />
+            <item
+                android:id="@+id/nav_add_intrest"
+                android:icon="@drawable/ic_menu_send"
+                android:title="Add Intrest" />
         </menu>
     </item>
 

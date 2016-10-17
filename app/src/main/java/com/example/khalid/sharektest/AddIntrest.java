@@ -24,6 +24,9 @@ public class AddIntrest extends AppCompatActivity implements AdapterView.OnItemS
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_intrest);
+
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         name = (EditText) findViewById(R.id.addintrest_name_textView17);
         phone = (EditText) findViewById(R.id.addintrest_phone_textView19);
         mail = (EditText) findViewById(R.id.addintrest_email_textView18);
