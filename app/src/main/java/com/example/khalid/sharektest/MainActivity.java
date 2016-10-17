@@ -92,6 +92,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             final String URL = "http://api.sharekeg.com/authenticate";
 
+            pDialog.setMessage("loading");
             pDialog.show();
             final JsonObjectRequest req = new JsonObjectRequest(URL, jsonObject,
                     new Response.Listener<JSONObject>() {
