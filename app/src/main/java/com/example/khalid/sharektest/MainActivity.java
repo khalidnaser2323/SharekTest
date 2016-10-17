@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Log.i("Log","User is logged in");
             Intent intent=new Intent(this,HomePage.class);
             startActivity(intent);
+            // to skip login page
         }
 
 
