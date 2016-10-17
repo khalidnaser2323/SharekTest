@@ -37,14 +37,19 @@
         <activity
             android:name=".MyProfile"
             android:label="@string/title_activity_my_profile"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:parentActivityName=".HomePage"
+            android:theme="@style/AppTheme.NoActionBar">
+        <meta-data android:name="android.support.PARENT_ACTIVITY"
+            android:value=".HomePage"/></activity>
+
+
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
              Note that the API key is linked to the encryption key used to sign the APK.
              You need a different API key for each encryption key, including the release key that is used to
              sign the APK for publishing.
-             You can define the keys for the debug and release targets in src/debug/ and src/release/. 
+             You can define the keys for the debug and release targets in src/debug/ and src/release/.
         -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
@@ -56,17 +61,31 @@
         <activity
             android:name=".SearchPage"
             android:label="@string/title_activity_search_page"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:parentActivityName=".HomePage"
+            android:theme="@style/AppTheme.NoActionBar" >
+            <meta-data android:name="android.support.PARENT_ACTIVITY"
+                android:value=".HomePage"/></activity>
         <activity
             android:name=".ProductPage"
             android:label="@string/title_activity_product_page"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:parentActivityName=".HomePage"
+            android:theme="@style/AppTheme.NoActionBar" >
+            <meta-data android:name="android.support.PARENT_ACTIVITY"
+            android:value=".HomePage"/></activity>
         <activity
             android:name=".ContactUs"
             android:label="@string/title_activity_contact_us"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".AddIntrest" />
-        <activity android:name=".AddShare" />
+            android:parentActivityName=".HomePage"
+            android:theme="@style/AppTheme.NoActionBar" >
+            <meta-data android:name="android.support.PARENT_ACTIVITY"
+                android:value=".HomePage"/></activity>
+        <activity android:name=".AddIntrest"
+            android:parentActivityName=".HomePage">
+            <meta-data android:name="android.support.PARENT_ACTIVITY"
+                android:value=".HomePage"/></activity>
+        <activity android:name=".AddShare"
+            android:parentActivityName=".HomePage"> <meta-data android:name="android.support.PARENT_ACTIVITY"
+            android:value=".HomePage"/></activity>
         <activity android:name=".SignUp"></activity>
     </application>
 

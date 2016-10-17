@@ -144,7 +144,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         } else if (v == singUp) {
             Intent intent = new Intent(this, SignUp.class);
             startActivity(intent);
-        }
-    }
 
+        }
+}
 }

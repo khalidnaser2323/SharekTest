@@ -51,6 +51,8 @@ public class MyProfile extends AppCompatActivity implements View.OnClickListener
 
             Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
             setSupportActionBar(toolbar);
+            getSupportActionBar().setHomeButtonEnabled(true);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             // Create the adapter that will return a fragment for each of the three
             // primary sections of the activity.
 
@@ -106,9 +108,10 @@ public class MyProfile extends AppCompatActivity implements View.OnClickListener
 
         private void setupViewPager(ViewPager viewPager) {
             ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-            adapter.addFrag(new Tab1(), "Info ");
+            adapter.addFrag(new Tab1(), "About");
+            adapter.addFrag(new Tab3(), "Activity");
             adapter.addFrag(new SupportMapFragment(), "Map");
-            adapter.addFrag(new Tab3(), "Share Box");
+
 
             viewPager.setAdapter(adapter);
         }

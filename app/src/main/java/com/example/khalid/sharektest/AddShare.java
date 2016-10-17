@@ -24,6 +24,8 @@ public class AddShare extends AppCompatActivity implements View.OnClickListener,
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_share);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         name = (EditText) findViewById(R.id.addshare_name_textView17);
         phone = (EditText) findViewById(R.id.addshare_phone_textView19);
         mail = (EditText) findViewById(R.id.addshare_email_textView18);

@@ -23,6 +23,8 @@ public class ProductPage extends AppCompatActivity implements View.OnClickListen
         setContentView(R.layout.activity_product_page);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Pdescription=(TextView)findViewById(R.id.textView);
         Pname=(TextView)findViewById(R.id.product_productname_textView);
