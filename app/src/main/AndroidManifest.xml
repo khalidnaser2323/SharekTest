@@ -29,6 +29,10 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
+            <meta-data
+                android:name="android.app.default_searchable"
+                android:value=".SearchPage" />
         </activity>
         <activity
             android:name=".HomePage"
@@ -39,9 +43,10 @@
             android:label="@string/title_activity_my_profile"
             android:parentActivityName=".HomePage"
             android:theme="@style/AppTheme.NoActionBar">
-        <meta-data android:name="android.support.PARENT_ACTIVITY"
-            android:value=".HomePage"/></activity>
-
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".HomePage" />
+        </activity>
 
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -62,31 +67,58 @@
             android:name=".SearchPage"
             android:label="@string/title_activity_search_page"
             android:parentActivityName=".HomePage"
-            android:theme="@style/AppTheme.NoActionBar" >
-            <meta-data android:name="android.support.PARENT_ACTIVITY"
-                android:value=".HomePage"/></activity>
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".HomePage" />
+            <meta-data
+                android:name="android.app.default_searchable"
+                android:value=".SearchPage" />
+
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+        </activity>
         <activity
             android:name=".ProductPage"
             android:label="@string/title_activity_product_page"
             android:parentActivityName=".HomePage"
-            android:theme="@style/AppTheme.NoActionBar" >
-            <meta-data android:name="android.support.PARENT_ACTIVITY"
-            android:value=".HomePage"/></activity>
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".HomePage" />
+        </activity>
         <activity
             android:name=".ContactUs"
             android:label="@string/title_activity_contact_us"
             android:parentActivityName=".HomePage"
-            android:theme="@style/AppTheme.NoActionBar" >
-            <meta-data android:name="android.support.PARENT_ACTIVITY"
-                android:value=".HomePage"/></activity>
-        <activity android:name=".AddIntrest"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".HomePage" />
+        </activity>
+        <activity
+            android:name=".AddIntrest"
             android:parentActivityName=".HomePage">
-            <meta-data android:name="android.support.PARENT_ACTIVITY"
-                android:value=".HomePage"/></activity>
-        <activity android:name=".AddShare"
-            android:parentActivityName=".HomePage"> <meta-data android:name="android.support.PARENT_ACTIVITY"
-            android:value=".HomePage"/></activity>
-        <activity android:name=".SignUp"></activity>
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".HomePage" />
+        </activity>
+        <activity
+            android:name=".AddShare"
+            android:parentActivityName=".HomePage">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".HomePage" />
+        </activity>
+        <activity android:name=".SignUp" />
+        <activity android:name=".CommonTagsPage"></activity>
     </application>
 
 </manifest>
