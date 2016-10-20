@@ -38,6 +38,7 @@ public class SearchPage extends AppCompatActivity implements AdapterView.OnItemC
         setSupportActionBar(toolbar);
 
         Intent searchIntent = getIntent();
+        String s=searchIntent.getStringExtra("search_tag");
         if(Intent.ACTION_SEARCH.equals(searchIntent.getAction())) {
              query = searchIntent.getStringExtra(SearchManager.QUERY);
             Toast.makeText(this, query, Toast.LENGTH_SHORT).show();
@@ -94,7 +95,7 @@ public class SearchPage extends AppCompatActivity implements AdapterView.OnItemC
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Toast.makeText(SearchPage.this, query, Toast.LENGTH_SHORT).show();
+
 
 
 

@@ -1,6 +1,7 @@
 package com.example.khalid.sharektest;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -49,6 +50,8 @@ public class CommonTagsPage extends AppCompatActivity implements AdapterView.OnI
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        Intent intent=new Intent(this,SearchPage.class);
+        intent.putExtra("search_tag",tagObjects.get(position).getName());
 
     }
 
@@ -70,8 +73,8 @@ public class CommonTagsPage extends AppCompatActivity implements AdapterView.OnI
             TextView tagnum= (TextView)convertView.findViewById(R.id.customcommontags_numbers_textView);
 
             // Populate the data into the template view using the data object
-            tagName.setText(user.getName());
-            tagnum.setText(user.getNum());
+            tagName.setText("#"+user.getName());
+            tagnum.setText(user.getNum()+"products");
 
 
             // Return the completed view to render on screen
