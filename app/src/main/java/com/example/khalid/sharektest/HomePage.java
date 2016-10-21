@@ -94,7 +94,7 @@ public class HomePage extends AppCompatActivity
         else if (id == R.id.nav_categories) {
 
         } else if (id == R.id.nav_about_us) {
-            Intent intent = new Intent(this,SearchPage.class);
+            Intent intent = new Intent(this,CommonTagsPage.class);
             startActivity(intent);
 
         } else if (id == R.id.nav_contact_us) {

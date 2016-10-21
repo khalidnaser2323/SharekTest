@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     EditText userName, password;
     ProgressDialog pDialog;
     JSONObject jsonObject;
-    String token;
+    static String token;
 
     @Override
     protected void onStart() {
