@@ -53,6 +53,7 @@ public class CommonTagsPage extends AppCompatActivity implements AdapterView.OnI
         Intent intent=new Intent(this,SearchPage.class);
         intent.putExtra("search_tag",tagObjects.get(position).getName());
 
+        startActivity(intent);
     }
 
     public class CustomAdapterTagPage  extends ArrayAdapter<TagObject> {

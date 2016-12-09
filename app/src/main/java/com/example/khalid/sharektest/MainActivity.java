@@ -26,12 +26,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+    static String token;
     //This is the signup activity
     Button homepage, loginbtn, singUp;
     EditText userName, password;
     ProgressDialog pDialog;
     JSONObject jsonObject;
-    static String token;
 
     @Override
     protected void onStart() {
@@ -76,72 +76,75 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             // login (authentication) request
             String user = userName.getText().toString();
             String pass = password.getText().toString();
-            String params_Date =
-                    ("{"
-                            + " \"user\":" + "\"" + user + "\"" + ","
-                            + " \"pass\":" + "\"" + pass + "\"" + ","
-                            + "\"method\":" + "\"json\""
-                            + "}");
-            try {
-                jsonObject = new JSONObject(params_Date);
+            if (user.isEmpty() || pass.isEmpty()) {
+                Toast.makeText(MainActivity.this, "Please enter user name and password", Toast.LENGTH_SHORT).show();
+            } else {
+                String params_Date =
+                        ("{"
+                                + " \"user\":" + "\"" + user + "\"" + ","
+                                + " \"pass\":" + "\"" + pass + "\"" + ","
+                                + "\"method\":" + "\"json\""
+                                + "}");
+                try {
+                    jsonObject = new JSONObject(params_Date);
 
-                Log.i("request", jsonObject.toString());
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
+                    Log.i("request", jsonObject.toString());
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
 
-            final String URL = "http://api.sharekeg.com/authenticate";
+                final String URL = "http://api.sharekeg.com/authenticate";
 
-            pDialog.setMessage("loading");
-            pDialog.show();
-            final JsonObjectRequest req = new JsonObjectRequest(URL, jsonObject,
-                    new Response.Listener<JSONObject>() {
-                        @Override
-                        public void onResponse(JSONObject response) {
-                            Log.i("response", response.toString());
-                            Toast.makeText(MainActivity.this, "Welcome to sharekeg", Toast.LENGTH_SHORT).show();
+                pDialog.setMessage("loading");
+                pDialog.show();
+                final JsonObjectRequest req = new JsonObjectRequest(URL, jsonObject,
+                        new Response.Listener<JSONObject>() {
+                            @Override
+                            public void onResponse(JSONObject response) {
+                                Log.i("response", response.toString());
+                                Toast.makeText(MainActivity.this, "Welcome to sharekeg", Toast.LENGTH_SHORT).show();
 
-                            try {
-                                token = response.getString("token");
+                                try {
+                                    token = response.getString("token");
 
-                            } catch (JSONException e) {
-                                e.printStackTrace();
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+
+                                Intent intent = new Intent(MainActivity.this, HomePage.class);
+                                intent.putExtra("loggedin", true);
+                                intent.putExtra("token", token);
+
+                                startActivity(intent);
+
+
+                                pDialog.hide();
+
+                                // handle response
                             }
+                        }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // handle error
+                        pDialog.hide();
+                        Toast.makeText(MainActivity.this, "Email or password is incorrect", Toast.LENGTH_SHORT).show();
+                        Log.i("error", error.toString());
+                    }
+                }) {
 
-                            Intent intent = new Intent(MainActivity.this, HomePage.class);
-                            intent.putExtra("loggedin", true);
-                            intent.putExtra("token",token);
+                    public String getBodyContentType() {
+                        return "application/json";
+                    }
 
-                            startActivity(intent);
-
-
-                            pDialog.hide();
-
-                            // handle response
-                        }
-                    }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    // handle error
-                    pDialog.hide();
-
-                    Log.i("error", error.toString());
-                }
-            }) {
-
-                public String getBodyContentType() {
-                    return "application/json";
-                }
-
-                @Override
-                public Map<String, String> getHeaders() throws AuthFailureError {
-                    HashMap<String, String> headers = new HashMap<String, String>();
-                    headers.put("Content-Type", "application/json");
-                    return headers;
-                }
-            };
-            AppController.getInstance().addToRequestQueue(req);
-
+                    @Override
+                    public Map<String, String> getHeaders() throws AuthFailureError {
+                        HashMap<String, String> headers = new HashMap<String, String>();
+                        headers.put("Content-Type", "application/json");
+                        return headers;
+                    }
+                };
+                AppController.getInstance().addToRequestQueue(req);
+            }
 
         } else if (v == singUp) {
             Intent intent = new Intent(this, SignUp.class);

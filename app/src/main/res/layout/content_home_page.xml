@@ -14,166 +14,174 @@
 
    
         <RelativeLayout
+            android:id="@+id/FirstLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/FirstLayout"
             >
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="welcome at sharek community"
-                android:id="@+id/HomePage_Welcome_textView"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true"
-                android:textSize="25sp"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Life is more easier when we share.\n      we create strong community"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textSize="15sp"
-                android:layout_below="@id/HomePage_Welcome_textView"
-                android:layout_centerHorizontal="true"
-                android:id="@+id/HomePage_Hi_TextView" />
-            <EditText
+
+            <ListView
+                android:id="@+id/homePage_listView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/HomePage_Hi_TextView"
-                android:id="@+id/HomePage_Search_edittext"
-                android:layout_marginStart="30dp"
-                android:hint="What are you looking for?"/>
-            <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/ic_search_black_36dp"
-                android:layout_alignTop="@+id/HomePage_Search_edittext"
                 android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:layout_below="@id/HomePage_Search_edittext"
-                android:id="@+id/HomePage_categoriesText_TextView"
-                android:text="Enjoy with our categories"
-                android:layout_marginTop="10dp"
-                android:layout_centerHorizontal="true"
-                />
-            <ImageButton
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:background="@drawable/portfolio_09"
-                android:id="@+id/HomePage_Categories_HomeThings_ImageButton"
-                android:layout_below="@id/HomePage_categoriesText_TextView"
                 android:layout_alignParentStart="true"
-                android:layout_marginTop="20dp"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="Home Things"
-                android:layout_alignBottom="@id/HomePage_Categories_HomeThings_ImageButton"
-                android:id="@+id/HomePage_Category1_TextView"
+                android:layout_alignParentTop="true" />
+            <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:textAppearance="?android:attr/textAppearanceLarge"-->
+            <!--android:text="welcome at sharek community"-->
+            <!--android:id="@+id/HomePage_Welcome_textView"-->
+            <!--android:layout_alignParentTop="true"-->
+            <!--android:layout_centerHorizontal="true"-->
+            <!--android:textSize="25sp"/>-->
+            <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="Life is more easier when we share.\n      we create strong community"-->
+            <!--android:textAppearance="?android:attr/textAppearanceLarge"-->
+            <!--android:textSize="15sp"-->
+            <!--android:layout_below="@id/HomePage_Welcome_textView"-->
+            <!--android:layout_centerHorizontal="true"-->
+            <!--android:id="@+id/HomePage_Hi_TextView" />-->
+            <!--<EditText-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_below="@id/HomePage_Hi_TextView"-->
+            <!--android:id="@+id/HomePage_Search_edittext"-->
+            <!--android:layout_marginStart="30dp"-->
+            <!--android:hint="What are you looking for?"/>-->
+            <!--<ImageButton-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:background="@drawable/ic_search_black_36dp"-->
+            <!--android:layout_alignTop="@+id/HomePage_Search_edittext"-->
+            <!--android:layout_alignParentLeft="true"-->
+            <!--android:layout_alignParentStart="true" />-->
+            <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:textAppearance="?android:attr/textAppearanceLarge"-->
+            <!--android:layout_below="@id/HomePage_Search_edittext"-->
+            <!--android:id="@+id/HomePage_categoriesText_TextView"-->
+            <!--android:text="Enjoy with our categories"-->
+            <!--android:layout_marginTop="10dp"-->
+            <!--android:layout_centerHorizontal="true"-->
+            <!--/>-->
+            <!--<ImageButton-->
+            <!--android:layout_width="60dp"-->
+            <!--android:layout_height="60dp"-->
+            <!--android:background="@drawable/portfolio_09"-->
+            <!--android:id="@+id/HomePage_Categories_HomeThings_ImageButton"-->
+            <!--android:layout_below="@id/HomePage_categoriesText_TextView"-->
+            <!--android:layout_alignParentStart="true"-->
+            <!--android:layout_marginTop="20dp"/>-->
+            <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:textAppearance="?android:attr/textAppearanceSmall"-->
+            <!--android:text="Home Things"-->
+            <!--android:layout_alignBottom="@id/HomePage_Categories_HomeThings_ImageButton"-->
+            <!--android:id="@+id/HomePage_Category1_TextView"-->
 
-                android:textSize="10sp"
-                />
-            <ImageButton
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:background="@drawable/portfolio_02"
-                android:id="@+id/HomePage_Categories_Electronics_ImageButton"
-                android:layout_below="@id/HomePage_categoriesText_TextView"
-                android:layout_marginTop="20dp"
-                android:layout_marginStart="10dp"
-                android:layout_toEndOf="@id/HomePage_Categories_HomeThings_ImageButton"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="Electronics"
-                android:textSize="10sp"
-                android:id="@+id/HomePage_Category2_TextView"
-                android:layout_alignBottom="@id/HomePage_Categories_Electronics_ImageButton"
-                android:layout_alignLeft="@+id/HomePage_Categories_Electronics_ImageButton"
-                android:layout_alignStart="@+id/HomePage_Categories_Electronics_ImageButton"
-                />
-            <ImageButton
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_marginStart="10dp"
-                android:background="@drawable/portfolio_03"
-                android:id="@+id/HomePage_Categories_WorkSpaces_ImageButton"
-                android:layout_below="@id/HomePage_categoriesText_TextView"
-                android:layout_toEndOf="@id/HomePage_Categories_Electronics_ImageButton"
-                android:layout_marginTop="20dp"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/HomePage_Category3_TextView"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="Work Spaces"
-                android:layout_alignBottom="@id/HomePage_Categories_WorkSpaces_ImageButton"
-                android:layout_alignLeft="@+id/HomePage_Categories_WorkSpaces_ImageButton"
-                android:layout_alignStart="@+id/HomePage_Categories_WorkSpaces_ImageButton"
-                android:textSize="10sp"
-                />
-            <ImageButton
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_marginStart="10dp"
-                android:background="@drawable/portfolio_04"
-                android:id="@+id/HomePage_Categories_WiFi_ImageButton"
-                android:layout_below="@id/HomePage_categoriesText_TextView"
-                android:layout_marginTop="20dp"
-                android:layout_toEndOf="@id/HomePage_Categories_WorkSpaces_ImageButton"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="WiFi"
-                android:textSize="12sp"
-                android:textColor="@color/white"
-                android:id="@+id/HomePage_Category4_TextView"
-                android:layout_alignBottom="@id/HomePage_Categories_WiFi_ImageButton"
-                android:layout_alignLeft="@+id/HomePage_Categories_WiFi_ImageButton"
-                android:layout_alignStart="@+id/HomePage_Categories_WiFi_ImageButton" />
+            <!--android:textSize="10sp"-->
+            <!--/>-->
+            <!--<ImageButton-->
+            <!--android:layout_width="60dp"-->
+            <!--android:layout_height="60dp"-->
+            <!--android:background="@drawable/portfolio_02"-->
+            <!--android:id="@+id/HomePage_Categories_Electronics_ImageButton"-->
+            <!--android:layout_below="@id/HomePage_categoriesText_TextView"-->
+            <!--android:layout_marginTop="20dp"-->
+            <!--android:layout_marginStart="10dp"-->
+            <!--android:layout_toEndOf="@id/HomePage_Categories_HomeThings_ImageButton"/>-->
+            <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:textAppearance="?android:attr/textAppearanceSmall"-->
+            <!--android:text="Electronics"-->
+            <!--android:textSize="10sp"-->
+            <!--android:id="@+id/HomePage_Category2_TextView"-->
+            <!--android:layout_alignBottom="@id/HomePage_Categories_Electronics_ImageButton"-->
+            <!--android:layout_alignLeft="@+id/HomePage_Categories_Electronics_ImageButton"-->
+            <!--android:layout_alignStart="@+id/HomePage_Categories_Electronics_ImageButton"-->
+            <!--/>-->
+            <!--<ImageButton-->
+            <!--android:layout_width="60dp"-->
+            <!--android:layout_height="60dp"-->
+            <!--android:layout_marginStart="10dp"-->
+            <!--android:background="@drawable/portfolio_03"-->
+            <!--android:id="@+id/HomePage_Categories_WorkSpaces_ImageButton"-->
+            <!--android:layout_below="@id/HomePage_categoriesText_TextView"-->
+            <!--android:layout_toEndOf="@id/HomePage_Categories_Electronics_ImageButton"-->
+            <!--android:layout_marginTop="20dp"/>-->
+            <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:id="@+id/HomePage_Category3_TextView"-->
+            <!--android:textAppearance="?android:attr/textAppearanceSmall"-->
+            <!--android:text="Work Spaces"-->
+            <!--android:layout_alignBottom="@id/HomePage_Categories_WorkSpaces_ImageButton"-->
+            <!--android:layout_alignLeft="@+id/HomePage_Categories_WorkSpaces_ImageButton"-->
+            <!--android:layout_alignStart="@+id/HomePage_Categories_WorkSpaces_ImageButton"-->
+            <!--android:textSize="10sp"-->
+            <!--/>-->
+            <!--<ImageButton-->
+            <!--android:layout_width="60dp"-->
+            <!--android:layout_height="60dp"-->
+            <!--android:layout_marginStart="10dp"-->
+            <!--android:background="@drawable/portfolio_04"-->
+            <!--android:id="@+id/HomePage_Categories_WiFi_ImageButton"-->
+            <!--android:layout_below="@id/HomePage_categoriesText_TextView"-->
+            <!--android:layout_marginTop="20dp"-->
+            <!--android:layout_toEndOf="@id/HomePage_Categories_WorkSpaces_ImageButton"/>-->
+            <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:textAppearance="?android:attr/textAppearanceSmall"-->
+            <!--android:text="WiFi"-->
+            <!--android:textSize="12sp"-->
+            <!--android:textColor="@color/white"-->
+            <!--android:id="@+id/HomePage_Category4_TextView"-->
+            <!--android:layout_alignBottom="@id/HomePage_Categories_WiFi_ImageButton"-->
+            <!--android:layout_alignLeft="@+id/HomePage_Categories_WiFi_ImageButton"-->
+            <!--android:layout_alignStart="@+id/HomePage_Categories_WiFi_ImageButton" />-->
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/HomePage_ShareText_TextView"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="People shared and Seekers"
-                android:layout_below="@id/HomePage_Categories_HomeThings_ImageButton"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="30dp"
-                />
-            <ImageButton
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_marginTop="20dp"
-                android:layout_below="@+id/HomePage_ShareText_TextView"
-                android:layout_alignParentStart="true"
-                android:background="@drawable/blank_photo"
-                android:id="@+id/HomePage_SharedItem1_ImageButton"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="price"
-                android:layout_below="@id/HomePage_SharedItem1_ImageButton"
-                android:layout_alignStart="@id/HomePage_SharedItem1_ImageButton"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="town"
-                android:layout_below="@id/HomePage_SharedItem1_ImageButton"
-                android:layout_alignEnd="@id/HomePage_SharedItem1_ImageButton"
-                />
+            <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:id="@+id/HomePage_ShareText_TextView"-->
+            <!--android:textAppearance="?android:attr/textAppearanceLarge"-->
+            <!--android:text="People shared and Seekers"-->
+            <!--android:layout_below="@id/HomePage_Categories_HomeThings_ImageButton"-->
+            <!--android:layout_centerHorizontal="true"-->
+            <!--android:layout_marginTop="30dp"-->
+            <!--/>-->
+            <!--<ImageButton-->
+            <!--android:layout_width="100dp"-->
+            <!--android:layout_height="100dp"-->
+            <!--android:layout_marginTop="20dp"-->
+            <!--android:layout_below="@+id/HomePage_ShareText_TextView"-->
+            <!--android:layout_alignParentStart="true"-->
+            <!--android:background="@drawable/blank_photo"-->
+            <!--android:id="@+id/HomePage_SharedItem1_ImageButton"-->
+            <!--/>-->
+            <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:textAppearance="?android:attr/textAppearanceSmall"-->
+            <!--android:text="price"-->
+            <!--android:layout_below="@id/HomePage_SharedItem1_ImageButton"-->
+            <!--android:layout_alignStart="@id/HomePage_SharedItem1_ImageButton"-->
+            <!--/>-->
+            <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:textAppearance="?android:attr/textAppearanceSmall"-->
+            <!--android:text="town"-->
+            <!--android:layout_below="@id/HomePage_SharedItem1_ImageButton"-->
+            <!--android:layout_alignEnd="@id/HomePage_SharedItem1_ImageButton"-->
+            <!--/>-->
         </RelativeLayout>
 
 

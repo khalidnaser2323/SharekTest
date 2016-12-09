@@ -16,7 +16,7 @@
     <application
         android:name=".Utils.AppController"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/sign_up_page"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">

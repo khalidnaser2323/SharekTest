@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:background="#FFFFFF"
+    android:elevation="2dp"
+
+    tools:context="com.example.khalid.sharektest.MainActivity">
+
+    <EditText
+        android:id="@+id/editText7"
+        android:layout_width="150px"
+        android:layout_height="65px"
+        android:layout_alignLeft="@+id/editText4"
+        android:layout_alignStart="@+id/editText4"
+        android:layout_below="@+id/textView10"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="number of Days"
+        android:textSize="8sp" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="150px"
+        android:layout_height="30px"
+        android:layout_alignLeft="@+id/editText4"
+        android:layout_alignStart="@+id/editText4"
+        android:layout_below="@+id/editText4"
+        android:text="Duration"
+        android:textAppearance="@style/TextAppearance.AppCompat" />
+
+    <EditText
+        android:id="@+id/editText4"
+        android:layout_width="150px"
+        android:layout_height="65px"
+        android:layout_alignLeft="@+id/textView9"
+        android:layout_alignStart="@+id/textView9"
+        android:layout_below="@+id/textView8"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="number of pieces"
+        android:textSize="8sp" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="150px"
+        android:layout_height="30px"
+        android:layout_below="@+id/editText3"
+        android:layout_marginLeft="62dp"
+        android:layout_marginStart="62dp"
+        android:layout_toEndOf="@+id/textView8"
+        android:layout_toRightOf="@+id/textView8"
+        android:text="Pieces"
+        android:textAppearance="@style/TextAppearance.AppCompat" />
+
+    <EditText
+        android:id="@+id/editText5"
+        android:layout_width="150px"
+        android:layout_height="65px"
+        android:layout_alignLeft="@+id/textView8"
+        android:layout_alignStart="@+id/textView8"
+        android:layout_below="@+id/textView8"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="#tag"
+        android:textSize="8sp" />
+
+    <EditText
+        android:id="@+id/editText6"
+        android:layout_width="150px"
+        android:layout_height="65px"
+        android:layout_alignLeft="@+id/textView11"
+        android:layout_alignStart="@+id/textView11"
+        android:layout_below="@+id/textView11"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Price"
+        android:textSize="8sp" />
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="150px"
+        android:layout_height="60px"
+        android:layout_alignLeft="@+id/textView"
+        android:layout_alignStart="@+id/textView"
+        android:layout_below="@+id/textView"
+        android:layout_marginLeft="11dp"
+        android:layout_marginStart="11dp"
+
+        android:ems="10"
+        android:fontFamily="sans-serif"
+        android:inputType="textPersonName"
+        android:text="Insert title"
+        android:textSize="9sp" />
+
+    <EditText
+        android:id="@+id/editText3"
+        android:layout_width="150px"
+        android:layout_height="65px"
+        android:layout_alignLeft="@+id/editText"
+        android:layout_alignStart="@+id/editText"
+        android:layout_below="@+id/textView3"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Description"
+        android:textSize="9sp" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="150px"
+        android:layout_height="30px"
+
+
+        android:layout_alignLeft="@+id/textView8"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/textView8"
+        android:layout_marginTop="11dp"
+        android:text="Insert title"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        android:textSize="12sp" />
+
+
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/editText7"
+        android:layout_alignBottom="@+id/editText7"
+        android:layout_toEndOf="@+id/editText7"
+        android:layout_toRightOf="@+id/editText7"
+        android:text="Days"
+        android:textSize="8sp"
+        android:textStyle="normal|bold" />
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/editText6"
+        android:layout_alignBottom="@+id/editText6"
+        android:layout_toEndOf="@+id/editText3"
+        android:layout_toRightOf="@+id/editText3"
+        android:text="EGP"
+        android:textSize="9sp"
+        android:textStyle="normal|bold" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="150px"
+        android:layout_height="30px"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/editText3"
+        android:layout_marginLeft="28dp"
+        android:layout_marginStart="28dp"
+        android:text="Tags"
+        android:textAppearance="@style/TextAppearance.AppCompat" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="150px"
+        android:layout_height="30px"
+        android:layout_alignLeft="@+id/textView"
+        android:layout_alignStart="@+id/textView"
+        android:layout_below="@+id/editText"
+        android:text="Description"
+        android:textAppearance="@style/TextAppearance.AppCompat" />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="150px"
+        android:layout_height="30px"
+        android:layout_alignLeft="@+id/editText5"
+        android:layout_alignStart="@+id/editText5"
+        android:layout_below="@+id/editText5"
+        android:text="Price"
+        android:textAppearance="@style/TextAppearance.AppCompat" />
+
+    <TextView
+        android:id="@+id/textView14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/editText3"
+        android:layout_alignRight="@+id/editText3"
+        android:layout_below="@+id/editText6"
+        android:text="Available Days"
+        android:textAppearance="@style/TextAppearance.AppCompat" />
+
+    <CheckBox
+        android:id="@+id/checkBox14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView14"
+        android:layout_toEndOf="@+id/checkBox13"
+        android:layout_toRightOf="@+id/checkBox13" />
+
+    <CheckBox
+        android:id="@+id/checkBox15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/checkBox14"
+        android:layout_alignBottom="@+id/checkBox14"
+        android:layout_toEndOf="@+id/checkBox14"
+        android:layout_toRightOf="@+id/checkBox14" />
+
+    <CheckBox
+        android:id="@+id/checkBox18"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/checkBox17"
+        android:layout_toEndOf="@+id/checkBox17"
+        android:layout_toRightOf="@+id/checkBox17" />
+
+    <CheckBox
+        android:id="@+id/checkBox19"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/checkBox18"
+        android:layout_toEndOf="@+id/checkBox18"
+        android:layout_toRightOf="@+id/checkBox18" />
+
+    <TextView
+        android:id="@+id/textView17"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/checkBox14"
+        android:layout_toLeftOf="@+id/checkBox15"
+        android:layout_toStartOf="@+id/checkBox15"
+        android:text="Sun."
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        android:textSize="8sp" />
+
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/checkBox13"
+        android:layout_toLeftOf="@+id/checkBox14"
+        android:layout_toStartOf="@+id/checkBox14"
+        android:text="Sat."
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        android:textSize="8sp" />
+
+    <TextView
+        android:id="@+id/textView22"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/checkBox19"
+        android:layout_alignRight="@+id/checkBox19"
+        android:layout_below="@+id/checkBox19"
+        android:text="Fri."
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        android:textSize="8sp" />
+
+    <CheckBox
+        android:id="@+id/checkBox16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/checkBox15"
+        android:layout_alignBottom="@+id/checkBox15"
+        android:layout_toEndOf="@+id/checkBox15"
+        android:layout_toRightOf="@+id/checkBox15" />
+
+    <TextView
+        android:id="@+id/textView18"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/checkBox15"
+        android:layout_toLeftOf="@+id/checkBox16"
+        android:layout_toStartOf="@+id/checkBox16"
+        android:text="Mon."
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        android:textSize="8sp" />
+
+    <TextView
+        android:id="@+id/textView19"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/textView20"
+        android:layout_below="@+id/checkBox17"
+        android:layout_toLeftOf="@+id/checkBox17"
+        android:layout_toStartOf="@+id/checkBox17"
+        android:text="Tue."
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        android:textSize="8sp" />
+
+    <TextView
+        android:id="@+id/textView21"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/checkBox18"
+        android:layout_toLeftOf="@+id/checkBox19"
+        android:layout_toStartOf="@+id/checkBox19"
+        android:text="Thu."
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        android:textSize="8sp" />
+
+    <CheckBox
+        android:id="@+id/checkBox17"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/checkBox16"
+        android:layout_alignBottom="@+id/checkBox16"
+        android:layout_toEndOf="@+id/checkBox16"
+        android:layout_toRightOf="@+id/checkBox16" />
+
+    <TextView
+        android:id="@+id/textView24"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/textView22"
+        android:layout_alignRight="@+id/textView22"
+        android:layout_alignTop="@+id/textView23"
+        android:text="To Date"
+        android:textAppearance="@style/TextAppearance.AppCompat" />
+
+    <CheckBox
+        android:id="@+id/checkBox13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/checkBox14"
+        android:layout_alignBottom="@+id/checkBox14"
+        android:layout_alignLeft="@+id/textView14"
+        android:layout_alignStart="@+id/textView14" />
+
+    <CheckBox
+        android:id="@+id/checkBox20"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/editText3"
+        android:layout_alignStart="@+id/editText3"
+        android:layout_below="@+id/textView23"
+        android:layout_marginTop="19dp"
+        android:text="I agree to this terms and conditions" />
+
+    <TextView
+        android:id="@+id/textView23"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/editText6"
+        android:layout_alignRight="@+id/editText6"
+        android:layout_below="@+id/textView17"
+        android:text="From Date"
+        android:textAppearance="@style/TextAppearance.AppCompat" />
+
+    <Button
+        android:id="@+id/button"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView18"
+        android:layout_alignStart="@+id/textView18"
+        android:layout_below="@+id/checkBox20"
+        android:background="#00b33c"
+        android:elevation="13dp"
+        android:text="Post the interst"
+        tools:background="#006622"
+        tools:style="@style/Widget.AppCompat.Button.Colored" />
+
+    <TextView
+        android:id="@+id/textView20"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/editText7"
+        android:layout_alignStart="@+id/editText7"
+        android:layout_below="@+id/checkBox17"
+        android:text="Wen."
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        android:textSize="8sp" />
+
+</RelativeLayout>

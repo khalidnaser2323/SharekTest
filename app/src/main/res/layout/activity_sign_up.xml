@@ -2,294 +2,269 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="fill_parent"
+    android:background="@drawable/login_bg"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.khalid.sharektest.SignUp">
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <ImageView
+            android:id="@+id/signup_propic_imageView"
+            android:layout_width="125sp"
+            android:layout_height="125sp"
+            android:layout_alignParentTop="true"
+            android:layout_alignWithParentIfMissing="false"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/sign_up_page1" />
 
 
-    <TableLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/tableLayout"
-        android:layout_below="@+id/signup_propic_imageView"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true">
-
-        <TableRow
+        <TableLayout
+            android:id="@+id/tableLayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Frist Name"
-                android:id="@+id/textView12"
-                android:layout_column="0"
-                android:textSize="15sp" />
-
-            <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:inputType="textPersonName"
-                android:ems="10"
-                android:id="@+id/signup_fristname_editText"
-                android:layout_column="1"
-                android:textSize="15sp"
-                android:hint="Frist Name" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Last Name"
-                android:textSize="15sp"
-                android:id="@+id/textView13"
-                android:layout_column="0" />
-
-            <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:inputType="textPersonName"
-                android:ems="10"
-                android:textSize="15sp"
-                android:id="@+id/signup_lastname_editText"
-                android:layout_column="1"
-                android:hint="Last Name" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="User Name"
-                android:id="@+id/textView14"
-                android:textSize="15sp"
-                android:layout_column="0" />
-
-            <EditText
-                android:inputType="textPersonName"
-                android:ems="10"
-                android:id="@+id/signup_username_editText"
-                android:layout_column="1"
-                android:textSize="15sp"
-                android:hint="User Name" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Password"
-                android:textSize="15sp"
-                android:id="@+id/textView19"
-                android:layout_column="0" />
-
-            <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:inputType="textPassword"
-                android:ems="10"
-                android:id="@+id/signup_password_editText"
-                android:layout_column="1"
-                android:textSize="15sp"
-                android:hint="Password" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Repassword"
-                android:id="@+id/textView20"
-                android:textSize="15sp"
-                android:layout_column="0" />
-
-            <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:inputType="textPassword"
-                android:ems="10"
-                android:textSize="15sp"
-                android:id="@+id/signup_repassword_editText2"
-                android:layout_column="1"
-                android:hint="Repassword" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Email"
-                android:textSize="15sp"
-                android:id="@+id/textView16" />
-
-            <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:inputType="textEmailAddress"
-                android:ems="10"
-                android:textSize="15sp"
-                android:id="@+id/signup_email_editText"
-                android:hint="shark@example.com" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Phone"
-                android:textSize="15sp"
-                android:id="@+id/textView17" />
-
-            <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:inputType="phone"
-                android:ems="10"
-                android:textSize="15sp"
-                android:id="@+id/signup_phone_editText"
-                android:layout_column="1"
-                android:hint="Your Phone" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:textSize="15sp"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Gender"
-                android:id="@+id/textView18"
-                android:layout_column="0" />
-
-            <Spinner
-                android:layout_width="100dp"
-                android:layout_height="40dp"
-                android:id="@+id/signup_gender_spinner"
-                android:layout_column="1"
-                android:textSize="15sp"
-                android:layout_weight=".5" />
-        </TableRow>
-
-    </TableLayout>
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/linearLayout7"
-        android:layout_below="@+id/tableLayout"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
-
-        <TextView
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Brithday"
-            android:textSize="15sp"
-            android:id="@+id/textView15" />
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/signup_propic_imageView"
+            android:padding="10sp">
 
-        <EditText
-            android:layout_width="45dp"
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="5sp">
+
+
+                <EditText
+                    android:id="@+id/signup_fristname_editText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="0"
+                    android:ems="10"
+                    android:hint="Frist name"
+                    android:inputType="textPersonName"
+                    android:textSize="12sp" />
+
+                <EditText
+                    android:id="@+id/signup_lastname_editText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="1"
+                    android:ems="10"
+                    android:hint="Last name"
+                    android:inputType="textPersonName"
+                    android:textSize="12sp" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="5sp">
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <EditText
+                    android:id="@+id/signup_username_editText"
+                    android:layout_column="0"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:hint="Username"
+                    android:inputType="textPersonName"
+                    android:textSize="12sp" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="5sp">
+
+                <EditText
+                    android:id="@+id/signup_email_editText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="0"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:hint="E-mail"
+                    android:inputType="textEmailAddress"
+                    android:textSize="12sp" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="5sp">
+
+                <EditText
+                    android:id="@+id/signup_password_editText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="0"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:hint="Password"
+                    android:inputType="textPassword"
+                    android:textSize="12sp" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="5sp">
+
+                <EditText
+                    android:id="@+id/signup_repassword_editText2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="0"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:hint="Confirm password"
+                    android:inputType="textPassword"
+                    android:textSize="12sp" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="5sp"
+                android:layout_marginTop="5sp">
+
+                <EditText
+                    android:id="@+id/signup_phone_editText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="0"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:hint="Your Phone"
+                    android:inputType="phone"
+                    android:textSize="12sp" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/textView18"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_column="0"
+                    android:text="Gender"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textSize="12sp" />
+
+                <Spinner
+                    android:id="@+id/signup_gender_spinner"
+                    android:layout_width="100dp"
+                    android:layout_height="40dp"
+                    android:layout_column="1"
+                    android:layout_weight=".5"
+                    android:textSize="12sp" />
+            </TableRow>
+
+        </TableLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout7"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="date"
-            android:textSize="15sp"
-            android:ems="10"
-            android:id="@+id/signup_day_editText"
-            android:hint="Day" />
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/tableLayout"
+            android:orientation="horizontal"
+            android:padding="10sp">
 
-        <EditText
-            android:layout_width="63dp"
+            <TextView
+                android:id="@+id/textView15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="5sp"
+                android:layout_marginRight="5sp"
+                android:text="Brithday"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textSize="12sp" />
+
+            <EditText
+                android:id="@+id/signup_day_editText"
+                android:layout_width="45dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Day"
+                android:inputType="date"
+                android:textSize="10sp" />
+
+            <EditText
+                android:id="@+id/signup_month_editText"
+                android:layout_width="63dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Month"
+                android:inputType="date"
+                android:textSize="10sp" />
+
+            <EditText
+                android:id="@+id/signup_year_editText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10"
+                android:hint="Year"
+                android:inputType="date"
+                android:textSize="10sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="date"
-            android:ems="10"
-            android:textSize="15sp"
-            android:id="@+id/signup_month_editText"
-            android:hint="Month" />
+            android:layout_alignParentBottom="true"
+            android:layout_below="@+id/linearLayout7"
+            android:layout_marginTop="20sp"
+            android:orientation="vertical">
 
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:inputType="date"
-            android:ems="10"
-            android:textSize="15sp"
-            android:id="@+id/signup_year_editText"
-            android:layout_weight="1"
-            android:hint="Year" />
-    </LinearLayout>
+            <Button
+                android:id="@+id/signup_getlocation_button"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="match_parent"
+                android:layout_height="35sp"
+                android:background="#808080"
+                android:text="Get Location"
+                android:textColor="@color/white" />
 
-    <ImageView
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:id="@+id/signup_propic_imageView"
-        android:src="@mipmap/ic_launcher"
-        android:layout_alignWithParentIfMissing="false"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+            <Button
+                android:id="@+id/signup_signup_button"
+                android:layout_width="match_parent"
+                android:layout_height="35sp"
+                android:layout_marginTop="5sp"
+                android:background="@color/colorPrimary"
+                android:text="Sign Up"
+                android:textColor="@color/white"
 
-    <CheckBox
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/signup_checkBox"
-        android:layout_below="@+id/linearLayout7"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:checked="false"
-        android:text="I agree to the terms and conditions" />
+                />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Sign Up"
-        android:id="@+id/signup_signup_button"
-        android:layout_below="@+id/signup_checkBox"
-        android:layout_toRightOf="@+id/signup_propic_imageView"
-        android:layout_toEndOf="@+id/signup_propic_imageView" />
+        </LinearLayout>
 
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Get Location"
-        android:id="@+id/signup_getlocation_button"
-        android:layout_alignParentBottom="true"
-        android:layout_toLeftOf="@+id/signup_propic_imageView"
-        android:layout_toStartOf="@+id/signup_propic_imageView" />
     </RelativeLayout>
 
 </ScrollView>

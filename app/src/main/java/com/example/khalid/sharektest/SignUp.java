@@ -53,7 +53,6 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener,Ad
         pass=(EditText)findViewById(R.id.signup_password_editText);
         repass=(EditText)findViewById(R.id.signup_repassword_editText2);
         gender=(Spinner) findViewById(R.id.signup_gender_spinner);
-        checkBox=(CheckBox) findViewById(R.id.signup_checkBox);
         sign=(Button) findViewById(R.id.signup_signup_button);
         getlocation=(Button) findViewById(R.id.signup_getlocation_button);
         gender.setOnItemSelectedListener(this);
@@ -113,7 +112,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener,Ad
                     +"}");
             try {
                 jsonObject = new JSONObject(params_Date);
-                Log.i("hph","fhdhf");
+//                Log.i("hph","fhdhf");
                 Log.i("hhh",jsonObject.toString());
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -122,7 +121,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener,Ad
             }
         else {gps.showSettingsAlert();}}
         else if (v==sign){
-            if (pass.equals(repass)||true){
+            if (pass.equals(repass)) {
 
             if (check=checkBox.isChecked()&&longitude!=latitude){
 
@@ -137,7 +136,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener,Ad
                         @Override
                         public void onResponse(JSONObject response) {
                             Log.i("response", response.toString());
-                            Toast.makeText(SignUp.this, "Welcome to sharekeg, Please verify your mail and login", Toast.LENGTH_SHORT).show();
+//                            Toast.makeText(SignUp.this, "Welcome to sharekeg, Please verify your mail and login", Toast.LENGTH_SHORT).show();
 
 
 
