@@ -9,8 +9,8 @@
 
     <ImageView
         android:id="@+id/productItem_image_imageView"
-        android:layout_width="200sp"
-        android:layout_height="200sp"
+        android:layout_width="100sp"
+        android:layout_height="100sp"
         android:src="@drawable/sign_up_page1" />
 
     <TextView
