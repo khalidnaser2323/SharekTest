@@ -11,47 +11,53 @@
         android:id="@+id/productItem_image_imageView"
         android:layout_width="100sp"
         android:layout_height="100sp"
-        android:src="@drawable/sign_up_page1" />
+        android:padding="3dp"
+        android:src="@drawable/blank_photo" />
 
     <TextView
         android:id="@+id/productItem_title_textView"
         style="@style/Base.TextAppearance.AppCompat.Title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/productItem_image_imageView"
-        android:text="product Title" />
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/productItem_image_imageView"
+        android:layout_toRightOf="@+id/productItem_image_imageView"
+        android:text="product Title"
+        android:textColor="@color/black" />
 
     <TextView
         android:id="@+id/productItem_description_textView"
-        android:layout_width="wrap_content"
+        android:layout_width="100sp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/productItem_title_textView"
-        android:text="you can write any bala7 here" />
+        android:layout_toEndOf="@+id/productItem_image_imageView"
+        android:layout_toRightOf="@+id/productItem_image_imageView"
+        android:text="you can write any bala7 here"
+        android:textColor="@color/black" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/productItem_city_textView"
+        style="@style/Base.TextAppearance.AppCompat.Small"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/productItem_description_textView"
-        android:orientation="horizontal">
+        android:layout_marginLeft="50sp"
+        android:layout_marginTop="5sp"
+        android:layout_toEndOf="@+id/productItem_price_textView"
+        android:layout_toRightOf="@+id/productItem_price_textView"
+        android:text="City"
+        android:textColor="@color/black" />
 
-        <TextView
-            android:id="@+id/productItem_price_textView"
-            style="@style/Base.TextAppearance.AppCompat.Small"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="price"
-
-
-            />
-
-        <TextView
-            android:id="@+id/productItem_city_textView"
-            style="@style/Base.TextAppearance.AppCompat.Small"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="100sp"
-            android:layout_marginStart="100sp"
-            android:text="City" />
-    </LinearLayout>
+    <TextView
+        android:id="@+id/productItem_price_textView"
+        style="@style/Base.TextAppearance.AppCompat.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/productItem_description_textView"
+        android:layout_marginTop="5sp"
+        android:layout_toEndOf="@+id/productItem_image_imageView"
+        android:layout_toRightOf="@+id/productItem_image_imageView"
+        android:text="price"
+        android:textColor="@color/black" />
 
 </RelativeLayout>

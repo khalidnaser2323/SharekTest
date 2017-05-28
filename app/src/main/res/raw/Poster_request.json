@@ -1,0 +1,41 @@
+{
+  "type": "<offer-request>",
+  "title": "<post-title>",
+  "guarantee": 0,
+  "negotiable": true,
+  "description": "<post-details>",
+  "tags": [
+    "<tag1>",
+    "<tag2>",
+    "<tag3>"
+  ],
+  "pieces": "<pieces>",
+  "price": {
+    "min": "<max-price/item/day>",
+    "max": "<min-price/item/day>"
+  },
+  "duration": {
+    "min": "",
+    "max": ""
+  },
+  "availability": {
+    "days": {
+      "sat": true,
+      "sun": true,
+      "mon": true,
+      "tue": true,
+      "wen": true,
+      "thu": true,
+      "Fri": true
+    },
+    "from": {
+      "hour": "",
+      "minute": ""
+    },
+    "to": {
+      "hour": "",
+      "minute": ""
+    }
+  },
+  "expiry": ""
+}

@@ -3,7 +3,8 @@ package com.example.khalid.sharektest.Utils;
 /**
  * Created by User on 19/10/2016.
  */
-public class TagObject {private String name,num;
+public class TagObject {
+    private String name, num;
 
     public TagObject(String name, String num) {
         this.name = name;

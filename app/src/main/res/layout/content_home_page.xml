@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
@@ -12,20 +13,63 @@
     tools:context="com.example.khalid.sharektest.HomePage"
     tools:showIn="@layout/app_bar_home_page">
 
-   
-        <RelativeLayout
+
+    <LinearLayout
             android:id="@+id/FirstLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+        android:orientation="vertical"
             >
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight=".1"
+                android:text="Shares"
+                android:textColor="@color/colorPrimary"
+                android:textSize="20sp" />
             <ListView
-                android:id="@+id/homePage_listView"
+                android:id="@+id/homePage_listView_shares"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true" />
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="10sp"
+                android:layout_weight=".9" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight=".1"
+                android:text="Interests"
+                android:textColor="@color/colorPrimary"
+                android:textSize="20sp" />
+
+            <ListView
+                android:id="@+id/homePage_interests"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="10dp"
+                android:layout_weight=".9" />
+        </LinearLayout>
             <!--<TextView-->
             <!--android:layout_width="wrap_content"-->
             <!--android:layout_height="wrap_content"-->
@@ -182,11 +226,7 @@
             <!--android:layout_below="@id/HomePage_SharedItem1_ImageButton"-->
             <!--android:layout_alignEnd="@id/HomePage_SharedItem1_ImageButton"-->
             <!--/>-->
-        </RelativeLayout>
+    </LinearLayout>
 
 
-   
-
-
-
-</android.support.v4.widget.NestedScrollView>
+</RelativeLayout>

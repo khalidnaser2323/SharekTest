@@ -8,16 +8,19 @@ import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.webkit.JavascriptInterface;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.NetworkResponse;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.example.khalid.sharektest.Utils.AppController;
+import com.example.khalid.sharektest.Utils.Utils;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -26,34 +29,19 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-    static String token;
-    //This is the signup activity
+    String token;
+    //This is the login activity
     Button homepage, loginbtn, singUp;
     EditText userName, password;
     ProgressDialog pDialog;
     JSONObject jsonObject;
 
     @Override
-    protected void onStart() {
-        super.onStart();
-        SharedPreferences mypreference = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
-
-        if (mypreference.getBoolean("loggedIn",false)){
-            Log.i("Log","User is logged in");
-            Intent intent=new Intent(this,HomePage.class);
-            startActivity(intent);
-            // to skip login page
-        }
-
-
-    }
-
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        homepage = (Button) findViewById(R.id.LoginPage_Skip_button);
-        homepage.setOnClickListener(this);
+//        homepage = (Button) findViewById(R.id.LoginPage_Skip_button);
+//        homepage.setOnClickListener(this);
         loginbtn = (Button) findViewById(R.id.LoginPage_Login_button);
         loginbtn.setOnClickListener(this);
         singUp = (Button) findViewById(R.id.LoginPage_SignUp_button);
@@ -68,11 +56,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        if (v == homepage) {
-            Intent intent = new Intent(this, HomePage.class);
-            startActivity(intent);
-
-        } else if (v == loginbtn) {
+//        if (v == homepage) {
+//            Intent intent = new Intent(this, HomePage.class);
+//            startActivity(intent);
+//
+//        } else
+        if (v == loginbtn) {
             // login (authentication) request
             String user = userName.getText().toString();
             String pass = password.getText().toString();
@@ -93,7 +82,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     e.printStackTrace();
                 }
 
-                final String URL = "http://api.sharekeg.com/authenticate";
+                final String URL = "https://api.sharekeg.com/authenticate";
 
                 pDialog.setMessage("loading");
                 pDialog.show();
@@ -110,15 +99,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }
+                                SharedPreferences mypreference = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
+                                mypreference.edit().putBoolean("loggedIn", true).apply();
+                                mypreference.edit().putString("token", token).apply();
+                                mypreference.edit().putString("myUserName", userName.getText().toString()).apply();
 
                                 Intent intent = new Intent(MainActivity.this, HomePage.class);
-                                intent.putExtra("loggedin", true);
-                                intent.putExtra("token", token);
+                                intent.putExtra("newAuthentication", true);
+//                                intent.putExtra("token", token);
 
                                 startActivity(intent);
 
 
-                                pDialog.hide();
+                                pDialog.dismiss();
 
                                 // handle response
                             }
@@ -126,9 +119,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         // handle error
-                        pDialog.hide();
-                        Toast.makeText(MainActivity.this, "Email or password is incorrect", Toast.LENGTH_SHORT).show();
-                        Log.i("error", error.toString());
+                        pDialog.dismiss();
+//                        if(error.networkResponse != null){
+//                        if (error.networkResponse.statusCode == 401) {
+//                            Toast.makeText(MainActivity.this, "Email or password is incorrect", Toast.LENGTH_SHORT).show();
+//
+//                        }
+//                        } else {
+//                            Toast.makeText(MainActivity.this, "Please check your internet connection", Toast.LENGTH_SHORT).show();
+//                        }
+//                        Log.i("error", error.toString());
+//                        String errorDescription = ;
+                        Toast.makeText(MainActivity.this, Utils.GetErrorDescription(error, MainActivity.this), Toast.LENGTH_SHORT).show();
+
+
                     }
                 }) {
 
@@ -138,9 +142,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                     @Override
                     public Map<String, String> getHeaders() throws AuthFailureError {
-                        HashMap<String, String> headers = new HashMap<String, String>();
-                        headers.put("Content-Type", "application/json");
-                        return headers;
+//                        HashMap<String, String> headers = new HashMap<String, String>();
+//                        headers.put("Content-Type", "application/json");
+//                        return headers;
+                        Utils utils = new Utils();
+
+                        return utils.getRequestHeaders(null);
                     }
                 };
                 AppController.getInstance().addToRequestQueue(req);
@@ -151,5 +158,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             startActivity(intent);
 
         }
-}
+    }
+
+    @Override
+    public void onBackPressed() {
+
+        Intent startMain = new Intent(Intent.ACTION_MAIN);
+        startMain.addCategory(Intent.CATEGORY_HOME);
+        startMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(startMain);
+
+
+    }
 }

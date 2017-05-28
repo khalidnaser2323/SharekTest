@@ -35,13 +35,16 @@ public class PostersCustomAdapter extends ArrayAdapter<Poster> {
         TextView productTitle = (TextView) convertView.findViewById(R.id.productItem_title_textView);
         TextView productDesc = (TextView) convertView.findViewById(R.id.productItem_description_textView);
         TextView productPrice = (TextView) convertView.findViewById(R.id.productItem_price_textView);
+        // // TODO: 3/17/2017 change city to duration 
         TextView productCity = (TextView) convertView.findViewById(R.id.productItem_city_textView);
         ImageView productImage = (ImageView) convertView.findViewById(R.id.productItem_image_imageView);
         // Populate the data into the template view using the data object
+        String price = poster.getPrice() + "LE";
+        String duration = poster.getDuration() + "Days";
         productTitle.setText(poster.getTitle());
         productDesc.setText(poster.getDescription());
-        productPrice.setText(poster.getPrice());
-        productCity.setText(poster.getCity());
+        productPrice.setText(price);
+        productCity.setText(duration);
 //        Picasso.with(getContext())
 //                .load(poster.getPicUrl())
 //                .resize(75, 75)

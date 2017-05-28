@@ -55,8 +55,7 @@ public class ContactUs extends AppCompatActivity implements View.OnClickListener
     @Override
     public void onClick(View view) {
         if(view == firstChoiceButton ){
-            String number="01001067987";
-            Intent Call = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + number));
+            Intent Call = new Intent(Intent.ACTION_CALL, Uri.parse("tel:01009936942"));
             if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
                 // TODO: Consider calling
                 //    ActivityCompat#requestPermissions
@@ -91,16 +90,16 @@ public class ContactUs extends AppCompatActivity implements View.OnClickListener
             intent.setData(Uri.parse("https://twitter.com/FCBarcelona"));
             startActivity(intent);
 
-        }
-        else if(view == sendmes ){ String n = name.getText().toString();
-            String p=phone.getText().toString();
-            String em=email.getText().toString();
-            String mas=message.getText().toString();
-            String ex="Name : "+n +
-                    "Phone : "+p +
-                    "Email : " + em+
-                    "Message : "+mas ;
-            Toast.makeText(this, ex, Toast.LENGTH_LONG).show();
+        } else if (view == sendmes) {
+//            String n = name.getText().toString();
+//            String p=phone.getText().toString();
+//            String em=email.getText().toString();
+//            String mas=message.getText().toString();
+//            String ex="Name : "+n +
+//                    "Phone : "+p +
+//                    "Email : " + em+
+//                    "Message : "+mas ;
+            Toast.makeText(this, "message is sent", Toast.LENGTH_LONG).show();
 
         }
     }

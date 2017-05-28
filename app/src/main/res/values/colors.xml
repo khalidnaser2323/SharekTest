@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#DE6356</color>
+    <color name="colorPrimary">#373737</color>
     <color name="colorPrimaryDark">#FCE4EC</color>
     <color name="colorAccent">#FF4081</color>
     <color name="white">#FFFF</color>
     <color name="background">#f5f5f5</color>
     <color name="underline">#FFEBCD</color>
+    <color name="black">#000</color>
+    <color name="Contact">#ab8961</color>
+    <color name="Map">#c23338</color>
+    <color name="Line">#bebebe</color>
+    <color name="fg">#bcc8f9</color>
+    <color name="fd">#fc8857</color>
 
 
 </resources>

@@ -1,169 +1,364 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="#FFFFFF"
+    android:paddingBottom="12dp"
+    android:paddingLeft="12dp"
+    android:paddingRight="12dp"
+    android:paddingTop="12dp"
+
     tools:context="com.example.khalid.sharektest.AddIntrest">
 
-    <EditText
-        android:id="@+id/addintrest_title_textView12"
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:layout_alignParentEnd="true"
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp">
+
+        <LinearLayout
+            android:id="@+id/Title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:hint="Intrest Title"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+            android:orientation="vertical">
 
+            <TextView
+                android:id="@+id/addInterest_textView_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Interest title" />
+
+            <EditText
+                android:id="@+id/addInterest_editText_Title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_weight="1"
+                android:hint="Interest title"
+                android:textSize="10sp" />
+
+        </LinearLayout>
     <LinearLayout
-        android:id="@+id/linearLayout3"
+        android:id="@+id/Description"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/addintrest_title_textView12"
-        android:orientation="horizontal">
-
-        <EditText
-            android:id="@+id/addintrest_tags_edittext"
-            android:layout_width="174dp"
-            android:layout_height="40dp"
-            android:hint="Tags" />
-
-        <Spinner
-            android:id="@+id/addintrest_gender_spinner2"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:layout_gravity="right"
-            android:layout_weight=".5" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linearLayout4"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/linearLayout3"
-        android:orientation="horizontal">
-
-        <Spinner
-            android:id="@+id/addintrest__duration_spinner3"
-            android:layout_width="160dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="0.16"
-            android:spinnerMode="dropdown" />
-
-        <EditText
-            android:id="@+id/addintrest_durationtime_textView13"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="0.79"
-            android:hint="Duration Time"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linearLayout5"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/linearLayout4"
-        android:orientation="horizontal">
-
-        <EditText
-            android:id="@+id/addintrest_minprice_textView15"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:layout_weight="0.77"
-            android:hint="Min Price"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-
-        <EditText
-            android:id="@+id/addintrest_maxprice_textView15"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:layout_weight="1"
-            android:hint="Max Price"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-    </LinearLayout>
-
-    <EditText
-        android:id="@+id/addshare_description_textView16"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/linearLayout5"
-        android:hint="Description"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="2dp"
-        android:layout_above="@+id/linearLayout6"
-        android:layout_alignParentEnd="false"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="false"
-        android:layout_alignParentStart="false"
-        android:layout_below="@+id/addshare_description_textView16"
-        android:background="#c0c0c0" />
-
-    <LinearLayout
-        android:id="@+id/linearLayout6"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_above="@+id/addshare_post_button"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Title"
+        android:layout_marginTop="8dp"
         android:orientation="vertical">
 
+        <TextView
+            android:id="@+id/addInterest_textView_Description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Description" />
         <EditText
-            android:id="@+id/addintrest_name_textView17"
+            android:id="@+id/addInterest_editText_Description"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:hint="Name"
-            android:inputType="textPersonName"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
-
-        <EditText
-            android:id="@+id/addintrest_email_textView18"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:hint="Email"
-            android:inputType="textEmailAddress"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
-
-        <EditText
-            android:id="@+id/addintrest_phone_textView19"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:hint="Phone"
-            android:inputType="phone"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
-
-        <CheckBox
-            android:id="@+id/addintrest_checkBox2"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:checked="false"
-            android:text="I agree to the terms and conditions" />
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="Description"
+            android:textSize="10sp" />
 
     </LinearLayout>
 
-    <Button
-        android:id="@+id/addshare_post_button"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/tag1"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:text="Post Intrest" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/Description"
+        android:layout_marginTop="7dp"
+        android:orientation="horizontal">
 
-</RelativeLayout>
+        <LinearLayout
+
+            android:id="@+id/Tag"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/addInterest_textView_tags"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:text="Tags"
+                android:textAppearance="@style/TextAppearance.AppCompat" />
+
+            <EditText
+                android:id="@+id/addInterest_editText_tags"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:hint="#tag"
+                android:inputType="textPersonName"
+                android:textSize="8sp" />
+        </LinearLayout>
+
+        <LinearLayout
+
+            android:id="@+id/Pieces"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/addInterest_textView_Pieces"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:text="Pieces"
+                android:textAppearance="@style/TextAppearance.AppCompat" />
+
+            <EditText
+                android:id="@+id/addInterest_editText_Pieces"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:hint="Number of pieces"
+                android:inputType="textPersonName"
+                android:textSize="8sp" />
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/Price1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/tag1"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <LinearLayout
+
+            android:id="@+id/Price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/addInterest_textView_Price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:text="Price"
+                android:textAppearance="@style/TextAppearance.AppCompat" />
+
+            <EditText
+                android:id="@+id/addInterest_editText_price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:hint="EGP"
+                android:inputType="textPersonName"
+                android:textSize="8sp" />
+        </LinearLayout>
+
+        <LinearLayout
+
+            android:id="@+id/Duration"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/addInterest_textView_Dusration"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:text="Duration"
+                android:textAppearance="@style/TextAppearance.AppCompat" />
+
+            <EditText
+                android:id="@+id/addInterest_editText_Duration"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:hint="Number of days"
+                android:inputType="textPersonName"
+                android:textSize="8sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+        <TextView
+            android:id="@+id/addInterest_textView_availableDays"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/Price1"
+            android:layout_marginTop="15dp"
+            android:text="Payment methods" />
+    <LinearLayout
+        android:id="@+id/checkbox1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/addInterest_textView_availableDays"
+        android:layout_marginTop="8dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/addInterest_textView_Sat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Guarantee payment"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/addInterest_editText_guarantee"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="LE"
+                android:inputType="number"
+                android:textSize="10sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/addInterest_textView_nog"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Negotiable"
+                android:textStyle="bold" />
+
+            <Switch
+                android:id="@+id/addInterest_switch_Negotiable"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+        </LinearLayout>
+    </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/From"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/checkbox1"
+            android:layout_marginTop="15dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+            android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/addInterest_textView_fromDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="From date" />
+
+                <EditText
+                    android:id="@+id/addInterest_editText_fromDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="dd/mm/yy"
+                    android:textSize="10sp"></EditText>
+            </LinearLayout>
+
+            <LinearLayout
+            android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/addInterest_textView_toDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="To date" />
+
+                <EditText
+                    android:id="@+id/addInterest_editText_toDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="dd/mm/yy"
+                    android:textSize="10sp"></EditText>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/Terms"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/From"
+            android:layout_marginTop="20dp">
+        <CheckBox
+            android:id="@+id/addInterest_checkBox_agreement"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight=".9" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight=".1"
+                android:text="I agree to the terms and conditions." />
+
+    </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/Terms"
+            android:layout_marginTop="10dp">
+    <Button
+        android:id="@+id/addInterest_button_postInterest"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="10dp"
+        android:layout_weight="1"
+        android:background="#34cc99"
+        android:text="  Post   " />
+
+            <Button
+                android:id="@+id/addInterest_button_addPhote"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_weight="1"
+                android:background="#34cc99"
+                android:text="  Add Image  " />
+        </LinearLayout>
+
+    </RelativeLayout>
+</ScrollView>

@@ -4,14 +4,23 @@ package com.example.khalid.sharektest.Utils;
  * Created by Khalid on 11/15/2016.
  */
 public class Poster {
-    private String title, description, price, city, picUrl;
+    private String title, description, price, duration, picUrl, posterID;
 
-    public Poster(String title, String description, String price, String city, String picUrl) {
+    public Poster(String posterID, String title, String description, String price, String duration, String picUrl) {
+        this.posterID = posterID;
         this.title = title;
         this.description = description;
         this.price = price;
-        this.city = city;
+        this.duration = duration;
         this.picUrl = picUrl;
+    }
+
+    public String getPosterID() {
+        return posterID;
+    }
+
+    public void setPosterID(String posterID) {
+        this.posterID = posterID;
     }
 
     public String getPicUrl() {
@@ -47,11 +56,11 @@ public class Poster {
         this.price = price;
     }
 
-    public String getCity() {
-        return city;
+    public String getDuration() {
+        return duration;
     }
 
-    public void setCity(String city) {
-        this.city = city;
+    public void setDuration(String duration) {
+        this.duration = duration;
     }
 }

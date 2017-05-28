@@ -1,5 +1,7 @@
 package com.example.khalid.sharektest;
 
+import android.app.Application;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -10,57 +12,154 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.example.khalid.sharektest.Utils.AppController;
 import com.example.khalid.sharektest.Utils.CustomAdapterSearchPage;
+import com.example.khalid.sharektest.Utils.MyFirebaseInstanceIDService;
 import com.example.khalid.sharektest.Utils.Poster;
 import com.example.khalid.sharektest.Utils.PostersCustomAdapter;
+import com.example.khalid.sharektest.Utils.Utils;
+import com.google.firebase.iid.FirebaseInstanceId;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class HomePage extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, AdapterView.OnItemClickListener {
 
-    ListView listView;
-    ArrayList<Poster> posters = new ArrayList<>();
-    PostersCustomAdapter postersCustomAdapter;
+    ArrayList<Poster> interests = new ArrayList<>(), shares = new ArrayList<>();
+    PostersCustomAdapter SharesCustomAdapter, interestsCustomAdapter;
+    ProgressDialog pDialog;
+    String token;
+    private ListView sharesListView, interestsListView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        sharesListView = (ListView) findViewById(R.id.homePage_listView_shares);
+        interestsListView = (ListView) findViewById(R.id.homePage_interests);
+        Intent cameIntent = getIntent();
 
-        Intent cameIntent=new Intent();
-
-        listView = (ListView) findViewById(R.id.homePage_listView);
-        Poster poster1 = new Poster("Book", "Amazing Book", "10", "Fayoum", "");
-        Poster poster2 = new Poster("Book", "Amazing Book", "10", "Fayoum", "");
-        Poster poster3 = new Poster("Book", "Amazing Book", "10", "Fayoum", "");
-        Poster poster4 = new Poster("Book", "Amazing Book", "10", "Fayoum", "");
-        Poster poster5 = new Poster("Book", "Amazing Book", "10", "Fayoum", "");
-        posters.add(poster1);
-        posters.add(poster2);
-        posters.add(poster3);
-        posters.add(poster4);
-        posters.add(poster5);
-
-        PostersCustomAdapter postersCustomAdapter = new PostersCustomAdapter(getApplicationContext(), posters);
-        listView.setAdapter(postersCustomAdapter);
-
-//        listView.setOnItemClickListener(this);
-
-
-        if(cameIntent.getBooleanExtra("loggedIn",false)){
-            SharedPreferences mypreference = PreferenceManager.getDefaultSharedPreferences(HomePage.this);
-            mypreference.edit().putBoolean("loggedIn", true).apply();
-            String token = cameIntent.getStringExtra("token");
-            mypreference.edit().putString("token",token);
+        if (cameIntent.getBooleanExtra("newAuthentication", false)) {
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        FirebaseInstanceId.getInstance().deleteInstanceId();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }).start();
 
         }
+
+        SharedPreferences mypreference = PreferenceManager.getDefaultSharedPreferences(HomePage.this);
+        if (mypreference.getBoolean("loggedIn", false)) {
+//            token = cameIntent.getStringExtra("token");
+            token = mypreference.getString("token", "value");
+            Log.i("Token in Home", token);
+        }
+
+        String notificationToken = FirebaseInstanceId.getInstance().getToken();
+        if (notificationToken != null) {
+            Log.i("Notification Token", notificationToken);
+        }
+
+
+        String tag_json_arry = "json_array_req";
+
+        String url = "https://api.sharekeg.com/posters";
+
+        pDialog = new ProgressDialog(this);
+        pDialog.setMessage("Loading...");
+        pDialog.show();
+
+        JsonArrayRequest req = new JsonArrayRequest(url,
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        Log.i("Response: ", response.toString());
+                        pDialog.dismiss();
+                        for (int i = 0; i < response.length(); i++) {
+                            try {
+                                JSONObject jsonResponse = response.getJSONObject(i);
+                                String posterId = jsonResponse.get("_id").toString();
+                                String title = jsonResponse.get("title").toString();
+                                String description = jsonResponse.get("description").toString();
+                                String price = jsonResponse.getJSONObject("price").get("min").toString();
+                                String duration = jsonResponse.getJSONObject("duration").get("max").toString();
+                                if (jsonResponse.get("type").toString().equals("offer")) {
+                                    Poster share = new Poster(posterId, title, description, price, duration, "");
+                                    shares.add(share);
+                                } else if (jsonResponse.get("type").toString().equals("request")) {
+                                    Poster interest = new Poster(posterId, title, description, price, duration, "");
+                                    interests.add(interest);
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+
+
+                        SharesCustomAdapter = new PostersCustomAdapter(getApplicationContext(), shares);
+                        sharesListView.setAdapter(SharesCustomAdapter);
+
+                        interestsCustomAdapter = new PostersCustomAdapter(getApplicationContext(), interests);
+                        interestsListView.setAdapter(interestsCustomAdapter);
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                pDialog.dismiss();
+                Toast.makeText(HomePage.this, "It looks like you cannot connect to the internet", Toast.LENGTH_LONG).show();
+            }
+        }) {
+
+            public String getBodyContentType() {
+                return "application/json";
+            }
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+//
+                Utils utils = new Utils();
+
+                return utils.getRequestHeaders(token);
+            }
+        };
+
+        AppController.getInstance().addToRequestQueue(req);
+
+
+        sharesListView.setOnItemClickListener(this);
+        interestsListView.setOnItemClickListener(this);
+
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -77,7 +176,17 @@ public class HomePage extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+//            super.onBackPressed();
+            SharedPreferences mypreference = PreferenceManager.getDefaultSharedPreferences(HomePage.this);
+
+            if (mypreference.getBoolean("loggedIn", false)) {
+                Intent startMain = new Intent(Intent.ACTION_MAIN);
+                startMain.addCategory(Intent.CATEGORY_HOME);
+                startMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(startMain);
+            } else {
+                super.onBackPressed();
+            }
 
         }
 
@@ -114,23 +223,29 @@ public class HomePage extends AppCompatActivity
 
         if (id == R.id.nav_profile) {
             // Handle the camera action
-            Intent intent = new Intent(this,MyProfile.class);
+            Intent intent = new Intent(this, MyProfile.class);
             startActivity(intent);
-        }
-        else if (id == R.id.nav_categories) {
-            Intent intent = new Intent(this,CommonTagsPage.class);
+        } else if (id == R.id.nav_categories) {
+            Intent intent = new Intent(this, CommonTagsPage.class);
             startActivity(intent);
         } else if (id == R.id.nav_about_us) {
 
 
         } else if (id == R.id.nav_contact_us) {
-            Intent intent = new Intent(this,ContactUs.class);
-            startActivity(intent);}
-        else if (id == R.id.nav_add_intrest) {
-            Intent intent = new Intent(this,AddIntrest.class);
-            startActivity(intent);}
-        else if (id == R.id.nav_add_share) {
-            Intent intent = new Intent(this,AddShare.class);
+            Intent intent = new Intent(this, ContactUs.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_add_intrest) {
+            Intent intent = new Intent(this, AddIntrest.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_add_share) {
+            Intent intent = new Intent(this, AddShare.class);
+            startActivity(intent);
+
+        } else if (id == R.id.nav_log_out) {
+            SharedPreferences mypreference = PreferenceManager.getDefaultSharedPreferences(HomePage.this);
+            mypreference.edit().remove("token").apply();
+            mypreference.edit().putBoolean("loggedIn", false).apply();
+            Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
 
         }
@@ -138,5 +253,21 @@ public class HomePage extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        Intent intent = new Intent(this, ProductPage.class);
+        if (parent.getId() == R.id.homePage_listView_shares) {
+            intent.putExtra("product_title", shares.get(position).getTitle());
+            intent.putExtra("product_id", shares.get(position).getPosterID());
+
+        } else {
+            intent.putExtra("product_title", interests.get(position).getTitle());
+            intent.putExtra("product_id", interests.get(position).getPosterID());
+        }
+
+        startActivity(intent);
+
     }
 }
