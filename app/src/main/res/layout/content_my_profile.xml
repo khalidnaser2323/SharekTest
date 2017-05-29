@@ -6,76 +6,79 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true">
-    <RelativeLayout android:layout_height="match_parent"
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
-        android:weightSum="1"
+        android:layout_height="match_parent"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:id="@+id/relativeLayout">
+        android:weightSum="1">
 
         <RelativeLayout
-            android:orientation="horizontal"
+            android:id="@+id/linearLayout"
             android:layout_width="match_parent"
             android:layout_height="220dp"
-            android:weightSum="1"
-            android:id="@+id/linearLayout"
-            android:background="#a9a4a4"
-            android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true">
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:background="#a9a4a4"
+            android:orientation="horizontal"
+            android:weightSum="1">
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
                 android:background="?attr/colorPrimary"
                 app:layout_scrollFlags="scroll|enterAlways"
-                app:popupTheme="@style/AppTheme.PopupOverlay"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true">
+                app:popupTheme="@style/AppTheme.PopupOverlay">
 
             </android.support.v7.widget.Toolbar>
 
             <ImageView
+                android:id="@+id/myprofile_profipic_imageView2"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:id="@+id/myprofile_profipic_imageView2"
-                android:src="@mipmap/ic_launcher"
-                android:layout_weight="0.62"
                 android:layout_below="@+id/toolbar"
-                android:layout_centerHorizontal="true" />
+                android:layout_centerHorizontal="true"
+                android:layout_weight="0.62"
+                android:src="@mipmap/ic_launcher" />
 
             <TextView
+                android:id="@+id/myprofile_name_textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Medium Text"
-                android:id="@+id/myprofile_name_textView"
-                android:layout_below="@+id/myprofile_profipic_imageView2"
                 android:layout_alignLeft="@+id/myprofile_profipic_imageView2"
-                android:layout_alignStart="@+id/myprofile_profipic_imageView2" />
+                android:layout_alignStart="@+id/myprofile_profipic_imageView2"
+                android:layout_below="@+id/myprofile_profipic_imageView2"
+                android:text="Medium Text"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <ImageButton
+                android:id="@+id/myprofile_change_button"
                 style="?android:attr/buttonStyleSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/myprofile_change_button"
-                android:background="@drawable/ic_add_black_18dp"
                 android:layout_above="@+id/myprofile_name_textView"
-                android:layout_alignRight="@+id/myprofile_profipic_imageView2"
                 android:layout_alignEnd="@+id/myprofile_profipic_imageView2"
+                android:layout_alignRight="@+id/myprofile_profipic_imageView2"
+                android:background="@drawable/ic_add_black_18dp"
                 />
 
             <TextView
+                android:id="@+id/myprofile_levelpoints_textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="Level 1 - 30 Points"
-                android:id="@+id/myprofile_levelpoints_textView"
-                android:layout_gravity="center|bottom"
                 android:layout_below="@+id/myprofile_name_textView"
-                android:layout_centerHorizontal="true" />
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center|bottom"
+                android:text="Level 1 - 30 Points"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:visibility="gone" />
 
         </RelativeLayout>
 
@@ -83,19 +86,19 @@
             android:id="@+id/container"
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_below="@+id/tabs" />
+            android:layout_below="@+id/tabs"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
         <android.support.design.widget.TabLayout
             android:id="@+id/tabs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/linearLayout"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
+            android:layout_below="@+id/linearLayout"
             android:background="#a9a4a4" />
 
     </RelativeLayout>

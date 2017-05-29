@@ -106,43 +106,6 @@ public class MyProfile extends AppCompatActivity implements View.OnClickListener
 //        pDialog.setMessage("Loading...");
 //        pDialog.show();
 
-        StringRequest req = new StringRequest(url,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        Log.i("My profile data: ", response);
-//                        pDialog.hide();
-//                            setTabs();
-
-                        try {
-
-
-                        } catch (Exception e) {
-                            e.printStackTrace();
-
-                        }
-
-
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(MyProfile.this, Utils.GetErrorDescription(error, MyProfile.this), Toast.LENGTH_LONG).show();
-            }
-        }) {
-
-            public String getBodyContentType() {
-                return "application/json";
-            }
-
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                HashMap<String, String> headers = new HashMap<String, String>();
-                headers.put("Content-Type", "application/json");
-                headers.put("Authorization", "Bearer " + token);
-                return headers;
-            }
-        };
         ImageRequest ir = new ImageRequest(url + "/image", new Response.Listener<Bitmap>() {
             @Override
             public void onResponse(Bitmap response) {
@@ -152,12 +115,9 @@ public class MyProfile extends AppCompatActivity implements View.OnClickListener
             }
         }, 300, 300, null, null);
 
-// Adding request to request queue
-        AppController.getInstance().addToRequestQueue(req);
         AppController.getInstance().addToRequestQueue(ir);
 
 
-// Set up the ViewPager with the sections adapter.
     }
 
 
@@ -206,6 +166,7 @@ public class MyProfile extends AppCompatActivity implements View.OnClickListener
     public void onClick(View v) {
         if (v == ChangeImage) {
 
+            //TODO: Upload image to server
         }
     }
 

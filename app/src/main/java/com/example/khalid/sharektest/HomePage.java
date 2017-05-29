@@ -18,6 +18,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -51,6 +52,7 @@ public class HomePage extends AppCompatActivity
     PostersCustomAdapter SharesCustomAdapter, interestsCustomAdapter;
     ProgressDialog pDialog;
     String token;
+    TextView nav_userName;
     private ListView sharesListView, interestsListView;
 
     @Override
@@ -167,6 +169,9 @@ public class HomePage extends AppCompatActivity
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        View header = navigationView.getHeaderView(0);
+        nav_userName = (TextView) header.findViewById(R.id.HomePage_Email_textView);
+        nav_userName.setText(mypreference.getString("myUserName", ""));
         navigationView.setNavigationItemSelectedListener(this);
     }
 
@@ -245,6 +250,7 @@ public class HomePage extends AppCompatActivity
             SharedPreferences mypreference = PreferenceManager.getDefaultSharedPreferences(HomePage.this);
             mypreference.edit().remove("token").apply();
             mypreference.edit().putBoolean("loggedIn", false).apply();
+            mypreference.edit().remove("myUserName").apply();
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
 
