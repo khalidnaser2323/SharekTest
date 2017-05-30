@@ -54,7 +54,7 @@ public class NotificationActivity extends AppCompatActivity implements AdapterVi
         notificationAdaptor = new NotificationAdaptor(getApplicationContext(), notifications);
         listView.setAdapter(notificationAdaptor);
         listView.setOnItemClickListener(this);
-        listView.setOnItemClickListener(this);
+        listView.setOnItemLongClickListener(this);
         SharedPreferences mypreference = PreferenceManager.getDefaultSharedPreferences(NotificationActivity.this);
         token = mypreference.getString("token", "value");
 
