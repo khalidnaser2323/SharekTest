@@ -13,7 +13,6 @@ import android.provider.MediaStore;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -23,13 +22,9 @@ import android.widget.Switch;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 import com.example.khalid.sharektest.Utils.AppController;
 import com.example.khalid.sharektest.Utils.Utils;
 
@@ -37,17 +32,15 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Hashtable;
 import java.util.Map;
 
 public class AddShare extends AppCompatActivity implements View.OnClickListener {
 
+    private static final int REQUEST_TAKE_poster_PHOTO = 1;
+    private static int REQUEST_LOAD_poster_IMAGE = 2;
     EditText interestTitle, pieces, startDate, description, duration, tags, price, endDate, guarantee;
     //    Spinner gender,catagory;
     CheckBox agreement;
@@ -59,6 +52,7 @@ public class AddShare extends AppCompatActivity implements View.OnClickListener 
     String token;
     Bitmap photo = null;
     ProgressDialog loading;
+    boolean posterUploaded = false;
 
 
     @Override
@@ -156,6 +150,8 @@ public class AddShare extends AppCompatActivity implements View.OnClickListener 
                         jsonObject.getJSONObject("availability").getJSONObject("to").put("hour", "11");
                         jsonObject.getJSONObject("availability").getJSONObject("to").put("minute", "59");
 
+                        Utils utils = new Utils();
+                        jsonObject.put("image", utils.convertBitMapToString(photo));
                         Log.i("Final_Poster_Request", jsonObject.toString());
                         loading.show();
 
@@ -171,11 +167,6 @@ public class AddShare extends AppCompatActivity implements View.OnClickListener 
                                         Intent intent = new Intent(AddShare.this, HomePage.class);
                                         startActivity(intent);
 
-//                                    try {
-////                                        uploadImage(response.getString("id"));
-//                                    } catch (JSONException e) {
-//                                        e.printStackTrace();
-//                                    }
 
                                     }
                                 }, new Response.ErrorListener() {
@@ -194,9 +185,6 @@ public class AddShare extends AppCompatActivity implements View.OnClickListener 
 
                             @Override
                             public Map<String, String> getHeaders() throws AuthFailureError {
-//                            HashMap<String, String> headers = new HashMap<String, String>();
-//                            headers.put("Content-Type", "application/json");
-//                            headers.put("Authorization", "Bearer " + token);
                                 Utils utils = new Utils();
 
                                 return utils.getRequestHeaders(token);
@@ -205,6 +193,7 @@ public class AddShare extends AppCompatActivity implements View.OnClickListener 
                         AppController.getInstance().addToRequestQueue(req);
                     } catch (Exception e) {
                         e.printStackTrace();
+                        Toast.makeText(AddShare.this, "oops! Something went wrong", Toast.LENGTH_SHORT).show();
                         Log.i("Error parsing JSON", e.toString());
                     }
                 } else {
@@ -212,9 +201,59 @@ public class AddShare extends AppCompatActivity implements View.OnClickListener 
                 }
 
             } else {
-                Toast.makeText(AddShare.this, "Please enter guarrantee payment", Toast.LENGTH_LONG).show();
+                Toast.makeText(AddShare.this, "Please enter guarantee payment", Toast.LENGTH_LONG).show();
             }
+        } else if (v == addImage) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(AddShare.this);
+            builder.setTitle("Choose Option")
+                    .setItems(new String[]{"Camera", "Gallery"}, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            if (i == 0) {
+                                Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                                startActivityForResult(takePictureIntent, REQUEST_TAKE_poster_PHOTO);
+
+
+                            } else {
+                                Intent intent = new Intent(
+                                        Intent.ACTION_PICK,
+                                        MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                                startActivityForResult(intent, REQUEST_LOAD_poster_IMAGE);
+
+                            }
+
+                        }
+                    }).create().show();
         }
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        try {
+            if (requestCode == REQUEST_TAKE_poster_PHOTO && resultCode == RESULT_OK && null != data && data.getData() != null) {
+
+                Uri filePath = data.getData();
+
+                photo = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
+
+                Toast.makeText(this, "Poster image  is selected Successfully", Toast.LENGTH_LONG).show();
+
+
+            }
+            if (requestCode == REQUEST_LOAD_poster_IMAGE && resultCode == Activity.RESULT_OK && null != data && data.getData() != null) {
+
+                Uri filePath = data.getData();
+
+                photo = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
+                Toast.makeText(this, "Poster image is selected Successfully", Toast.LENGTH_LONG).show();
+
+
+            }
+        } catch (Exception e) {
+            Log.i("Image_Error", e.toString());
+            Toast.makeText(this, "Something Went Wrong", Toast.LENGTH_LONG).show();
+        }
+
+    }
 }

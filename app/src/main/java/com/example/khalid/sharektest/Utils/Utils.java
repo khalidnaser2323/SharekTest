@@ -3,6 +3,8 @@ package com.example.khalid.sharektest.Utils;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.util.Base64;
 import android.util.Log;
 
 import com.android.volley.NetworkResponse;
@@ -13,6 +15,8 @@ import com.example.khalid.sharektest.R;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -95,6 +99,16 @@ public class Utils {
             headers.put("Authorization", "Bearer " + token);
         }
         return headers;
+    }
+
+    public String convertBitMapToString(Bitmap image) {
+        String photo = null;
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        image.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+        byte[] imageBytes = baos.toByteArray();
+        photo = Base64.encodeToString(imageBytes, Base64.DEFAULT);
+
+        return photo;
     }
 
 }

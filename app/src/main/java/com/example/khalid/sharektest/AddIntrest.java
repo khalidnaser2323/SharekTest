@@ -1,10 +1,15 @@
 package com.example.khalid.sharektest;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.preference.PreferenceManager;
+import android.provider.MediaStore;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -33,6 +38,8 @@ import java.util.Map;
 
 public class AddIntrest extends AppCompatActivity implements View.OnClickListener {
 
+    private static final int REQUEST_TAKE_poster_PHOTO = 1;
+    private static int REQUEST_LOAD_poster_IMAGE = 2;
     EditText interestTitle, pieces, startDate, description, duration, tags, price, endDate, guarantee;
     //    Spinner gender,catagory;
     CheckBox agreement;
@@ -44,6 +51,7 @@ public class AddIntrest extends AppCompatActivity implements View.OnClickListene
     String token;
     Bitmap photo = null;
     ProgressDialog loading;
+    boolean posterUploaded = false;
 
 
     @Override
@@ -127,20 +135,6 @@ public class AddIntrest extends AppCompatActivity implements View.OnClickListene
 
 
                 if (check = agreement.isChecked()) {
-
-//                String params_Date=
-//                    ( "{"
-//                            +"\"type\": \"poster_request\","
-//                   + "\"title\":" +"\""+SintrestTitle+"\","
-//                   + "\"description\":"+ "\""+Sdescription+"\","
-//                   + "\"tags\": ["+tagparts+"],"
-//                +"\"pieces\":0,"
-//                      +  "\"price\": {\"min\":"+ miprice+",\"max\":"+maprice+"},"
-//                +"\"duration\": {\"max\":"+Stime+"}"
-//
-//
-//
-//                +"}" );
                     try {
                         //K.A: To make it easy to create a request, create a json file in resources and parse it
 
@@ -207,10 +201,6 @@ public class AddIntrest extends AppCompatActivity implements View.OnClickListene
 
                             @Override
                             public Map<String, String> getHeaders() throws AuthFailureError {
-//                        HashMap<String, String> headers = new HashMap<String, String>();
-//                        headers.put("Content-Type", "application/json");
-//                        headers.put("Authorization", "Bearer " + token);
-//                        return headers;
                                 Utils utils = new Utils();
 
                                 return utils.getRequestHeaders(token);
@@ -229,11 +219,60 @@ public class AddIntrest extends AppCompatActivity implements View.OnClickListene
                     Toast.makeText(AddIntrest.this, "Please assure that you agree to the terms", Toast.LENGTH_SHORT).show();
                 }
 
+            } else {
+                Toast.makeText(AddIntrest.this, "Please enter guarantee payment", Toast.LENGTH_LONG).show();
             }
-        }
+        } else if (v == addImage) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(AddIntrest.this);
+            builder.setTitle("Choose Option")
+                    .setItems(new String[]{"Camera", "Gallery"}, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            if (i == 0) {
+                                Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                                startActivityForResult(takePictureIntent, REQUEST_TAKE_poster_PHOTO);
 
+
+                            } else {
+                                Intent intent = new Intent(
+                                        Intent.ACTION_PICK,
+                                        MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                                startActivityForResult(intent, REQUEST_LOAD_poster_IMAGE);
+
+                            }
+
+                        }
+                    }).create().show();
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        try {
+            if (requestCode == REQUEST_TAKE_poster_PHOTO && resultCode == RESULT_OK && null != data && data.getData() != null) {
+
+                Uri filePath = data.getData();
+
+                photo = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
+
+                Toast.makeText(this, "Poster image  is selected Successfully", Toast.LENGTH_LONG).show();
+
+
+            }
+            if (requestCode == REQUEST_LOAD_poster_IMAGE && resultCode == Activity.RESULT_OK && null != data && data.getData() != null) {
+
+                Uri filePath = data.getData();
+
+                photo = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
+                Toast.makeText(this, "Poster image is selected Successfully", Toast.LENGTH_LONG).show();
+
+
+            }
+        } catch (Exception e) {
+            Log.i("Image_Error", e.toString());
+            Toast.makeText(this, "Something Went Wrong", Toast.LENGTH_LONG).show();
+        }
 
     }
 }
-
-
