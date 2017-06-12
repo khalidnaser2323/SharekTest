@@ -51,7 +51,6 @@ public class AddIntrest extends AppCompatActivity implements View.OnClickListene
     String token;
     Bitmap photo = null;
     ProgressDialog loading;
-    boolean posterUploaded = false;
 
 
     @Override
@@ -168,7 +167,8 @@ public class AddIntrest extends AppCompatActivity implements View.OnClickListene
                         jsonObject.getJSONObject("availability").getJSONObject("from").put("minute", "0");
                         jsonObject.getJSONObject("availability").getJSONObject("to").put("hour", "11");
                         jsonObject.getJSONObject("availability").getJSONObject("to").put("minute", "59");
-
+                        Utils utils = new Utils();
+                        jsonObject.put("image", utils.convertBitMapToString(photo));
                         Log.i("Final_Poster_Request", jsonObject.toString());
 
                         loading.show();
@@ -250,11 +250,9 @@ public class AddIntrest extends AppCompatActivity implements View.OnClickListene
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         try {
-            if (requestCode == REQUEST_TAKE_poster_PHOTO && resultCode == RESULT_OK && null != data && data.getData() != null) {
+            if (requestCode == REQUEST_TAKE_poster_PHOTO && resultCode == RESULT_OK && null != data) {
 
-                Uri filePath = data.getData();
-
-                photo = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
+                photo = (Bitmap) data.getExtras().get("data");
 
                 Toast.makeText(this, "Poster image  is selected Successfully", Toast.LENGTH_LONG).show();
 

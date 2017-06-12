@@ -273,6 +273,23 @@
                 android:textColor="@color/white" />
 
             <Button
+                android:id="@+id/signup_uploadNationalId_button"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="match_parent"
+                android:layout_height="35sp"
+                android:layout_marginTop="5dp"
+                android:background="#808080"
+                android:text="Upload national ID"
+                android:textColor="@color/white"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="This is very secure and will not be shared with any organization"
+                android:textAppearance="@android:style/TextAppearance.Small"
+                android:textColor="@color/black"
+                />
+
+            <Button
                 android:id="@+id/signup_signup_button"
                 android:layout_width="match_parent"
                 android:layout_height="35sp"

@@ -44,6 +44,7 @@
     <string name="error_unauthorized">Login or register to use this feature</string>
     <string name="error_default">Please check your internet connection</string>
     <string name="title_activity_splash_screen">SplashScreenActivity</string>
+    <string name="title_activity_rating">Rate</string>
 
 
 </resources>

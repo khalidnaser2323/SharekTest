@@ -2,6 +2,7 @@ package com.example.khalid.sharektest;
 
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -197,6 +198,12 @@ public class Tab3 extends android.support.v4.app.Fragment implements AdapterView
         final Proposal proposal = proposals.get(position);
         if (proposal.isAccepted()) {
             Toast.makeText(getContext(), "This proposal is accepted", Toast.LENGTH_LONG).show();
+            //K.A: Disabled for next release
+//            Intent intent = new Intent(getContext(),RatingActivity.class);
+//            intent.putExtra("poster_user",proposal.getUser());
+//            intent.putExtra("poster_id",proposal.getPosterId());
+//            startActivity(intent);
+
         } else {
             new AlertDialog.Builder(getContext())
                     .setTitle("Title")
@@ -254,10 +261,6 @@ public class Tab3 extends android.support.v4.app.Fragment implements AdapterView
 
                                 @Override
                                 public Map<String, String> getHeaders() throws AuthFailureError {
-//                                    HashMap<String, String> headers = new HashMap<String, String>();
-//                                    headers.put("Content-Type", "application/json");
-//                                    headers.put("Authorization", "Bearer " + token);
-//                                    return headers;
                                     Utils utils = new Utils();
 
                                     return utils.getRequestHeaders(token);

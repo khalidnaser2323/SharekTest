@@ -31,8 +31,8 @@ import java.util.ArrayList;
 import java.util.Map;
 
 public class NotificationActivity extends AppCompatActivity implements AdapterView.OnItemClickListener, AdapterView.OnItemLongClickListener {
+    static ArrayList<com.example.khalid.sharektest.Utils.Notification> notifications = new ArrayList<>();
     ListView listView;
-    ArrayList<com.example.khalid.sharektest.Utils.Notification> notifications = new ArrayList<>();
     NotificationAdaptor notificationAdaptor;
     JSONObject jsonObject;
     String token;
@@ -64,11 +64,71 @@ public class NotificationActivity extends AppCompatActivity implements AdapterVi
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         //K.A: navigate to product
-        com.example.khalid.sharektest.Utils.Notification notification = notifications.get(position);
-        Intent intent = new Intent(NotificationActivity.this, ProductPage.class);
-        intent.putExtra("product_id", notification.getPosterId());
-        intent.putExtra("notification", true);
-        startActivity(intent);
+//        com.example.khalid.sharektest.Utils.Notification notification = notifications.get(position);
+//        Intent intent = new Intent(NotificationActivity.this, ProductPage.class);
+//        intent.putExtra("product_id", notification.getPosterId());
+//        intent.putExtra("notification", true);
+//        startActivity(intent);
+
+        final com.example.khalid.sharektest.Utils.Notification notification = notifications.get(position);
+
+        String url = "https://api.sharekeg.com/user/" + notification.getUserId();
+        JsonObjectRequest req = new JsonObjectRequest(url,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.i("Response: ", response.toString());
+//                        pDialog.dismiss();
+
+
+                        try {
+                            LayoutInflater inflater = LayoutInflater.from(NotificationActivity.this);
+                            final View yourCustomView = inflater.inflate(R.layout.owner_info_dialog, null);
+
+                            final TextView ownerName = (TextView) yourCustomView.findViewById(R.id.ownerInfoDialog_name);
+                            String userFullName = response.getJSONObject("name").get("first").toString() + " " + response.getJSONObject("name").get("last").toString();
+                            ownerName.setText(userFullName);
+                            final TextView ownerGender = (TextView) yourCustomView.findViewById(R.id.ownerInfoDialog_gender);
+                            ownerGender.setText(response.get("gender").toString());
+                            final TextView ownerPoints = (TextView) yourCustomView.findViewById(R.id.ownerInfoDialog_points);
+                            ownerPoints.setText(response.get("points").toString());
+                            AlertDialog dialog = new AlertDialog.Builder(NotificationActivity.this)
+                                    .setTitle("")
+                                    .setView(yourCustomView)
+                                    .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int whichButton) {
+
+                                        }
+                                    }).create();
+                            dialog.show();
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.i("Error: ", error.toString());
+//                pDialog.dismiss();
+                Toast.makeText(NotificationActivity.this, Utils.GetErrorDescription(error, NotificationActivity.this), Toast.LENGTH_SHORT).show();
+            }
+        }) {
+
+            public String getBodyContentType() {
+                return "application/json";
+            }
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Utils utils = new Utils();
+
+                return utils.getRequestHeaders(token);
+            }
+        };
+        AppController.getInstance().addToRequestQueue(req);
 
     }
 

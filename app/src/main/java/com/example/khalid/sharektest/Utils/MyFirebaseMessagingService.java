@@ -174,10 +174,12 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             if (dataPayLoad.get("type").equals("proposal")) {
                 intent = new Intent(this, MyProfile.class);
 
-            } else {
+            } else if (dataPayLoad.get("type").equals("reaction")) {
                 intent = new Intent(this, NotificationActivity.class);
                 String stringObject = dataPayLoad.toString();
                 intent.putExtra("data", stringObject);
+            } else {
+                intent = new Intent(this, HomePage.class);
             }
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */, intent,

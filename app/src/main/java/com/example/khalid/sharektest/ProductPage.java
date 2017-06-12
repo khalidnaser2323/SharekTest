@@ -24,8 +24,10 @@ import android.widget.Toast;
 import com.android.volley.AuthFailureError;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.ImageRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.NetworkImageView;
 import com.example.khalid.sharektest.Utils.AppController;
 import com.example.khalid.sharektest.Utils.Utils;
 import com.squareup.picasso.Picasso;
@@ -40,11 +42,12 @@ import java.util.Map;
 
 public class ProductPage extends AppCompatActivity implements View.OnClickListener {
     TextView Pname, Pprice, Pperiod, PType, Pdescription, Ppeices, productTags, guaranteePayment, negotiable;
-    ImageView Ppic;
+    NetworkImageView Ppic;
     Button conatct, showInfo;
     ProgressDialog pDialog;
     String token, productId, proposalDate, propopsalDuration, title, price, proposalPieces, ownerUsername;
     JSONObject proposalRequest;
+    SharedPreferences mypreference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,14 +67,14 @@ public class ProductPage extends AppCompatActivity implements View.OnClickListen
         Ppeices = (TextView) findViewById(R.id.Product_TextView_Pieces);
         guaranteePayment = (TextView) findViewById(R.id.Product_TextView_Guarantee);
         negotiable = (TextView) findViewById(R.id.Product_TextView_negotiable);
-        Ppic = (ImageView) findViewById(R.id.Product_ImageView_ProductImage);
+        Ppic = (NetworkImageView) findViewById(R.id.Product_ImageView_ProductImage);
         conatct = (Button) findViewById(R.id.Product_Button_Contact);
         showInfo = (Button) findViewById(R.id.Product_Button_ShowInfo);
         conatct.setOnClickListener(this);
         showInfo.setOnClickListener(this);
         Pdescription.setMovementMethod(new ScrollingMovementMethod());
 
-        SharedPreferences mypreference = PreferenceManager.getDefaultSharedPreferences(ProductPage.this);
+        mypreference = PreferenceManager.getDefaultSharedPreferences(ProductPage.this);
 
         if (mypreference.getBoolean("loggedIn", false)) {
             token = mypreference.getString("token", null);
@@ -98,18 +101,21 @@ public class ProductPage extends AppCompatActivity implements View.OnClickListen
         pDialog = new ProgressDialog(this);
         pDialog.setMessage("Loading...");
         pDialog.show();
-        ImageRequest ir = new ImageRequest(url + "/image", new Response.Listener<Bitmap>() {
-            @Override
-            public void onResponse(Bitmap response) {
-                pDialog.dismiss();
-                Ppic.setImageBitmap(response);
-//                Picasso.with(getApplicationContext())
-//                        .load(String.valueOf(response))
-//                        .resize(300, 300)
-//                        .centerCrop()
-//                        .into(Ppic);
-            }
-        }, 300, 300, null, null);
+//        ImageRequest ir = new ImageRequest(url + "/image", new Response.Listener<Bitmap>() {
+//            @Override
+//            public void onResponse(Bitmap response) {
+//                pDialog.dismiss();
+//                Ppic.setImageBitmap(response);
+////                Picasso.with(getApplicationContext())
+////                        .load(String.valueOf(response))
+////                        .resize(300, 300)
+////                        .centerCrop()
+////                        .into(Ppic);
+//            }
+//        }, 300, 300, null, null);
+
+        ImageLoader imageLoader = AppController.getInstance().getImageLoader();
+        Ppic.setImageUrl(url + "/image", imageLoader);
 
         JsonObjectRequest req = new JsonObjectRequest(url,
                 new Response.Listener<JSONObject>() {
@@ -132,6 +138,10 @@ public class ProductPage extends AppCompatActivity implements View.OnClickListen
                             String peices = response.get("pieces").toString();
                             Ppeices.setText(peices);
                             ownerUsername = response.getString("user");
+                            if (ownerUsername.equals(mypreference.getString("myUserName", ""))) {
+                                conatct.setVisibility(View.GONE);
+                                showInfo.setVisibility(View.GONE);
+                            }
                             if (response.getBoolean("negotiable")) {
                                 negotiable.setText("Yes");
                             } else {
@@ -176,7 +186,7 @@ public class ProductPage extends AppCompatActivity implements View.OnClickListen
             }
         };
 
-        AppController.getInstance().addToRequestQueue(ir);
+//        AppController.getInstance().addToRequestQueue(ir);
         AppController.getInstance().addToRequestQueue(req);
 
 
