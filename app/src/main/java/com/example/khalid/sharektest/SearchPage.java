@@ -43,7 +43,7 @@ public class SearchPage extends AppCompatActivity implements AdapterView.OnItemC
              query = searchIntent.getStringExtra(SearchManager.QUERY);
             Toast.makeText(this, query, Toast.LENGTH_SHORT).show();
             Log.d("Ssssssss",query+"Sssssssss");}
-        slistView=(ListView)findViewById(R.id.searchpage_listView);
+//        slistView=(ListView)findViewById(R.id.searchpage_listView);
         SearchObject object1 = new SearchObject("FFFF0","jfffffffffffffffffffffffffffffffffffffffffffffffffffff","Fayoum","http://image.slidesharecdn.com/genre-lesson-130909102044-/95/types-of-genres-3-638.jpg?cb=1378722089");
         SearchObject object2 = new SearchObject("FFFF0","jfffffffffffffffffffffffffffffffffffffffffffffffffffff","Fayoum","http://digiliteratelibrarian.weebly.com/uploads/9/1/0/6/9106594/_918552.jpg");
         SearchObject object3 = new SearchObject("FFFF0","jfffffffffffffffffffffffffffffffffffffffffffffffffffff","Fayoum","http://i.imgur.com/DvpvklR.png");

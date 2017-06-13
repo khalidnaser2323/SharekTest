@@ -30,6 +30,7 @@ import com.example.khalid.sharektest.Utils.AppController;
 import com.example.khalid.sharektest.Utils.GPSTracker;
 import com.example.khalid.sharektest.Utils.SpinnerCustomArrayAdapter;
 import com.example.khalid.sharektest.Utils.Utils;
+import com.example.khalid.sharektest.tour.tour_welcome;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -182,10 +183,13 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener, A
                                         mypreference.edit().putString("token", token).apply();
                                         mypreference.edit().putString("myUserName", uname.getText().toString()).apply();
 
-                                        Intent intent = new Intent(SignUp.this, HomePage.class);
+                                        // Go to tour guide
+
+
+                                        Intent intent = new Intent(SignUp.this, tour_welcome.class);
 //                                    intent.putExtra("loggedIn", true);
 //                                    intent.putExtra("token", token);
-                                        intent.putExtra("newAuthentication", true);
+                                        //   intent.putExtra("newAuthentication", true);
                                         startActivity(intent);
 //
 

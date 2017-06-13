@@ -118,6 +118,33 @@
                 android:value=".HomePage" />
         </activity>
         <activity
+            android:name=".AboutUs"
+            android:parentActivityName=".HomePage"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".HomePage" />
+        </activity>
+        <activity
+            android:name=".Tags"
+            android:parentActivityName=".HomePage"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".HomePage" />
+        </activity>
+
+
+        <activity
+            android:name=".help"
+              android:parentActivityName=".HomePage"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".HomePage" />
+        </activity>
+
+        <activity
             android:name=".ContactUs"
             android:label="@string/title_activity_contact_us"
             android:parentActivityName=".HomePage"

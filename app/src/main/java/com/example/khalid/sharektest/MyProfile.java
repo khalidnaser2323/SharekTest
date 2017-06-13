@@ -2,57 +2,28 @@ package com.example.khalid.sharektest;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import com.android.volley.AuthFailureError;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.ImageRequest;
-import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
-import com.example.khalid.sharektest.Utils.AppController;
-import com.example.khalid.sharektest.Utils.Proposal;
-import com.example.khalid.sharektest.Utils.ProposalCustomAdapter;
-import com.example.khalid.sharektest.Utils.Utils;
-import com.google.android.gms.maps.SupportMapFragment;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-public class MyProfile extends AppCompatActivity implements View.OnClickListener {
+public class MyProfile extends AppCompatActivity {
 
 
-    ImageButton ChangeImage;
-    TextView myUserName;
     String token;
-    ImageView imageView;
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
      * fragments for each of the sections. We use a
@@ -74,15 +45,12 @@ public class MyProfile extends AppCompatActivity implements View.OnClickListener
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        myUserName = (TextView) findViewById(R.id.myprofile_name_textView);
-        imageView = (ImageView) findViewById(R.id.myprofile_profipic_imageView2);
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
         SharedPreferences mypreference = PreferenceManager.getDefaultSharedPreferences(MyProfile.this);
-
-        myUserName.setText(mypreference.getString("myUserName", ""));
 
         token = mypreference.getString("token", "value");
         Log.i("Token", token);
@@ -92,31 +60,10 @@ public class MyProfile extends AppCompatActivity implements View.OnClickListener
 
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
-        ChangeImage = (ImageButton) findViewById(R.id.myprofile_change_button);
-        ChangeImage.setOnClickListener(MyProfile.this);
 
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
-
-
-        String url = "https://api.sharekeg.com/user/" + mypreference.getString("myUserName", "");
-
-//        pDialog = new ProgressDialog(this);
-//        pDialog.setMessage("Loading...");
-//        pDialog.show();
-
-        ImageRequest ir = new ImageRequest(url + "/image", new Response.Listener<Bitmap>() {
-            @Override
-            public void onResponse(Bitmap response) {
-//                pDialog.dismiss();
-                imageView.setImageBitmap(response);
-
-            }
-        }, 300, 300, null, null);
-
-        AppController.getInstance().addToRequestQueue(ir);
-
 
     }
 
@@ -129,6 +76,28 @@ public class MyProfile extends AppCompatActivity implements View.OnClickListener
     }
 
     @Override
+    public void onBackPressed() {
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+//            super.onBackPressed();
+            SharedPreferences mypreference = PreferenceManager.getDefaultSharedPreferences(this);
+
+            if (mypreference.getBoolean("loggedIn", false)) {
+                Intent startMain = new Intent(Intent.ACTION_MAIN);
+                startMain.addCategory(Intent.CATEGORY_HOME);
+                startMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(startMain);
+            } else {
+                super.onBackPressed();
+            }
+
+        }
+
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
@@ -137,16 +106,13 @@ public class MyProfile extends AppCompatActivity implements View.OnClickListener
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            return true;
-        }
-        if (id == R.id.action_privacy) {
-
-            Intent intent = new Intent();
-            intent.setAction(Intent.ACTION_VIEW);
-            intent.addCategory(Intent.CATEGORY_BROWSABLE);
-            intent.setData(Uri.parse("https://www.facebook.com/Forca.Barcelona/"));
+            Intent intent = new Intent(this, help.class);
             startActivity(intent);
+        }
+        if (id == R.id.action_about) {
 
+            Intent intent = new Intent(MyProfile.this, AboutUs.class);
+            startActivity(intent);
         }
 
         return super.onOptionsItemSelected(item);
@@ -154,20 +120,12 @@ public class MyProfile extends AppCompatActivity implements View.OnClickListener
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFrag(new Tab1(), "About");
-        adapter.addFrag(new Tab3(), "Proposals");
+        adapter.addFrag(new Tab1(), "");
+        adapter.addFrag(new Tab3(), "");
 //            adapter.addFrag(new SupportMapFragment(), "Map");
 
 
         viewPager.setAdapter(adapter);
-    }
-
-    @Override
-    public void onClick(View v) {
-        if (v == ChangeImage) {
-
-            //TODO: Upload image to server
-        }
     }
 
     /**

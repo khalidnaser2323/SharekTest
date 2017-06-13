@@ -5,12 +5,12 @@
 
         <item
             android:id="@+id/nav_profile"
-            android:icon="@drawable/ic_menu_gallery"
+            android:icon="@drawable/userr"
             android:title="My Profile" />
         <item
             android:id="@+id/nav_categories"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Categories" />
+            android:icon="@drawable/hashtag"
+            android:title="Tags" />
         <item
             android:id="@+id/nav_add_share"
             android:icon="@drawable/plus"
@@ -26,19 +26,25 @@
         <menu>
             <item
                 android:id="@+id/nav_about_us"
-                android:icon="@drawable/ic_menu_share"
+                android:icon="@drawable/help"
                 android:title="About Sharek" />
             <item
+                android:id="@+id/nav_help"
+                android:icon="@drawable/help"
+                android:title="Know more" />
+
+
+            <item
                 android:id="@+id/nav_contact_us"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Contact us"
-                android:visible="false" />
+                android:icon="@drawable/mail"
+                android:title="Contact us" />
+
 
         </menu>
     </item>
     <item
         android:id="@+id/nav_log_out"
-        android:icon="@drawable/ic_menu_send"
+        android:icon="@drawable/signout"
         android:title="Log out" />
 
 

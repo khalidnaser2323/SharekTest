@@ -14,29 +14,43 @@
     <string name="title_activity_contact_us">ContactUs</string>
     <string name="title_activity_add_share">Add Share</string>
     <string name="currency">EGP/Day</string>
-    <string name="large_text">
-        "Material is the metaphor.\n\n"
+    <string name="help">
+        "is Sharek for me ? .. \n\n"
+        "Sure, sharek is developed for all people to help them to share with neighbors.\n Each one of us has a lot of things not used , it is time to share them with others.\n\n "
+        "What are circles ? \n when  you register in sharek , automatically a circle is created around your location to get close with your neighbors , you are not allowed for sharing out od circle"
+        "\n\nHow can i share with others ? \n  you can search for interest the people and neighbors need  and match your own things  on interests tab, then make contact with the interest's owner \n\n"
+        "If I don't get an interest matches my possible shares, \n That is easy, add new share with all specifications and available duration to be shared with others \n\n "
+        "I need something , What should i do ? \n We are here to be with you all time , first search for your interest in shares tab and contact the share's owner \n\n "
+        "Do you trust me ? \n  Of course, We build this app just for you. \n\n"
+        "what are points? \n Ok, points are given to you with every share or interest you do based on the rate  of you"
+        "all points of you is collected to help to get more smart features and promotions \n\n"
+        "wait, If i share something with some one and he don't give it me back, what wil happen ?? \n first, you will be given all information of him/her contain (national id - phone number - email - location) "
+        "What are the terms and conditions i should follow? \n\n   First Our mission is to help people and link them with each other have the same interests .So, each ome is responsible for the things he/she give to the others.\n "
+        "\n     If an user gets from you, he is legally responsible for the thing and its status  "
 
-        "A material metaphor is the unifying theory of a rationalized space and a system of motion."
-        "The material is grounded in tactile reality, inspired by the study of paper and ink, yet "
-        "technologically advanced and open to imagination and magic.\n"
-        "Surfaces and edges of the material provide visual cues that are grounded in reality. The "
-        "use of familiar tactile attributes helps users quickly understand affordances. Yet the "
-        "flexibility of the material creates new affordances that supercede those in the physical "
-        "world, without breaking the rules of physics.\n"
-        "The fundamentals of light, surface, and movement are key to conveying how objects move, "
-        "interact, and exist in space and in relation to each other. Realistic lighting shows "
-        "seams, divides space, and indicates moving parts.\n\n"
+    </string>
+    <string name="about_us">
 
-        "Bold, graphic, intentional.\n\n"
+"Sharek is a group of passionate developers seeking creation of new ideas to make people’s life easier and help in solving problem of our society easily and cooperatively.
+\n\n"
+        "Our mission\n\n\n"
+        "And with our faith that problems of society can be solved first and mainly by us all. Sharek create ideas aim at  increasing the interaction between people and motivate them to help each other.\n\n"
 
-        "The foundational elements of print based design typography, grids, space, scale, color, "
-        "and use of imagery guide visual treatments. These elements do far more than please the "
-        "eye. They create hierarchy, meaning, and focus. Deliberate color choices, edge to edge "
-        "imagery, large scale typography, and intentional white space create a bold and graphic "
-        "interface that immerse the user in the experience.\n"
-        "An emphasis on user actions makes core functionality immediately apparent and provides "
-        "waypoints for the user.\n\n"
+        "Sharek app\n\n"
+        "It gives them a chance to share their thing with their neighbors using a user-friendly (simple) application and a website (soon) that widens the connections with increase activity."
+"This App provides a great chance for people to make profit of their unused things and also for small businesses to market for their products easily and fast.\n\n\n\n"
+
+        " بالعربي"
+"\n\n\n"
+        "شارك اتكونت من مجموعة مطورين كان هدفهم انهم يخلقوا افكار مختلفة تخلى حياة الناس اسهل وتساعد على حل مشكلات مجتمعنا بشكل بسيط.
+ولأن مشاكل المجتمع حلها بايد الناس اولًا. شارك بتهدف بأفكارها انها تقرب الناس من بعض اكتر وتساعد بعض. فوفرت ليهم فرصة لمشاركة حاجاتهم مع جيرانهم و القريبين منهم عن طريق أبليكيشن على الموبايل وموقع بيسهل تواصلهم مع بعض.
+وده مفيد فى حاجات كتير منها تقوية العلاقة بين الجيران او عموما بين افراد المجتمع وكمان بيساعد على استغلال الحاجات الغير مستخدمة بشكل مفيد او الكسب منها. وممكن كمان يكون مفيد لأصحاب المشروعات الصغيرة لأنه هيوفرلهم مكان يعرضوا فيه منتجاتهم.
+ من اهم الحاجات اللى بتميز لبفكرة ده ان كل ما نشاط المستخدم بيزيد بتتفتح ليه مساحات اكبر من المشاركة مع غيره فده بيشجع الناس تكون فى حالة دايمة من النشاط وبيحمسهم يساعدوا بعض اكتر
+."
+
+
+
+
     </string>
     <string name="error_502">oops! Something went wrong, try again later</string>
     <string name="error_500">Sorry, we have a system glitch, try again later</string>
