@@ -139,6 +139,32 @@
 
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginTop="20dp">
+
+
+            <TextView
+                android:id="@+id/textView16"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Address"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="#d61414"
+                android:textSize="17sp" />
+
+            <TextView
+                android:id="@+id/myProfile_about_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="15"
+                android:text=""
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textSize="17sp" />
+        </TableRow>
+
+        <TableRow
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_marginBottom="10dp"
             android:layout_marginTop="20dp">
 

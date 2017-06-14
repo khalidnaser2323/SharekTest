@@ -21,17 +21,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="130dp"
-                android:layout_gravity="center"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="30dp"
-                android:layout_weight=".9"
-                android:background="@drawable/blank_photo"
-                android:visibility="gone"/>
-
             <com.android.volley.toolbox.NetworkImageView
                 android:id="@+id/Product_ImageView_ProductImage"
                 android:layout_width="wrap_content"
@@ -40,7 +29,7 @@
                 android:layout_marginLeft="30dp"
                 android:layout_marginRight="30dp"
                 android:layout_weight=".9"
-                android:background="@drawable/blank_photo"/>
+                android:src="@drawable/blank_photo" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -257,7 +246,7 @@
                             android:layout_marginTop="7dp"
                             android:layout_weight="1"
                             android:gravity="center"
-                            android:text="Book"
+                            android:text="car"
                             android:textSize="10sp" />
                     </LinearLayout>
                 </LinearLayout>
@@ -274,6 +263,7 @@
                     android:background="#bebebe" />
 
                 <LinearLayout
+                    android:id="@+id/ProductPage_linearLayout_offerData"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">

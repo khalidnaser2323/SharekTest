@@ -7,11 +7,11 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -22,7 +22,6 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
-import com.android.volley.NetworkResponse;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
@@ -35,13 +34,12 @@ import com.example.khalid.sharektest.tour.tour_welcome;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.HashMap;
 import java.util.Map;
 
 public class SignUp extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener {
     private static final int REQUEST_TAKE_poster_PHOTO = 1;
     private static int REQUEST_LOAD_poster_IMAGE = 2;
-    EditText fname, lname, uname, email, phone, day, year, month, pass, repass, work;
+    EditText fname, lname, uname, email, phone, day, year, month, pass, repass, work, haddress;
     Spinner gender;
     Button sign, getlocation, uploadNationalID;
     String genderitem;
@@ -58,6 +56,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener, A
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
         fname = (EditText) findViewById(R.id.signup_fristname_editText);
+        haddress = (EditText) findViewById(R.id.signup_address_editText);
         lname = (EditText) findViewById(R.id.signup_lastname_editText);
         uname = (EditText) findViewById(R.id.signup_username_editText);
         email = (EditText) findViewById(R.id.signup_email_editText);
@@ -136,6 +135,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener, A
                                 ("{"
                                         + " \"user\":" + "\"" + uname.getText().toString() + "\"" + ","
                                         + " \"pass\":" + "\"" + pass.getText().toString() + "\"" + ","
+                                        + "\"address\":" + "\"" + haddress.getText().toString() + "\"" + ","
                                         + "     \"name\": {"
                                         + " \"first\":" + "\"" + fname.getText().toString() + "\"" + ","
                                         + "    \"last\":" + "\"" + lname.getText().toString() + "\""

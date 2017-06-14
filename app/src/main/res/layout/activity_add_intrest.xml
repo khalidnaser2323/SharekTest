@@ -199,7 +199,8 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/Price1"
             android:layout_marginTop="15dp"
-            android:text="Payment methods" />
+            android:text="Payment methods"
+            android:visibility="gone" />
     <LinearLayout
         android:id="@+id/checkbox1"
         android:layout_width="match_parent"
@@ -212,7 +213,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:visibility="gone">
 
             <TextView
                 android:id="@+id/addInterest_textView_Sat"
@@ -236,7 +238,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:visibility="gone">
 
             <TextView
                 android:id="@+id/addInterest_textView_nog"
@@ -315,7 +318,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/From"
-            android:layout_marginTop="20dp">
+            android:layout_marginTop="20dp"
+            android:visibility="gone">
         <CheckBox
             android:id="@+id/addInterest_checkBox_agreement"
             android:layout_width="match_parent"

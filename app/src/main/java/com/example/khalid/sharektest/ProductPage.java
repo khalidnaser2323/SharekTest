@@ -4,10 +4,8 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -17,7 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,19 +23,16 @@ import com.android.volley.AuthFailureError;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageLoader;
-import com.android.volley.toolbox.ImageRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.NetworkImageView;
 import com.example.khalid.sharektest.Utils.AppController;
 import com.example.khalid.sharektest.Utils.Utils;
-import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.InputStream;
-import java.util.HashMap;
 import java.util.Map;
 
 public class ProductPage extends AppCompatActivity implements View.OnClickListener {
@@ -48,6 +43,7 @@ public class ProductPage extends AppCompatActivity implements View.OnClickListen
     String token, productId, proposalDate, propopsalDuration, title, price, proposalPieces, ownerUsername;
     JSONObject proposalRequest;
     SharedPreferences mypreference;
+    LinearLayout offerData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +64,7 @@ public class ProductPage extends AppCompatActivity implements View.OnClickListen
         guaranteePayment = (TextView) findViewById(R.id.Product_TextView_Guarantee);
         negotiable = (TextView) findViewById(R.id.Product_TextView_negotiable);
         Ppic = (NetworkImageView) findViewById(R.id.Product_ImageView_ProductImage);
+        offerData = (LinearLayout) findViewById(R.id.ProductPage_linearLayout_offerData);
         conatct = (Button) findViewById(R.id.Product_Button_Contact);
         showInfo = (Button) findViewById(R.id.Product_Button_ShowInfo);
         conatct.setOnClickListener(this);
@@ -126,6 +123,16 @@ public class ProductPage extends AppCompatActivity implements View.OnClickListen
 
 
                         try {
+
+                            JSONArray tags = response.getJSONArray("tags");
+                            if (tags.length() == 0) {
+                                String noTags = "No tags";
+                                productTags.setText(noTags);
+                            } else {
+                                // change in tag
+                                productTags.setText(tags.get(0).toString());
+
+                            }
                             title = response.get("title").toString();
                             Pname.setText(title);
                             Pdescription.setText(response.get("description").toString());
@@ -135,6 +142,9 @@ public class ProductPage extends AppCompatActivity implements View.OnClickListen
                             Pperiod.setText(duration);
                             String type = response.get("type").toString();
                             PType.setText(type);
+                            if (type.equals("request")) {
+                                offerData.setVisibility(View.GONE);
+                            }
                             String peices = response.get("pieces").toString();
                             Ppeices.setText(peices);
                             ownerUsername = response.getString("user");
@@ -142,21 +152,14 @@ public class ProductPage extends AppCompatActivity implements View.OnClickListen
                                 conatct.setVisibility(View.GONE);
                                 showInfo.setVisibility(View.GONE);
                             }
+                            if (response.has("negotiable")) {
                             if (response.getBoolean("negotiable")) {
                                 negotiable.setText("Yes");
                             } else {
                                 negotiable.setText("No");
                             }
-
-
-                            JSONArray tags = response.getJSONArray("tags");
-                            if (tags.length() == 0) {
-                                String noTags = "No tags";
-                                productTags.setText(noTags);
-                            } else {
-                                productTags.setText(tags.get(0).toString());
-
                             }
+
 
 
                         } catch (JSONException e) {
@@ -278,9 +281,8 @@ public class ProductPage extends AppCompatActivity implements View.OnClickListen
 
         }
         if (v == showInfo) {
-
-            String tag_json_object = "json_object_req";
-
+            LayoutInflater inflater = LayoutInflater.from(ProductPage.this);
+            final View yourCustomView = inflater.inflate(R.layout.owner_info_dialog, null);
             String url = "https://api.sharekeg.com/user/" + ownerUsername;
             JsonObjectRequest req = new JsonObjectRequest(url,
                     new Response.Listener<JSONObject>() {
@@ -291,14 +293,28 @@ public class ProductPage extends AppCompatActivity implements View.OnClickListen
 
 
                             try {
-                                LayoutInflater inflater = LayoutInflater.from(ProductPage.this);
-                                final View yourCustomView = inflater.inflate(R.layout.owner_info_dialog, null);
 
+                                /*LayoutInflater inflater = LayoutInflater.from(ProductPage.this);
+                                final View yourCustomView = inflater.inflate(R.layout.owner_info_dialog, null);
+                                */// we need to get image of owner name
                                 final TextView ownerName = (TextView) yourCustomView.findViewById(R.id.ownerInfoDialog_name);
                                 String userFullName = response.getJSONObject("name").get("first").toString() + " " + response.getJSONObject("name").get("last").toString();
                                 ownerName.setText(userFullName);
-                                final TextView ownerGender = (TextView) yourCustomView.findViewById(R.id.ownerInfoDialog_gender);
-                                ownerGender.setText(response.get("gender").toString());
+                                final TextView ownerAddress = (TextView) yourCustomView.findViewById(R.id.ownerInfoDialog_homeAddress);
+                                if (response.has("address")) {
+                                    ownerAddress.setText(response.get("address").toString());
+                                } else {
+                                    ownerAddress.setText("Not provided");
+                                }
+
+
+                                final TextView ownerWork = (TextView) yourCustomView.findViewById(R.id.ownerInfoDialog_work);
+
+                                if (response.has("work")) {
+                                    ownerWork.setText(response.get("work").toString());
+                                } else {
+                                    ownerWork.setText("Not provided");
+                                }
                                 final TextView ownerPoints = (TextView) yourCustomView.findViewById(R.id.ownerInfoDialog_points);
                                 ownerPoints.setText(response.get("points").toString());
                                 AlertDialog dialog = new AlertDialog.Builder(ProductPage.this)

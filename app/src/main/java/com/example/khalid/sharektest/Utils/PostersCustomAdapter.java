@@ -9,6 +9,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.android.volley.toolbox.ImageLoader;
+import com.android.volley.toolbox.NetworkImageView;
 import com.example.khalid.sharektest.R;
 import com.squareup.picasso.Picasso;
 
@@ -37,7 +39,10 @@ public class PostersCustomAdapter extends ArrayAdapter<Poster> {
         TextView productPrice = (TextView) convertView.findViewById(R.id.productItem_price_textView);
         // // TODO: 3/17/2017 change city to duration 
         TextView productCity = (TextView) convertView.findViewById(R.id.productItem_city_textView);
-        ImageView productImage = (ImageView) convertView.findViewById(R.id.productItem_image_imageView);
+        NetworkImageView posterImage = (NetworkImageView) convertView.findViewById(R.id.productItem_image_imageView);
+        ImageLoader imageLoader = AppController.getInstance().getImageLoader();
+        String imageURL = "https://api.sharekeg.com/poster/" + poster.getPosterID() + "/image";
+        posterImage.setImageUrl(imageURL, imageLoader);
         // Populate the data into the template view using the data object
         String price = poster.getPrice() + "LE";
         String duration = poster.getDuration() + "Days";
@@ -45,13 +50,6 @@ public class PostersCustomAdapter extends ArrayAdapter<Poster> {
         productDesc.setText(poster.getDescription());
         productPrice.setText(price);
         productCity.setText(duration);
-//        Picasso.with(getContext())
-//                .load(poster.getPicUrl())
-//                .resize(75, 75)
-//                .centerCrop()
-//                .into(productImage);
-
-        // Return the completed view to render on screen
         return convertView;
     }
 }

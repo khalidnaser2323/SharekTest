@@ -104,6 +104,26 @@
                     android:textSize="12sp" />
 
             </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="5sp">
+
+
+                <EditText
+                    android:id="@+id/signup_address_editText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_column="0"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:hint="Home address"
+                    android:inputType="textPersonName"
+                    android:textSize="12sp" />
+
+            </TableRow>
+
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -287,6 +307,7 @@
                 android:text="This is very secure and will not be shared with any organization"
                 android:textAppearance="@android:style/TextAppearance.Small"
                 android:textColor="@color/black"
+                android:visibility="gone"
                 />
 
             <Button

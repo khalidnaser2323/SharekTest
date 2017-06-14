@@ -110,7 +110,7 @@ public class AddIntrest extends AppCompatActivity implements View.OnClickListene
     @Override
     public void onClick(View v) {
         if (v == post) {
-            if (!guarantee.getText().toString().isEmpty()) {
+//            if (!guarantee.getText().toString().isEmpty()) {
 
                 String title = interestTitle.getText().toString();
                 String interestDescription = description.getText().toString();
@@ -133,7 +133,7 @@ public class AddIntrest extends AppCompatActivity implements View.OnClickListene
                 Log.i("tags", tagsJsonArr.toString());
 
 
-                if (check = agreement.isChecked()) {
+//                if (check = agreement.isChecked()) {
                     try {
                         //K.A: To make it easy to create a request, create a json file in resources and parse it
 
@@ -215,13 +215,13 @@ public class AddIntrest extends AppCompatActivity implements View.OnClickListene
                     }
 
 
-                } else {
-                    Toast.makeText(AddIntrest.this, "Please assure that you agree to the terms", Toast.LENGTH_SHORT).show();
-                }
+//                } else {
+//                    Toast.makeText(AddIntrest.this, "Please assure that you agree to the terms", Toast.LENGTH_SHORT).show();
+//                }
 
-            } else {
-                Toast.makeText(AddIntrest.this, "Please enter guarantee payment", Toast.LENGTH_LONG).show();
-            }
+//            } else {
+//                Toast.makeText(AddIntrest.this, "Please enter guarantee payment", Toast.LENGTH_LONG).show();
+//            }
         } else if (v == addImage) {
             AlertDialog.Builder builder = new AlertDialog.Builder(AddIntrest.this);
             builder.setTitle("Choose Option")

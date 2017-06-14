@@ -105,7 +105,7 @@ public class Utils {
     public String convertBitMapToString(Bitmap image) {
         String photo = "";
         if (image != null) {
-            image = getResizedBitmap(image, 100, 100);
+            image = getResizedBitmap(image, 150, 150);
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             image.compress(Bitmap.CompressFormat.JPEG, 100, baos);
             byte[] imageBytes = baos.toByteArray();

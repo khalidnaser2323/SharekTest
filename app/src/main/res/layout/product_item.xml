@@ -10,7 +10,7 @@
 
     >
 
-    <ImageView
+    <com.android.volley.toolbox.NetworkImageView
         android:id="@+id/productItem_image_imageView"
         android:layout_width="100sp"
         android:layout_height="100sp"
@@ -23,6 +23,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
+        android:layout_marginLeft="2dp"
+        android:layout_marginStart="2dp"
         android:layout_toEndOf="@+id/productItem_image_imageView"
         android:layout_toRightOf="@+id/productItem_image_imageView"
         android:text="product Title"
@@ -33,6 +35,8 @@
         android:layout_width="100sp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/productItem_title_textView"
+        android:layout_marginLeft="2dp"
+        android:layout_marginStart="2dp"
         android:layout_toEndOf="@+id/productItem_image_imageView"
         android:layout_toRightOf="@+id/productItem_image_imageView"
         android:text="you can write any bala7 here"
@@ -57,6 +61,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/productItem_description_textView"
+        android:layout_marginLeft="2dp"
+        android:layout_marginStart="2dp"
         android:layout_marginTop="5sp"
         android:layout_toEndOf="@+id/productItem_image_imageView"
         android:layout_toRightOf="@+id/productItem_image_imageView"

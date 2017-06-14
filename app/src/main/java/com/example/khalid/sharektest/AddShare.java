@@ -116,7 +116,7 @@ public class AddShare extends AppCompatActivity implements View.OnClickListener 
                 Log.d("tags", tagsJsonArr.toString());
 
 
-                if (check = agreement.isChecked()) {
+//                if (check = agreement.isChecked()) {
                     try {
                         //K.A: To make it easy to create a request, create a json file in resources and parse it
                         InputStream is = getApplicationContext().getResources().openRawResource(R.raw.poster_request);
@@ -196,9 +196,9 @@ public class AddShare extends AppCompatActivity implements View.OnClickListener 
                         Toast.makeText(AddShare.this, "oops! Something went wrong", Toast.LENGTH_SHORT).show();
                         Log.i("Error parsing JSON", e.toString());
                     }
-                } else {
-                    Toast.makeText(AddShare.this, "Please assure that you agree to the terms", Toast.LENGTH_SHORT).show();
-                }
+//                } else {
+//                    Toast.makeText(AddShare.this, "Please assure that you agree to the terms", Toast.LENGTH_SHORT).show();
+//                }
 
             } else {
                 Toast.makeText(AddShare.this, "Please enter guarantee payment", Toast.LENGTH_LONG).show();

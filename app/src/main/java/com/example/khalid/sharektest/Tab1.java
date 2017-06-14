@@ -35,7 +35,7 @@ public class Tab1 extends android.support.v4.app.Fragment implements View.OnClic
 
 
     String token;
-    TextView myPhone, myPoints, myMail, myUserName, myLocation, myWork;
+    TextView myPhone, myPoints, myMail, myUserName, myAddress, myWork;
 
     public Tab1(){
         // Required empty public constructor
@@ -51,6 +51,7 @@ public class Tab1 extends android.support.v4.app.Fragment implements View.OnClic
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.tab1, container, false);
+        myAddress = (TextView) view.findViewById(R.id.myProfile_about_address);
         myPhone = (TextView) view.findViewById(R.id.myProfile_about_phone);
         myPoints = (TextView) view.findViewById(R.id.myProfile_about_points);
         myMail = (TextView) view.findViewById(R.id.myProfile_about_mail);
@@ -89,6 +90,8 @@ public class Tab1 extends android.support.v4.app.Fragment implements View.OnClic
                             myMail.setText(response.getString("email"));
                             myWork.setText(response.getString("work"));
                             myUserName.setText(mypreference.getString("myUserName", ""));
+                            myAddress.setText(response.getString("address"));
+
                         } catch (Exception e) {
                             e.printStackTrace();
 

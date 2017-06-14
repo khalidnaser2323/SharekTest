@@ -216,15 +216,36 @@
                 android:value=".HomePage" />
         </activity>
 
-        <activity0
+        <activity
             android:name=".RatingActivity"
             android:label="@string/title_activity_rating"
             android:parentActivityName=".HomePage"
             android:theme="@style/Theme.AppCompat.Dialog">
             <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
+                   android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.khalid.sharektest.HomePage" />
-        </activity0>
+        </activity>
+        <activity
+            android:name=".tour.tour_approve"
+            android:label="@string/app_name" />
+        <activity
+            android:name=".tour.tour_interest"
+            android:label="@string/app_name" />
+        <activity
+            android:name=".tour.tour_proposal"
+            android:label="@string/app_name" />
+        <activity
+            android:name=".tour.tour_rate"
+            android:label="@string/app_name" />
+        <activity
+            android:name=".tour.tour_share"
+            android:label="@string/app_name" />
+        <activity
+            android:name=".tour.tour_welcome"
+            android:label="@string/app_name" />
+        <activity
+            android:name=".tour.win"
+            android:label="@string/app_name" />
     </application>
 
 </manifest>

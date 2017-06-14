@@ -1,8 +1,6 @@
 package com.example.khalid.sharektest;
 
-import android.app.ProgressDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -22,8 +20,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.example.khalid.sharektest.Utils.AppController;
-import com.example.khalid.sharektest.Utils.Poster;
-import com.example.khalid.sharektest.Utils.PostersCustomAdapter;
 import com.example.khalid.sharektest.Utils.Proposal;
 import com.example.khalid.sharektest.Utils.ProposalCustomAdapter;
 import com.example.khalid.sharektest.Utils.Utils;
@@ -34,7 +30,6 @@ import org.json.JSONObject;
 
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -286,8 +281,21 @@ public class Tab3 extends android.support.v4.app.Fragment implements AdapterView
                                         final TextView ownerName = (TextView) yourCustomView.findViewById(R.id.ownerInfoDialog_name);
                                         String userFullName = response.getJSONObject("name").get("first").toString() + " " + response.getJSONObject("name").get("last").toString();
                                         ownerName.setText(userFullName);
-                                        final TextView ownerGender = (TextView) yourCustomView.findViewById(R.id.ownerInfoDialog_gender);
-                                        ownerGender.setText(response.get("gender").toString());
+                                        final TextView ownerAddress = (TextView) yourCustomView.findViewById(R.id.ownerInfoDialog_homeAddress);
+                                        if (response.has("address")) {
+                                            ownerAddress.setText(response.get("address").toString());
+                                        } else {
+                                            ownerAddress.setText("Not provided");
+                                        }
+
+
+                                        final TextView ownerWork = (TextView) yourCustomView.findViewById(R.id.ownerInfoDialog_work);
+
+                                        if (response.has("work")) {
+                                            ownerWork.setText(response.get("work").toString());
+                                        } else {
+                                            ownerWork.setText("Not provided");
+                                        }
                                         final TextView ownerPoints = (TextView) yourCustomView.findViewById(R.id.ownerInfoDialog_points);
                                         ownerPoints.setText(response.get("points").toString());
                                         AlertDialog dialog = new AlertDialog.Builder(getContext())
