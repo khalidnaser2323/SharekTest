@@ -106,6 +106,8 @@ public class CommonTags extends AppCompatActivity {
                         }
 
 
+
+
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -131,11 +133,10 @@ public class CommonTags extends AppCompatActivity {
 
     }
 
-    public ArrayList<Poster> getCommonInterests() {
+    public ArrayList<Poster> getCommonInterests (){
         return CommonTags_interests;
     }
-
-    public ArrayList<Poster> getCommonShares() {
+    public ArrayList<Poster> getCommonShares (){
         return CommonTags_shares;
     }
 }

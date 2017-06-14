@@ -22,12 +22,10 @@
         android:layout_alignParentBottom="true"
         android:layout_below="@+id/myProfile_imageView"
         android:layout_marginTop="30dp"
-        android:layout_weight=".1"
         android:animateLayoutChanges="true"
         android:background="#fafafa"
         android:baselineAligned="true"
         android:nextFocusDown="@color/black"
-        android:paddingLeft="12dp"
         android:splitMotionEvents="true">
 
         <TableRow
@@ -38,21 +36,22 @@
 
 
             <TextView
-
                 android:id="@+id/textView19"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="User name"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textColor="#d61414" />
+                android:textColor="#d61414"
+                android:textSize="17sp" />
 
             <TextView
                 android:id="@+id/myProfile_about_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_column="20"
+                android:layout_column="15"
                 android:text=""
-                android:textAppearance="?android:attr/textAppearanceLarge" />
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textSize="17sp" />
         </TableRow>
 
 
@@ -70,16 +69,18 @@
                 android:layout_marginTop="10dp"
                 android:text="Phone            "
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textColor="#d61414" />
+                android:textColor="#d61414"
+                android:textSize="17sp" />
 
             <TextView
                 android:id="@+id/myProfile_about_phone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_column="20"
+                android:layout_column="15"
                 android:layout_marginTop="10dp"
                 android:text=""
-                android:textAppearance="?android:attr/textAppearanceLarge" />
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textSize="17sp" />
         </TableRow>
 
         <TableRow
@@ -89,22 +90,23 @@
             android:layout_marginTop="20dp">
 
             <TextView
-
                 android:id="@+id/textView11"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_column="0"
                 android:text="Points  "
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textColor="#d61414" />
+                android:textColor="#d61414"
+                android:textSize="17sp" />
 
             <TextView
                 android:id="@+id/myProfile_about_points"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_column="20"
+                android:layout_column="15"
                 android:text=""
-                android:textAppearance="?android:attr/textAppearanceLarge" />
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textSize="17sp" />
         </TableRow>
 
         <TableRow
@@ -115,21 +117,22 @@
 
 
             <TextView
-
                 android:id="@+id/textView13"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="E-mail  "
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textColor="#d61414" />
+                android:textColor="#d61414"
+                android:textSize="17sp" />
 
             <TextView
                 android:id="@+id/myProfile_about_mail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_column="20"
+                android:layout_column="15"
                 android:text=""
-                android:textAppearance="?android:attr/textAppearanceLarge" />
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textSize="17sp" />
         </TableRow>
 
         <TableRow
@@ -146,15 +149,17 @@
                 android:layout_height="wrap_content"
                 android:text="Job title  "
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textColor="#d61414" />
+                android:textColor="#d61414"
+                android:textSize="17sp" />
 
             <TextView
                 android:id="@+id/myProfile_about_work"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_column="20"
+                android:layout_column="15"
                 android:text=""
-                android:textAppearance="?android:attr/textAppearanceLarge" />
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textSize="17sp" />
         </TableRow>
 
     </TableLayout>

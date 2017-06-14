@@ -210,13 +210,17 @@ public class HomePage extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            Toast.makeText(HomePage.this, "Settings", Toast.LENGTH_LONG).show();
-            return true;
+            Intent intent = new Intent(this, help.class);
+            startActivity(intent);
         }
         if (id == R.id.action_refresh) {
             Toast.makeText(HomePage.this, "refreshed", Toast.LENGTH_LONG).show();
             getPosters();
             return true;
+        }
+        if (id == R.id.action_search) {
+            Intent intent = new Intent(this, Tags.class);
+            startActivity(intent);
         }
 
         return super.onOptionsItemSelected(item);
