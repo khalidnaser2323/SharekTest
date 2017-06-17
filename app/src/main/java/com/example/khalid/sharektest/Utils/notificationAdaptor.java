@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.example.khalid.sharektest.R;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * Created by Abdelrahman on 5/5/2017.
@@ -33,9 +34,16 @@ public class NotificationAdaptor extends ArrayAdapter<Notification> {
 
         TextView description = (TextView) convertView.findViewById(R.id.notification_textView);
         TextView NotificationDate = (TextView) convertView.findViewById(R.id.notification_date);
+//        Date dateObject = new Date(notification.getDate());
+//        Date now = new Date();
+//
+//        long diff = now.getTime() - dateObject.getTime() ;
+//        long differenceInSeconds = diff * 1000;
+//        String time = String.valueOf(differenceInSeconds);
 
         description.setText(notification.getBody());
-        String date = "At " + notification.getDate();
+        String date = "At " + notification.getDate().substring(0, notification.getDate().indexOf("G"));
+//        String date = time + "Seconds";
         NotificationDate.setText(date);
         return convertView;
     }

@@ -39,8 +39,8 @@ public class ProposalCustomAdapter extends ArrayAdapter<Proposal> {
         TextView proposalPieces = (TextView) convertView.findViewById(R.id.proposalItem_pieces_textView);
         TextView proposalFrom = (TextView) convertView.findViewById(R.id.proposalItem_from_textView);
         // Populate the data into the template view using the data object
-        String price = proposal.getPrice() + "LE";
-        String duration = proposal.getDuration() + "Days";
+        String price = proposal.getPrice() + " LE";
+        String duration = proposal.getDuration() + " Days";
         String pieces = proposal.getPieces() + " Pieces";
         proposalTitle.setText(proposal.getTitle());
 //        proposalDesc.setText(proposal.getDescription());

@@ -7,8 +7,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimaryDark"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:overScrollMode="ifContentScrolls">
 
         <ImageView
             android:id="@+id/notification_imageView_productImage"
@@ -24,6 +24,7 @@
             android:layout_marginRight="15dp"
             android:layout_weight=".1"
             android:text="Someone makes a proposal on your post"
+            android:textColor="@color/black"
             android:textSize="19sp" />
 
         <TextView
@@ -33,7 +34,9 @@
             android:layout_marginRight="10dp"
             android:layout_weight="0"
             android:gravity="end"
-            android:text="25m ago" />
+            android:text="At Jun 16 2017 20:52:08"
+            android:textColor="@color/black"
+            android:textSize="10dp" />
 
     </LinearLayout>
 

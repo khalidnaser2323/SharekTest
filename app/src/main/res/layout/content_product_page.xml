@@ -91,12 +91,24 @@
                                 android:background="@drawable/price" />
 
                             <TextView
+                                android:id="@+id/product_Price_textView"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="7dp"
                                 android:layout_weight="1"
                                 android:gravity="center"
                                 android:text="Price"
+                                android:textSize="15dp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/product_MaxPrice_textView"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="7dp"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:text="Max Price"
                                 android:textSize="15dp"
                                 android:textStyle="bold" />
 
@@ -108,7 +120,7 @@
                                 android:layout_weight="1"
                                 android:gravity="center"
                                 android:hint="10 LE"
-                                android:textSize="10sp" />
+                                android:textSize="12sp" />
 
                         </LinearLayout>
 
@@ -157,7 +169,7 @@
                                 android:layout_weight="1"
                                 android:gravity="center"
                                 android:hint="6 days"
-                                android:textSize="10sp" />
+                                android:textSize="12sp" />
                         </LinearLayout>
 
                         <View
@@ -205,7 +217,7 @@
                                 android:layout_weight="1"
                                 android:gravity="center"
                                 android:hint="5"
-                                android:textSize="10sp" />
+                                android:textSize="12sp" />
                         </LinearLayout>
 
                         <View
@@ -247,7 +259,7 @@
                             android:layout_weight="1"
                             android:gravity="center"
                             android:text="car"
-                            android:textSize="10sp" />
+                            android:textSize="12sp" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -259,13 +271,14 @@
                     android:layout_gravity="bottom"
                     android:layout_marginLeft="15dp"
                     android:layout_marginRight="15dp"
-                    android:layout_marginTop="0dp"
+                    android:layout_marginTop="2dp"
                     android:background="#bebebe" />
 
                 <LinearLayout
                     android:id="@+id/ProductPage_linearLayout_offerData"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
                     android:orientation="horizontal">
 
                     <LinearLayout
@@ -276,6 +289,7 @@
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/ProductPage_gp"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"

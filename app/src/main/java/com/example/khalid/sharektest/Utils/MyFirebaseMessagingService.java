@@ -174,7 +174,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             if (dataPayLoad.get("type").equals("proposal")) {
                 intent = new Intent(this, MyProfile.class);
 
-            } else if (dataPayLoad.get("type").equals("reaction")) {
+            } else if (dataPayLoad.get("type").equals("proposal-reaction")) {
                 intent = new Intent(this, NotificationActivity.class);
                 String stringObject = dataPayLoad.toString();
                 intent.putExtra("data", stringObject);

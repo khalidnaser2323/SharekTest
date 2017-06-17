@@ -109,6 +109,7 @@ public class AddIntrest extends AppCompatActivity implements View.OnClickListene
 
     @Override
     public void onClick(View v) {
+        post.setOnClickListener(null);
         if (v == post) {
 //            if (!guarantee.getText().toString().isEmpty()) {
 
@@ -120,7 +121,7 @@ public class AddIntrest extends AppCompatActivity implements View.OnClickListene
                 String interestDuration = duration.getText().toString();
 //            String interstStartDate = startDate.getText().toString();
 //            String interstEndDate = endDate.getText().toString();
-                int guaranteePayment = Integer.parseInt(guarantee.getText().toString());
+//                int guaranteePayment = Integer.parseInt(guarantee.getText().toString());
 
 
                 ArrayList<String> tagsArr = new ArrayList<String>(Arrays.asList(interestTag.split("#")));
@@ -150,7 +151,7 @@ public class AddIntrest extends AppCompatActivity implements View.OnClickListene
                         jsonObject.put("description", interestDescription);
                         jsonObject.put("tags", tagsJsonArr);
                         jsonObject.put("pieces", interestPieces);
-                        jsonObject.put("guarantee", guaranteePayment);
+                        jsonObject.put("guarantee", "0");
                         jsonObject.put("negotiable", negotiable.isChecked());
                         jsonObject.getJSONObject("price").put("min", interestPrice);
                         jsonObject.getJSONObject("price").put("max", interestPrice);
@@ -167,8 +168,8 @@ public class AddIntrest extends AppCompatActivity implements View.OnClickListene
                         jsonObject.getJSONObject("availability").getJSONObject("from").put("minute", "0");
                         jsonObject.getJSONObject("availability").getJSONObject("to").put("hour", "11");
                         jsonObject.getJSONObject("availability").getJSONObject("to").put("minute", "59");
-                        Utils utils = new Utils();
-                        jsonObject.put("image", utils.convertBitMapToString(photo));
+                        //Utils utils = new Utils();
+                        //jsonObject.put("image", utils.convertBitMapToString(photo));
                         Log.i("Final_Poster_Request", jsonObject.toString());
 
                         loading.show();

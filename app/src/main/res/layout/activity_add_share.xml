@@ -125,7 +125,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="10dp"
                 android:hint="Number of pieces"
-                android:inputType="textPersonName"
+                android:inputType="date"
                 android:textSize="8sp" />
         </LinearLayout>
     </LinearLayout>
@@ -161,7 +161,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="10dp"
                 android:hint="EGP"
-                android:inputType="textPersonName"
+                android:inputType="number"
                 android:textSize="8sp" />
         </LinearLayout>
 
@@ -187,7 +187,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="10dp"
                 android:hint="Number of days"
-                android:inputType="textPersonName"
+                android:inputType="number"
                 android:textSize="8sp" />
         </LinearLayout>
     </LinearLayout>
@@ -281,7 +281,10 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:hint="dd/mm/yy"
-                android:textSize="10sp"></EditText>
+                android:inputType="date"
+                android:textSize="10sp">
+
+            </EditText>
         </LinearLayout>
 
         <LinearLayout
@@ -304,7 +307,10 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:hint="dd/mm/yy"
-                android:textSize="10sp"></EditText>
+                android:inputType="date"
+                android:textSize="10sp">
+
+            </EditText>
         </LinearLayout>
 
     </LinearLayout>
@@ -345,8 +351,9 @@
                 android:layout_marginRight="40dp"
                 android:layout_marginTop="10dp"
                 android:layout_weight="1"
-                android:background="#34cc99"
-                android:text="  Post   " />
+                android:background="#d24b1e"
+                android:text="  Share   "
+                android:textColor="@color/white" />
 
             <Button
                 android:id="@+id/addShare_button_addImage"

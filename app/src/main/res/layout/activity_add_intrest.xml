@@ -126,7 +126,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="10dp"
                 android:hint="Number of pieces"
-                android:inputType="textPersonName"
+                android:inputType="date"
                 android:textSize="8sp" />
         </LinearLayout>
     </LinearLayout>
@@ -153,7 +153,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="10dp"
-                android:text="Price"
+                android:text="Max.Price"
                 android:textAppearance="@style/TextAppearance.AppCompat" />
 
             <EditText
@@ -162,7 +162,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="10dp"
                 android:hint="EGP"
-                android:inputType="textPersonName"
+                android:inputType="date"
                 android:textSize="8sp" />
         </LinearLayout>
 
@@ -188,7 +188,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="10dp"
                 android:hint="Number of days"
-                android:inputType="textPersonName"
+                android:inputType="date"
                 android:textSize="8sp" />
         </LinearLayout>
     </LinearLayout>
@@ -285,7 +285,10 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:hint="dd/mm/yy"
-                    android:textSize="10sp"></EditText>
+                    android:inputType="date"
+                    android:textSize="10sp">
+
+                </EditText>
             </LinearLayout>
 
             <LinearLayout
@@ -308,7 +311,10 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:hint="dd/mm/yy"
-                    android:textSize="10sp"></EditText>
+                    android:inputType="date"
+                    android:textSize="10sp">
+
+                </EditText>
             </LinearLayout>
 
         </LinearLayout>
@@ -339,17 +345,19 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/Terms"
             android:layout_marginTop="10dp">
-    <Button
-        android:id="@+id/addInterest_button_postInterest"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="40dp"
-        android:layout_marginTop="10dp"
-        android:layout_weight="1"
-        android:background="#34cc99"
-        android:text="  Post   " />
+
+            <Button
+                android:id="@+id/addInterest_button_postInterest"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="70dp"
+                android:layout_marginRight="70dp"
+                android:layout_marginTop="50dp"
+                android:layout_weight="1"
+                android:background="#d16a25"
+                android:text="  Interest "
+                android:textColor="#FFFF" />
 
             <Button
                 android:id="@+id/addInterest_button_addPhote"
@@ -361,7 +369,8 @@
                 android:layout_marginTop="10dp"
                 android:layout_weight="1"
                 android:background="#34cc99"
-                android:text="  Add Image  " />
+                android:text="  Add Image  "
+                android:visibility="gone" />
         </LinearLayout>
 
     </RelativeLayout>

@@ -1,6 +1,7 @@
 package com.example.khalid.sharektest;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -10,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,7 +37,7 @@ import java.util.Map;
 /**
  * Created by Khalid on 7/30/2016.
  */
-public class Tab3 extends android.support.v4.app.Fragment implements AdapterView.OnItemClickListener {
+public class Tab3 extends android.support.v4.app.Fragment implements AdapterView.OnItemClickListener, AdapterView.OnClickListener {
 
 
     ListView listView;
@@ -44,6 +46,8 @@ public class Tab3 extends android.support.v4.app.Fragment implements AdapterView
     String token, myUserName, price, duration, pieces, posterID, user, startDate;
     JSONObject proposalRequest;
     boolean isAccepted;
+    Button showUsersInfo, showPostersInfo;
+    String proposalUserName, proposalPosterID;
 
     public Tab3() {
         // Required empty public constructor
@@ -101,55 +105,16 @@ public class Tab3 extends android.support.v4.app.Fragment implements AdapterView
                                     user = jsonResponse.get("user").toString();
                                     isAccepted = jsonResponse.getBoolean("accepted");
 
-                                    // get poster data
-                                    String url = "https://api.sharekeg.com/poster/" + posterID;
-                                    JsonObjectRequest req = new JsonObjectRequest(url,
-                                            new Response.Listener<JSONObject>() {
-                                                @Override
-                                                public void onResponse(JSONObject response) {
-                                                    Log.i("Poster_data: ", response.toString());
-                                                    try {
-                                                        String title = response.get("title").toString();
-                                                        Proposal proposal = new Proposal(title, "Hey, I want to offer you a deal ", price, duration, pieces, startDate, posterID, isAccepted, user);
-                                                        proposals.add(proposal);
+                                    Proposal proposal = new Proposal("Some one proposed to you", "Hey, I want to offer you a deal ", price, duration, pieces, startDate, posterID, isAccepted, user);
+                                    proposals.add(proposal);
 
-                                                        ProposalCustomAdapter proposalCustomAdapter = new ProposalCustomAdapter(getContext(), proposals);
-                                                        listView.setAdapter(proposalCustomAdapter);
-
-                                                    } catch (JSONException e) {
-                                                        Toast.makeText(getContext(), "Failed to get poster data, please check your connection", Toast.LENGTH_SHORT).show();
-                                                        e.printStackTrace();
-                                                    }
-
-                                                }
-                                            }, new Response.ErrorListener() {
-                                        @Override
-                                        public void onErrorResponse(VolleyError error) {
-                                            Log.i("Error: ", error.toString());
-                                        }
-                                    }) {
-
-                                        public String getBodyContentType() {
-                                            return "application/json";
-                                        }
-
-                                        @Override
-                                        public Map<String, String> getHeaders() throws AuthFailureError {
-//                                        HashMap<String, String> headers = new HashMap<String, String>();
-//                                        headers.put("Content-Type", "application/json");
-//                                        headers.put("Authorization", "Bearer " + token);
-//                                        return headers;
-                                            Utils utils = new Utils();
-
-                                            return utils.getRequestHeaders(token);
-                                        }
-                                    };
-                                    AppController.getInstance().addToRequestQueue(req);
 
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }
                             }
+                            ProposalCustomAdapter proposalCustomAdapter = new ProposalCustomAdapter(getContext(), proposals);
+                            listView.setAdapter(proposalCustomAdapter);
 
 
                         }
@@ -191,6 +156,9 @@ public class Tab3 extends android.support.v4.app.Fragment implements AdapterView
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         final Proposal proposal = proposals.get(position);
+        proposalUserName = proposal.getUser();
+        proposalPosterID = proposal.getPosterId();
+
         if (proposal.isAccepted()) {
             Toast.makeText(getContext(), "This proposal is accepted", Toast.LENGTH_LONG).show();
             //K.A: Disabled for next release
@@ -200,23 +168,30 @@ public class Tab3 extends android.support.v4.app.Fragment implements AdapterView
 //            startActivity(intent);
 
         } else {
-            new AlertDialog.Builder(getContext())
-                    .setTitle("Title")
-                    .setMessage("Someone offers a deal for " + proposal.getDuration() + " days, Start date is " + proposal.getStartDate().substring(0, proposal.getStartDate().indexOf("T")))
+            LayoutInflater inflater = LayoutInflater.from(getContext());
+            final View yourCustomView = inflater.inflate(R.layout.proposal_data_dialog, null);
+            final TextView start = (TextView) yourCustomView.findViewById(R.id.ProposalInfoDialog_TextView_startDate);
+            String startDate = "Start date:     " + proposal.getStartDate().substring(0, proposal.getStartDate().indexOf("T"));
+            start.setText(startDate);
+            final TextView duration = (TextView) yourCustomView.findViewById(R.id.ProposalInfoDialog_TextView_duration);
+            String durationStr = "Duration:     " + proposal.getDuration() + "    Days";
+            duration.setText(durationStr);
+            final TextView pieces = (TextView) yourCustomView.findViewById(R.id.ProposalInfoDialog_TextView_pieces);
+            String piecesStr = "Pieces:     " + proposal.getPieces();
+            pieces.setText(piecesStr);
+            showUsersInfo = (Button) yourCustomView.findViewById(R.id.ProposalInfoDialog_button_userInfo);
+            showUsersInfo.setOnClickListener(Tab3.this);
+            showPostersInfo = (Button) yourCustomView.findViewById(R.id.ProposalInfoDialog_button_posterInfo);
+            showPostersInfo.setOnClickListener(Tab3.this);
+            AlertDialog dialog = new AlertDialog.Builder(getContext())
+                    .setTitle("")
+                    .setView(yourCustomView)
                     .setPositiveButton("Accept", new DialogInterface.OnClickListener() {
 
                         public void onClick(DialogInterface dialog, int whichButton) {
 
                             try {
-                                InputStream is = getContext().getResources().openRawResource(R.raw.accept_request);
-                                int size = is.available();
-                                byte[] buffer = new byte[size];
-                                is.read(buffer);
-                                is.close();
-                                String string_request = new String(buffer, "UTF-8");
-                                Log.i("Parsed JSON file", string_request);
-
-                                proposalRequest = new JSONObject(string_request);
+                                proposalRequest = new JSONObject();
                                 proposalRequest.put("accept", true);
                                 Log.i("Final_request", proposalRequest.toString());
                             } catch (Exception e) {
@@ -263,81 +238,88 @@ public class Tab3 extends android.support.v4.app.Fragment implements AdapterView
                             };
                             AppController.getInstance().addToRequestQueue(req);
                         }
-                    }).setNeutralButton("Show user's info", new DialogInterface.OnClickListener() {
+                    }).setNegativeButton("Ignore", null).create();
+            dialog.show();
 
-                public void onClick(DialogInterface dialog, int whichButton) {
-
-                    String url = "https://api.sharekeg.com/user/" + proposal.getUser();
-                    JsonObjectRequest req = new JsonObjectRequest(url,
-                            new Response.Listener<JSONObject>() {
-                                @Override
-                                public void onResponse(JSONObject response) {
-                                    Log.i("Response: ", response.toString());
-
-                                    try {
-                                        LayoutInflater inflater = LayoutInflater.from(getContext());
-                                        final View yourCustomView = inflater.inflate(R.layout.owner_info_dialog, null);
-
-                                        final TextView ownerName = (TextView) yourCustomView.findViewById(R.id.ownerInfoDialog_name);
-                                        String userFullName = response.getJSONObject("name").get("first").toString() + " " + response.getJSONObject("name").get("last").toString();
-                                        ownerName.setText(userFullName);
-                                        final TextView ownerAddress = (TextView) yourCustomView.findViewById(R.id.ownerInfoDialog_homeAddress);
-                                        if (response.has("address")) {
-                                            ownerAddress.setText(response.get("address").toString());
-                                        } else {
-                                            ownerAddress.setText("Not provided");
-                                        }
-
-
-                                        final TextView ownerWork = (TextView) yourCustomView.findViewById(R.id.ownerInfoDialog_work);
-
-                                        if (response.has("work")) {
-                                            ownerWork.setText(response.get("work").toString());
-                                        } else {
-                                            ownerWork.setText("Not provided");
-                                        }
-                                        final TextView ownerPoints = (TextView) yourCustomView.findViewById(R.id.ownerInfoDialog_points);
-                                        ownerPoints.setText(response.get("points").toString());
-                                        AlertDialog dialog = new AlertDialog.Builder(getContext())
-                                                .setTitle("Owner Info")
-                                                .setView(yourCustomView)
-                                                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                                                    public void onClick(DialogInterface dialog, int whichButton) {
-
-                                                    }
-                                                }).create();
-                                        dialog.show();
-
-
-                                    } catch (JSONException e) {
-                                        e.printStackTrace();
-                                    }
-
-                                }
-                            }, new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            Log.i("Error: ", error.toString());
-                            Toast.makeText(getContext(), Utils.GetErrorDescription(error, getContext()), Toast.LENGTH_SHORT).show();
-                        }
-                    }) {
-
-                        public String getBodyContentType() {
-                            return "application/json";
-                        }
-
-                        @Override
-                        public Map<String, String> getHeaders() throws AuthFailureError {
-                            Utils utils = new Utils();
-
-                            return utils.getRequestHeaders(token);
-                        }
-                    };
-                    AppController.getInstance().addToRequestQueue(req);
-                }
-            }).setNegativeButton("Ignore", null).show();
         }
 
     }
 
+    @Override
+    public void onClick(View v) {
+        if (v == showUsersInfo) {
+            String url = "https://api.sharekeg.com/user/" + proposalUserName;
+            JsonObjectRequest req = new JsonObjectRequest(url,
+                    new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            Log.i("Response: ", response.toString());
+
+                            try {
+                                LayoutInflater inflater = LayoutInflater.from(getContext());
+                                final View yourCustomView = inflater.inflate(R.layout.owner_info_dialog, null);
+
+                                final TextView ownerName = (TextView) yourCustomView.findViewById(R.id.ownerInfoDialog_name);
+                                String userFullName = response.getJSONObject("name").get("first").toString() + " " + response.getJSONObject("name").get("last").toString();
+                                ownerName.setText(userFullName);
+                                final TextView ownerAddress = (TextView) yourCustomView.findViewById(R.id.ownerInfoDialog_homeAddress);
+                                if (response.has("address")) {
+                                    ownerAddress.setText(response.get("address").toString());
+                                } else {
+                                    ownerAddress.setText("Not provided");
+                                }
+
+
+                                final TextView ownerWork = (TextView) yourCustomView.findViewById(R.id.ownerInfoDialog_work);
+
+                                if (response.has("work")) {
+                                    ownerWork.setText(response.get("work").toString());
+                                } else {
+                                    ownerWork.setText("Not provided");
+                                }
+                                final TextView ownerPoints = (TextView) yourCustomView.findViewById(R.id.ownerInfoDialog_points);
+                                ownerPoints.setText(response.get("points").toString());
+                                AlertDialog dialog = new AlertDialog.Builder(getContext())
+                                        .setTitle("Owner Info")
+                                        .setView(yourCustomView)
+                                        .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                            public void onClick(DialogInterface dialog, int whichButton) {
+
+                                            }
+                                        }).create();
+                                dialog.show();
+
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
+                        }
+                    }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Log.i("Error: ", error.toString());
+                    Toast.makeText(getContext(), Utils.GetErrorDescription(error, getContext()), Toast.LENGTH_SHORT).show();
+                }
+            }) {
+
+                public String getBodyContentType() {
+                    return "application/json";
+                }
+
+                @Override
+                public Map<String, String> getHeaders() throws AuthFailureError {
+                    Utils utils = new Utils();
+
+                    return utils.getRequestHeaders(token);
+                }
+            };
+            AppController.getInstance().addToRequestQueue(req);
+        } else if (v == showPostersInfo) {
+            Intent intent = new Intent(getContext(), ProductPage.class);
+            intent.putExtra("product_id", proposalPosterID);
+            startActivity(intent);
+        }
+
+    }
 }

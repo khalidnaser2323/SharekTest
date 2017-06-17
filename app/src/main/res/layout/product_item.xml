@@ -15,7 +15,7 @@
         android:layout_width="100sp"
         android:layout_height="100sp"
         android:padding="5dp"
-        android:src="@drawable/blank_photo" />
+        android:src="@drawable/logo" />
 
     <TextView
         android:id="@+id/productItem_title_textView"
@@ -27,6 +27,7 @@
         android:layout_marginStart="2dp"
         android:layout_toEndOf="@+id/productItem_image_imageView"
         android:layout_toRightOf="@+id/productItem_image_imageView"
+        android:paddingRight="10dp"
         android:text="product Title"
         android:textColor="@color/black" />
 
@@ -47,13 +48,13 @@
         style="@style/Base.TextAppearance.AppCompat.Small"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
         android:layout_below="@+id/productItem_description_textView"
-        android:layout_marginLeft="50sp"
+        android:layout_marginRight="40dp"
         android:layout_marginTop="5sp"
-        android:layout_toEndOf="@+id/productItem_price_textView"
-        android:layout_toRightOf="@+id/productItem_price_textView"
-        android:text="City"
-        android:textColor="@color/black" />
+        android:text="       City"
+        android:textColor="#3a58c4"
+        android:textSize="20sp" />
 
     <TextView
         android:id="@+id/productItem_price_textView"
@@ -67,6 +68,7 @@
         android:layout_toEndOf="@+id/productItem_image_imageView"
         android:layout_toRightOf="@+id/productItem_image_imageView"
         android:text="price"
-        android:textColor="@color/black" />
+        android:textColor="#3a58c4"
+        android:textSize="20sp" />
 
 </RelativeLayout>

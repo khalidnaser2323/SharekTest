@@ -51,6 +51,7 @@ public class HomePage extends AppCompatActivity
     ArrayList<Poster> interests = new ArrayList<>(), shares = new ArrayList<>();
     ProgressDialog pDialog;
     TextView nav_userName;
+    TabLayout tabLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,32 +60,25 @@ public class HomePage extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         Intent cameIntent = getIntent();
-
-        if (cameIntent.getBooleanExtra("newAuthentication", false)) {
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    try {
-                        FirebaseInstanceId.getInstance().deleteInstanceId();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }).start();
-
-        }
-
         SharedPreferences mypreference = PreferenceManager.getDefaultSharedPreferences(HomePage.this);
         if (mypreference.getBoolean("loggedIn", false)) {
-//            token = cameIntent.getStringExtra("token");
             token = mypreference.getString("token", "value");
             Log.i("Token in Home", token);
         }
 
-        String notificationToken = FirebaseInstanceId.getInstance().getToken();
-        if (notificationToken != null) {
+        if (cameIntent.getBooleanExtra("newAuthentication", false)) {
+            String notificationToken = mypreference.getString("notificationToken", "");
             Log.i("Notification Token", notificationToken);
+            Log.i("Notification_service", "Send Uer ID to Server");
+            MyFirebaseInstanceIDService myFirebaseInstanceIDService = new MyFirebaseInstanceIDService();
+            myFirebaseInstanceIDService.sendRegistrationToServer(notificationToken, token);
+
         }
+        tabLayout = (TabLayout) findViewById(R.id.tab_layout);
+        tabLayout.addTab(tabLayout.newTab().setText("Shares"));
+        tabLayout.addTab(tabLayout.newTab().setText("Interests"));
+        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+
 
 
         getPosters();
@@ -213,6 +207,11 @@ public class HomePage extends AppCompatActivity
             Intent intent = new Intent(this, help.class);
             startActivity(intent);
         }
+
+//        if (id == R.id.action_getNotification) {
+//            Intent intent = new Intent(this, NotificationActivity.class);
+//            startActivity(intent);
+//        }
         if (id == R.id.action_refresh) {
             Toast.makeText(HomePage.this, "refreshed", Toast.LENGTH_LONG).show();
             getPosters();
@@ -302,10 +301,6 @@ public class HomePage extends AppCompatActivity
     public void getPosters() {
         shares.clear();
         interests.clear();
-        final TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
-        tabLayout.addTab(tabLayout.newTab().setText("Shares"));
-        tabLayout.addTab(tabLayout.newTab().setText("Interests"));
-        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
         String url = "https://api.sharekeg.com/posters";
 

@@ -1,6 +1,7 @@
 package com.example.khalid.sharektest.Utils;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -43,9 +44,10 @@ public class PostersCustomAdapter extends ArrayAdapter<Poster> {
         ImageLoader imageLoader = AppController.getInstance().getImageLoader();
         String imageURL = "https://api.sharekeg.com/poster/" + poster.getPosterID() + "/image";
         posterImage.setImageUrl(imageURL, imageLoader);
+        posterImage.setErrorImageResId(R.drawable.blank_photo);
         // Populate the data into the template view using the data object
-        String price = poster.getPrice() + "LE";
-        String duration = poster.getDuration() + "Days";
+        String price = poster.getPrice() + " LE";
+        String duration = poster.getDuration() + " Days";
         productTitle.setText(poster.getTitle());
         productDesc.setText(poster.getDescription());
         productPrice.setText(price);

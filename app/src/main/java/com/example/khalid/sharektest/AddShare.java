@@ -94,26 +94,28 @@ public class AddShare extends AppCompatActivity implements View.OnClickListener 
     @Override
     public void onClick(View v) {
         if (v == post) {
+            post.setOnClickListener(null);
+            if (photo != null) {
 
-            if (!guarantee.getText().toString().isEmpty()) {
-                String title = interestTitle.getText().toString();
-                String interestDescription = description.getText().toString();
-                String interestTag = tags.getText().toString();
-                String interestPieces = pieces.getText().toString();
-                String interestPrice = price.getText().toString();
-                String interestDuration = duration.getText().toString();
+                if (!guarantee.getText().toString().isEmpty()) {
+                    String title = interestTitle.getText().toString();
+                    String interestDescription = description.getText().toString();
+                    String interestTag = tags.getText().toString();
+                    String interestPieces = pieces.getText().toString();
+                    String interestPrice = price.getText().toString();
+                    String interestDuration = duration.getText().toString();
 //                String interstStartDate = startDate.getText().toString();
 //                String interstEndDate = endDate.getText().toString();
 
-                int guaranteePayment = Integer.parseInt(guarantee.getText().toString());
+                    int guaranteePayment = Integer.parseInt(guarantee.getText().toString());
 
-                ArrayList<String> tagsArr = new ArrayList<String>(Arrays.asList(interestTag.split("#")));
-                JSONArray tagsJsonArr = new JSONArray();
-                for (int i = 1; i < tagsArr.size(); i++) {
-                    tagsJsonArr.put(tagsArr.get(i));
-                }
+                    ArrayList<String> tagsArr = new ArrayList<String>(Arrays.asList(interestTag.split("#")));
+                    JSONArray tagsJsonArr = new JSONArray();
+                    for (int i = 1; i < tagsArr.size(); i++) {
+                        tagsJsonArr.put(tagsArr.get(i));
+                    }
 
-                Log.d("tags", tagsJsonArr.toString());
+                    Log.d("tags", tagsJsonArr.toString());
 
 
 //                if (check = agreement.isChecked()) {
@@ -200,9 +202,14 @@ public class AddShare extends AppCompatActivity implements View.OnClickListener 
 //                    Toast.makeText(AddShare.this, "Please assure that you agree to the terms", Toast.LENGTH_SHORT).show();
 //                }
 
+                } else {
+                    Toast.makeText(AddShare.this, "Please enter guarantee payment", Toast.LENGTH_LONG).show();
+                }
             } else {
-                Toast.makeText(AddShare.this, "Please enter guarantee payment", Toast.LENGTH_LONG).show();
+                Toast.makeText(AddShare.this, "Please add the image", Toast.LENGTH_LONG).show();
             }
+
+
         } else if (v == addImage) {
             AlertDialog.Builder builder = new AlertDialog.Builder(AddShare.this);
             builder.setTitle("Choose Option")

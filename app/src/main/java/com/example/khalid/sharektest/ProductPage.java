@@ -36,7 +36,7 @@ import java.io.InputStream;
 import java.util.Map;
 
 public class ProductPage extends AppCompatActivity implements View.OnClickListener {
-    TextView Pname, Pprice, Pperiod, PType, Pdescription, Ppeices, productTags, guaranteePayment, negotiable;
+    TextView Price, MaxPrice, Pname, Pprice, Pperiod, PType, Pdescription, Ppeices, productTags, guaranteePayment, negotiable;
     NetworkImageView Ppic;
     Button conatct, showInfo;
     ProgressDialog pDialog;
@@ -54,6 +54,8 @@ public class ProductPage extends AppCompatActivity implements View.OnClickListen
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        Price = (TextView) findViewById(R.id.product_Price_textView);
+        MaxPrice = (TextView) findViewById(R.id.product_MaxPrice_textView);
         Pdescription = (TextView) findViewById(R.id.Product_TextView_Description);
         Pname = (TextView) findViewById(R.id.Product_TextView_ProductName);
         Pprice = (TextView) findViewById(R.id.product_price_textView);
@@ -72,6 +74,8 @@ public class ProductPage extends AppCompatActivity implements View.OnClickListen
         Pdescription.setMovementMethod(new ScrollingMovementMethod());
 
         mypreference = PreferenceManager.getDefaultSharedPreferences(ProductPage.this);
+        MaxPrice.setVisibility(View.GONE);
+        Price.setVisibility(View.VISIBLE);
 
         if (mypreference.getBoolean("loggedIn", false)) {
             token = mypreference.getString("token", null);
@@ -85,6 +89,7 @@ public class ProductPage extends AppCompatActivity implements View.OnClickListen
         if (cameIntent.getBooleanExtra("notification", false)) {
             conatct.setVisibility(View.GONE);
             showInfo.setVisibility(View.GONE);
+
         } else {
             conatct.setVisibility(View.VISIBLE);
             showInfo.setVisibility(View.VISIBLE);
@@ -143,7 +148,9 @@ public class ProductPage extends AppCompatActivity implements View.OnClickListen
                             String type = response.get("type").toString();
                             PType.setText(type);
                             if (type.equals("request")) {
-                                offerData.setVisibility(View.GONE);
+                                conatct.setVisibility(View.GONE);
+                                Price.setVisibility(View.GONE);
+                                MaxPrice.setVisibility(View.VISIBLE);
                             }
                             String peices = response.get("pieces").toString();
                             Ppeices.setText(peices);

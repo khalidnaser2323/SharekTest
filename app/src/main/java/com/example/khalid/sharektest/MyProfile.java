@@ -76,28 +76,6 @@ public class MyProfile extends AppCompatActivity {
     }
 
     @Override
-    public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-//            super.onBackPressed();
-            SharedPreferences mypreference = PreferenceManager.getDefaultSharedPreferences(this);
-
-            if (mypreference.getBoolean("loggedIn", false)) {
-                Intent startMain = new Intent(Intent.ACTION_MAIN);
-                startMain.addCategory(Intent.CATEGORY_HOME);
-                startMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(startMain);
-            } else {
-                super.onBackPressed();
-            }
-
-        }
-
-    }
-
-    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long

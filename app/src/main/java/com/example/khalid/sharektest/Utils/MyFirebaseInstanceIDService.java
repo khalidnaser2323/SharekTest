@@ -86,11 +86,13 @@ public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
         // Get updated InstanceID token.
         String refreshedToken = FirebaseInstanceId.getInstance().getToken();
         Log.i(TAG, "Refreshed token: " + refreshedToken);
+        SharedPreferences mypreference = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        mypreference.edit().putString("notificationToken",refreshedToken).apply();
 
         // If you want to send messages to this application instance or
         // manage this apps subscriptions on the server side, send the
         // Instance ID token to your app server.
-        sendRegistrationToServer(refreshedToken);
+        sendRegistrationToServer(refreshedToken, mypreference.getString("token","token"));
     }
     // [END refresh_token]
 
@@ -102,24 +104,16 @@ public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
      *
      * @param token The new token.
      */
-    private void sendRegistrationToServer(String token) {
+    public void sendRegistrationToServer(String notificationToken,String token) {
         // TODO: Implement this method to send token to your app server.
-        SharedPreferences mypreference = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        final String userToken = mypreference.getString("token", "value");
+
+       final String userToken = token;
         Log.i("Token_in_notification", userToken);
 
         try {
-            InputStream is = getApplicationContext().getResources().openRawResource(R.raw.regsitration_token_notification);
-            int size = 0;
-            size = is.available();
-            byte[] buffer = new byte[size];
-            is.read(buffer);
-            is.close();
-            String string_request = new String(buffer, "UTF-8");
-            Log.i("Parsed JSON file", string_request);
-            jsonObject = new JSONObject(string_request);
-            jsonObject.put("token", FirebaseInstanceId.getInstance().getToken());
-            Log.i("Register_token_Request", jsonObject.toString());
+            jsonObject = new JSONObject();
+            jsonObject.put("token", notificationToken);
+            Log.i("notify_token_Request", jsonObject.toString());
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -129,7 +123,7 @@ public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        Log.i("response", response.toString());
+                        Log.i("NotificationID_response", response.toString());
                     }
                 }, new Response.ErrorListener() {
             @Override

@@ -5,11 +5,15 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.provider.MediaStore;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -37,7 +41,9 @@ import org.json.JSONObject;
 import java.util.Map;
 
 public class SignUp extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener {
+    public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
     private static final int REQUEST_TAKE_poster_PHOTO = 1;
+    private static final int MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 0x8000000;
     private static int REQUEST_LOAD_poster_IMAGE = 2;
     EditText fname, lname, uname, email, phone, day, year, month, pass, repass, work, haddress;
     Spinner gender;
@@ -48,8 +54,8 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener, A
     String token;
     boolean getLocationBtnClicked;
     Bitmap photo = null;
-    ProgressDialog pDialog;
-
+    LocationManager locationManager;
+    String provider;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,6 +91,8 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener, A
         gender.setAdapter(genderarr);
         gender.setSelection(genderarr.getCount());
         getLocationBtnClicked = false;
+        checkLocationPermission();
+
 
     }
 
@@ -98,7 +106,6 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener, A
     public void onNothingSelected(AdapterView<?> parent) {
 
     }
-
 
     @Override
     public void onClick(View v) {
@@ -126,7 +133,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener, A
                 gps.showSettingsAlert();
             }
         } else if (v == sign) {
-            if (photo != null) {
+            if (photo == null) {
                 if (pass.getText().toString().equals(repass.getText().toString())) {
 
                     Utils utils = new Utils();
@@ -153,7 +160,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener, A
                                         + "\"phone\":" + "\"" + phone.getText().toString() + "\"" + ","
                                         + "    \"gender\":" + "\"" + genderitem + "\"" + ","
                                         + "    \"work\":" + "\"" + work.getText() + "\"" + ","
-                                        + "    \"image\":" + "\"" + utils.convertBitMapToString(photo) + "\""
+                                        + "    \"image\":" + "\"" + "0" + "\""
                                         + "}");
                         try {
                             jsonObject = new JSONObject(params_Date);
@@ -230,7 +237,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener, A
                     Toast.makeText(SignUp.this, " Invalid Password ", Toast.LENGTH_LONG).show();
                 }
             } else {
-                Toast.makeText(SignUp.this, "Please upload your national ID", Toast.LENGTH_LONG).show();
+                Toast.makeText(SignUp.this, "Please upload your Profile picture", Toast.LENGTH_LONG).show();
             }
         } else if (v == uploadNationalID) {
             AlertDialog.Builder builder = new AlertDialog.Builder(SignUp.this);
@@ -284,4 +291,75 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener, A
 
     }
 
+    public boolean checkLocationPermission() {
+        if (ContextCompat.checkSelfPermission(SignUp.this,
+                android.Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
+
+            // Should we show an explanation?
+            if (ActivityCompat.shouldShowRequestPermissionRationale(SignUp.this,
+                    android.Manifest.permission.ACCESS_FINE_LOCATION)) {
+
+                // Show an explanation to the user *asynchronously* -- don't block
+                // this thread waiting for the user's response! After the user
+                // sees the explanation, try again to request the permission.
+                new AlertDialog.Builder(SignUp.this)
+                        .setTitle("Get Home Location ")
+                        .setMessage("Kindly, we need your location to give an easy contact to your neighbors")
+                        .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                //Prompt the user once explanation has been shown
+                                ActivityCompat.requestPermissions(SignUp.this,
+                                        new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
+                                        MY_PERMISSIONS_REQUEST_LOCATION);
+                            }
+                        })
+                        .create()
+                        .show();
+
+
+            } else {
+                // No explanation needed, we can request the permission.
+                ActivityCompat.requestPermissions(SignUp.this,
+                        new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
+                        MY_PERMISSIONS_REQUEST_LOCATION);
+            }
+            return false;
+        } else {
+            return true;
+        }
+
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case MY_PERMISSIONS_REQUEST_LOCATION: {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+                    // permission was granted, yay! Do the
+                    // location-related task you need to do.
+                    if (ContextCompat.checkSelfPermission(SignUp.this,
+                            android.Manifest.permission.ACCESS_FINE_LOCATION)
+                            == PackageManager.PERMISSION_GRANTED) {
+
+                        //Request location updates:
+                        locationManager.requestLocationUpdates(provider, 400, 1, (android.location.LocationListener) SignUp.this);
+                    }
+
+                } else {
+
+                    // permission denied, boo! Disable the
+                    // functionality that depends on this permission.
+
+                }
+                return;
+            }
+
+        }
+    }
 }

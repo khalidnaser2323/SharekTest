@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/ProposalInfoDialog_TextView_startDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:text="Start date"
+        android:textColor="@color/black" />
+
+    <TextView
+        android:id="@+id/ProposalInfoDialog_TextView_pieces"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ProposalInfoDialog_TextView_startDate"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="15dp"
+        android:text="Pieces"
+        android:textColor="@color/black" />
+
+    <TextView
+        android:id="@+id/ProposalInfoDialog_TextView_duration"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ProposalInfoDialog_TextView_pieces"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="15dp"
+        android:text="Duration"
+        android:textColor="@color/black" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ProposalInfoDialog_TextView_duration"
+        android:layout_marginTop="10dp">
+
+        <Button
+            android:id="@+id/ProposalInfoDialog_button_userInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Show user's info" />
+
+        <Button
+            android:id="@+id/ProposalInfoDialog_button_posterInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Show poster info" />
+
+    </LinearLayout>
+
+
+</RelativeLayout>

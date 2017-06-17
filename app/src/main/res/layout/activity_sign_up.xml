@@ -300,7 +300,8 @@
                 android:layout_marginTop="5dp"
                 android:background="#808080"
                 android:text="Upload national ID"
-                android:textColor="@color/white"/>
+                android:textColor="@color/white"
+                android:visibility="gone" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

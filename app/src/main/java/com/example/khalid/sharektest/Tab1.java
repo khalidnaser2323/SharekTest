@@ -1,9 +1,14 @@
 package com.example.khalid.sharektest;
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.provider.MediaStore;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,9 +20,9 @@ import android.widget.Toast;
 import com.android.volley.AuthFailureError;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.ImageRequest;
+import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.NetworkImageView;
 import com.example.khalid.sharektest.Utils.AppController;
 import com.example.khalid.sharektest.Utils.Utils;
 
@@ -26,18 +31,24 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
+import static android.app.Activity.RESULT_OK;
+
 /**
  * Created by Khalid on 7/30/2016.
  */
 public class Tab1 extends android.support.v4.app.Fragment implements View.OnClickListener {
+    private static final int REQUEST_TAKE_poster_PHOTO = 1;
+    private static int REQUEST_LOAD_poster_IMAGE = 2;
     SharedPreferences mypreference;
-    ImageView imageView;
-
-
+    NetworkImageView imageView;
+    JSONObject jsonObject;
+    String url;
     String token;
     TextView myPhone, myPoints, myMail, myUserName, myAddress, myWork;
 
-    public Tab1(){
+    Bitmap photo = null;
+
+    public Tab1() {
         // Required empty public constructor
     }
 
@@ -57,11 +68,13 @@ public class Tab1 extends android.support.v4.app.Fragment implements View.OnClic
         myMail = (TextView) view.findViewById(R.id.myProfile_about_mail);
         myWork = (TextView) view.findViewById(R.id.myProfile_about_work);
         myUserName = (TextView) view.findViewById(R.id.myProfile_about_name);
-        imageView = (ImageView) view.findViewById(R.id.myProfile_imageView);
+        imageView = (NetworkImageView) view.findViewById(R.id.myProfile_imageView);
         imageView.setOnClickListener(this);
         mypreference = PreferenceManager.getDefaultSharedPreferences(getContext());
-        String url = "https://api.sharekeg.com/user/" + mypreference.getString("myUserName", "");
+        url = "https://api.sharekeg.com/user/" + mypreference.getString("myUserName", "");
 
+/*
+/*
         ImageRequest ir = new ImageRequest(url + "/image", new Response.Listener<Bitmap>() {
             @Override
             public void onResponse(Bitmap response) {
@@ -70,9 +83,15 @@ public class Tab1 extends android.support.v4.app.Fragment implements View.OnClic
 
             }
         }, 300, 300, null, null);
+*//*
+
 
         AppController.getInstance().addToRequestQueue(ir);
 
+*/
+
+        ImageLoader imageLoader = AppController.getInstance().getImageLoader();
+        imageView.setImageUrl(url + "/image", imageLoader);
 
         token = mypreference.getString("token", "value");
 
@@ -127,7 +146,56 @@ public class Tab1 extends android.support.v4.app.Fragment implements View.OnClic
     @Override
     public void onClick(View v) {
 
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setTitle("Choose Option")
+                .setItems(new String[]{"Camera", "Gallery"}, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        if (i == 0) {
+                            Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                            startActivityForResult(takePictureIntent, REQUEST_TAKE_poster_PHOTO);
+
+                        } else {
+                            Intent intent = new Intent(
+                                    Intent.ACTION_PICK,
+                                    MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                            startActivityForResult(intent, REQUEST_LOAD_poster_IMAGE);
+
+                        }
+
+                    }
+                }).create().show();
+
 
     }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        try {
+            if (requestCode == REQUEST_TAKE_poster_PHOTO && resultCode == RESULT_OK && null != data) {
+
+                photo = (Bitmap) data.getExtras().get("data");
+
+                Toast.makeText(getContext(), "Your profile image  is selected Successfully", Toast.LENGTH_LONG).show();
+
+
+            }
+            if (requestCode == REQUEST_LOAD_poster_IMAGE && resultCode == RESULT_OK && null != data && data.getData() != null) {
+
+                Uri filePath = data.getData();
+                photo = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), filePath);
+
+                Toast.makeText(getContext(), "Your profile image is selected Successfully", Toast.LENGTH_LONG).show();
+
+            }
+        } catch (Exception e) {
+            Log.i("Image_Error", e.toString());
+            Toast.makeText(getContext(), "Something Went Wrong", Toast.LENGTH_LONG).show();
+        }
+
+    }
+
+
 }
 
