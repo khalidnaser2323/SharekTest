@@ -49,10 +49,12 @@ public class NotificationActivity extends AppCompatActivity implements AdapterVi
         listView = (ListView) findViewById(R.id.Notification_listView);
         Intent cameIntent = getIntent();
         try {
+            if (cameIntent.getStringExtra("data") != null) {
             jsonObject = new JSONObject(cameIntent.getStringExtra("data"));
             Log.i("NotificationJson", jsonObject.toString());
             com.example.khalid.sharektest.Utils.Notification notification = new com.example.khalid.sharektest.Utils.Notification(jsonObject.getString("userId"), jsonObject.getString("at"), jsonObject.getString("body"), jsonObject.getString("posterId"));
             notifications.add(notification);
+            }
 
         } catch (JSONException e) {
             e.printStackTrace();

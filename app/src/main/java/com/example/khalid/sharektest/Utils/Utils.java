@@ -13,8 +13,10 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.example.khalid.sharektest.R;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.json.JSONTokener;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -37,6 +39,7 @@ public class Utils {
                     json = new String(response.data);
                     Log.i("Connection Error", json);
                     json = trimMessage(json, "errors");
+                    json = GetErrorByKey(json, context);
                     break;
                 case 401:
                     Activity activity = (Activity) context;
@@ -80,11 +83,20 @@ public class Utils {
         return trimmedString;
     }
 
-    public static String GetErrorByKey(String errorMessage) {
-        String error = null;
+    public static String GetErrorByKey(String errorMessage, Context context) {
+        String error = errorMessage;
         try {
-            JSONObject errorsObj = new JSONObject(errorMessage);
+            JSONObject errorObject = new JSONObject(errorMessage);
+            if (errorObject.has("user")) {
+                if (errorObject.getString("user").equals("unique")) {
+                    Activity activity = (Activity) context;
+                    if (activity.toString().contains("ProductPage")) {
+                        error = "You've already proposed to this Product";
+                    }
 
+
+                }
+            }
         } catch (JSONException e) {
             e.printStackTrace();
             return null;
