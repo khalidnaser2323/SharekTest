@@ -95,7 +95,6 @@ public class AddShare extends AppCompatActivity implements View.OnClickListener 
     public void onClick(View v) {
         if (v == post) {
             if (photo != null) {
-                post.setOnClickListener(null);
                 if (!guarantee.getText().toString().isEmpty()) {
                     String title = interestTitle.getText().toString();
                     String interestDescription = description.getText().toString();

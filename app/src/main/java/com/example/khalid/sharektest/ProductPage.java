@@ -20,11 +20,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.NetworkImageView;
+import com.android.volley.toolbox.StringRequest;
 import com.example.khalid.sharektest.Utils.AppController;
 import com.example.khalid.sharektest.Utils.Utils;
 
@@ -38,7 +40,7 @@ import java.util.Map;
 public class ProductPage extends AppCompatActivity implements View.OnClickListener {
     TextView Price, MaxPrice, Pname, Pprice, Pperiod, PType, Pdescription, Ppeices, productTags, guaranteePayment, negotiable;
     NetworkImageView Ppic;
-    Button conatct, showInfo;
+    Button conatct, showInfo, deletePoster;
     ProgressDialog pDialog;
     String token, productId, proposalDate, propopsalDuration, title, price, proposalPieces, ownerUsername;
     JSONObject proposalRequest;
@@ -69,8 +71,10 @@ public class ProductPage extends AppCompatActivity implements View.OnClickListen
         offerData = (LinearLayout) findViewById(R.id.ProductPage_linearLayout_offerData);
         conatct = (Button) findViewById(R.id.Product_Button_Contact);
         showInfo = (Button) findViewById(R.id.Product_Button_ShowInfo);
+        deletePoster = (Button) findViewById(R.id.Product_Button_Delete);
         conatct.setOnClickListener(this);
         showInfo.setOnClickListener(this);
+        deletePoster.setOnClickListener(this);
         Pdescription.setMovementMethod(new ScrollingMovementMethod());
 
         mypreference = PreferenceManager.getDefaultSharedPreferences(ProductPage.this);
@@ -159,6 +163,7 @@ public class ProductPage extends AppCompatActivity implements View.OnClickListen
                             if (ownerUsername.equals(mypreference.getString("myUserName", ""))) {
                                 conatct.setVisibility(View.GONE);
                                 showInfo.setVisibility(View.GONE);
+                                deletePoster.setVisibility(View.VISIBLE);
                             }
                             if (response.has("negotiable")) {
                             if (response.getBoolean("negotiable")) {
@@ -288,8 +293,7 @@ public class ProductPage extends AppCompatActivity implements View.OnClickListen
             dialog.show();
 
 
-        }
-        if (v == showInfo) {
+        } else if (v == showInfo) {
             LayoutInflater inflater = LayoutInflater.from(ProductPage.this);
             final View yourCustomView = inflater.inflate(R.layout.owner_info_dialog, null);
             String url = "https://api.sharekeg.com/user/" + ownerUsername;
@@ -363,6 +367,34 @@ public class ProductPage extends AppCompatActivity implements View.OnClickListen
                 }
             };
             AppController.getInstance().addToRequestQueue(req);
+        } else if (v == deletePoster) {
+            String url = "https://api.sharekeg.com/poster/" + productId;
+            StringRequest dr = new StringRequest(Request.Method.DELETE, url,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            Toast.makeText(ProductPage.this, "Deleted successfully", Toast.LENGTH_SHORT).show();
+                            Intent newIntent = new Intent(ProductPage.this, HomePage.class);
+                            startActivity(newIntent);
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            Log.i("Delete_poster_err", error.toString());
+                            Toast.makeText(ProductPage.this, Utils.GetErrorDescription(error, ProductPage.this), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+            ) {
+                @Override
+                public Map<String, String> getHeaders() throws AuthFailureError {
+                    Utils utils = new Utils();
+
+                    return utils.getRequestHeaders(token);
+                }
+            };
+            ;
+            AppController.getInstance().addToRequestQueue(dr);
         }
 
     }

@@ -428,6 +428,21 @@
                         android:background="#c23338"
                         android:text="OWNER Info"
                         android:textColor="#FFFF" />
+
+                    <Button
+                        android:id="@+id/Product_Button_Delete"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="30dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="30dp"
+                        android:layout_marginStart="20dp"
+                        android:layout_weight="1"
+                        android:background="#c23338"
+                        android:text="Delete"
+                        android:textColor="#FFFF"
+                        android:visibility="gone" />
+
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>

@@ -111,7 +111,6 @@ public class AddIntrest extends AppCompatActivity implements View.OnClickListene
     public void onClick(View v) {
         if (v == post) {
 
-            post.setOnClickListener(null);
             if (!guarantee.getText().toString().isEmpty()) {
 
                 String title = interestTitle.getText().toString();

@@ -249,8 +249,12 @@
             android:name=".tour.tour_welcome"
             android:label="@string/app_name" />
         <activity
-            android:name=".tour.win"
+            android:name=".tour.tour_win"
             android:label="@string/app_name" />
+        <activity
+            android:name=".tour.tour_finish"
+            android:label="@string/app_name" />
+
     </application>
 
 </manifest>
