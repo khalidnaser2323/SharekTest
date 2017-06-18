@@ -1,6 +1,5 @@
 package com.example.khalid.sharektest;
 
-import android.app.Application;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -18,29 +17,22 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.example.khalid.sharektest.Utils.AppController;
-import com.example.khalid.sharektest.Utils.CustomAdapterSearchPage;
 import com.example.khalid.sharektest.Utils.MyFirebaseInstanceIDService;
 import com.example.khalid.sharektest.Utils.Poster;
-import com.example.khalid.sharektest.Utils.PostersCustomAdapter;
 import com.example.khalid.sharektest.Utils.Utils;
-import com.google.firebase.iid.FirebaseInstanceId;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Map;
 
@@ -203,15 +195,15 @@ public class HomePage extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            Intent intent = new Intent(this, help.class);
+        if (id == R.id.action_getNotification) {
+            Intent intent = new Intent(this, NotificationActivity.class);
             startActivity(intent);
         }
 
-//        if (id == R.id.action_getNotification) {
-//            Intent intent = new Intent(this, NotificationActivity.class);
-//            startActivity(intent);
-//        }
+        if (id == R.id.action_help) {
+            Intent intent = new Intent(this, help.class);
+            startActivity(intent);
+        }
         if (id == R.id.action_refresh) {
             Toast.makeText(HomePage.this, "refreshed", Toast.LENGTH_LONG).show();
             getPosters();
@@ -314,6 +306,9 @@ public class HomePage extends AppCompatActivity
                     public void onResponse(JSONArray response) {
                         Log.i("Response: ", response.toString());
                         pDialog.dismiss();
+                        if (response.length() == 0) {
+
+                        }
                         for (int i = 0; i < response.length(); i++) {
                             try {
                                 JSONObject jsonResponse = response.getJSONObject(i);

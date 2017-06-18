@@ -9,9 +9,13 @@
     tools:context="com.example.khalid.sharektest.Tab3">
 
     <TextView
-        android:id="@+id/section_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:id="@+id/ProductPage_Proposals_NoProposals"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:text="No Proposals "
+        android:textSize="20sp" />
 
     <ListView
         android:id="@+id/myProfile_listView"

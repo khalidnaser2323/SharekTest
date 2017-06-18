@@ -13,13 +13,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
         <com.android.volley.toolbox.NetworkImageView
-        android:id="@+id/myProfile_imageView"
+            android:id="@+id/myProfile_imageView"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+            android:layout_height="200dp"
             android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
             android:layout_gravity="center"
+            android:layout_weight=".3"
+            android:background="@drawable/logo"
             android:src="@drawable/logo" />
     <TableLayout
         android:id="@+id/myProfile"
@@ -27,7 +33,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_below="@+id/myProfile_imageView"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="90dp"
+        android:layout_weight=".1"
         android:animateLayoutChanges="true"
         android:background="#fafafa"
         android:baselineAligned="true"
@@ -196,5 +203,6 @@
         </TableRow>
 
     </TableLayout>
+        </LinearLayout>
 </RelativeLayout>
 </ScrollView>

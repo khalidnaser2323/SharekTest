@@ -71,9 +71,11 @@
                     android:textSize="12sp" />
             </TableRow>
 
+            <LinearLayout android:orientation="vertical">
             <TableRow
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:layout_weight="1">
 
                 <EditText
                     android:id="@+id/signup_username_editText"
@@ -86,6 +88,16 @@
 
             </TableRow>
 
+                <TextView
+                    android:id="@+id/username"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="*User name should be unique"
+                    android:textColor="#ff4c0b"
+                    android:textSize="8sp"
+                    android:textStyle="italic" />
+            </LinearLayout>
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -105,11 +117,12 @@
 
             </TableRow>
 
+            <LinearLayout android:orientation="vertical">
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="5sp">
-
+                android:layout_marginTop="5sp"
+                android:layout_weight="1">
 
                 <EditText
                     android:id="@+id/signup_address_editText"
@@ -124,10 +137,23 @@
 
             </TableRow>
 
+                <TextView
+                    android:id="@+id/haddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="*Home address should Contain City - district - street"
+                    android:textColor="#ff4c0b"
+                    android:textSize="8sp"
+                    android:textStyle="italic" />
+            </LinearLayout>
+
+            <LinearLayout android:orientation="vertical">
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="5sp">
+                android:layout_marginTop="5sp"
+                android:layout_weight="1">
 
                 <EditText
                     android:id="@+id/signup_email_editText"
@@ -142,10 +168,24 @@
 
             </TableRow>
 
+                <TextView
+                    android:id="@+id/mail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="*mail should be unique"
+                    android:textColor="#ff4c0b"
+                    android:textSize="8sp"
+                    android:textStyle="italic" />
+            </LinearLayout>
+
+            <LinearLayout android:orientation="vertical">
+
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="5sp">
+                android:layout_marginTop="5sp"
+                android:layout_weight="1">
 
                 <EditText
                     android:id="@+id/signup_password_editText"
@@ -160,11 +200,17 @@
 
             </TableRow>
 
-            <TableRow
+                <TextView
+                    android:id="@+id/pass"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="*Password should be at least 8 of characters or numbers "
+                    android:textColor="#ff4c0b"
+                    android:textSize="8sp"
+                    android:textStyle="italic" />
+            </LinearLayout>
 
-            </TableRow>
 
             <TableRow
                 android:layout_width="match_parent"
@@ -184,11 +230,13 @@
 
             </TableRow>
 
+            <LinearLayout android:orientation="vertical">
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginBottom="5sp"
-                android:layout_marginTop="5sp">
+                android:layout_marginTop="5sp"
+                android:layout_weight="1">
 
                 <EditText
                     android:id="@+id/signup_phone_editText"
@@ -202,6 +250,17 @@
                     android:textSize="12sp" />
             </TableRow>
 
+                <TextView
+                    android:id="@+id/phone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="*Phone number should be unique "
+                    android:textColor="#ff4c0b"
+                    android:textSize="8sp"
+                    android:textStyle="italic" />
+
+            </LinearLayout>
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">

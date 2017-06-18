@@ -118,6 +118,7 @@ public class ProductPage extends AppCompatActivity implements View.OnClickListen
 
         ImageLoader imageLoader = AppController.getInstance().getImageLoader();
         Ppic.setImageUrl(url + "/image", imageLoader);
+        Ppic.setErrorImageResId(R.drawable.logo);
 
         JsonObjectRequest req = new JsonObjectRequest(url,
                 new Response.Listener<JSONObject>() {
@@ -259,6 +260,7 @@ public class ProductPage extends AppCompatActivity implements View.OnClickListen
                                     @Override
                                     public void onErrorResponse(VolleyError error) {
                                         pDialog.dismiss();
+//                                        Toast.makeText(ProductPage.this, "Sorry, You can not make more than one", Toast.LENGTH_LONG).show();
                                         Toast.makeText(ProductPage.this, Utils.GetErrorDescription(error, ProductPage.this), Toast.LENGTH_SHORT).show();
                                     }
                                 }) {

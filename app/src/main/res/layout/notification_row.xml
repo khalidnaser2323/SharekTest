@@ -5,8 +5,10 @@
     android:orientation="vertical">
 
     <LinearLayout
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:orientation="horizontal"
         android:overScrollMode="ifContentScrolls">
 
@@ -14,29 +16,36 @@
             android:id="@+id/notification_imageView_productImage"
             android:layout_width="58dp"
             android:layout_height="58dp"
-            android:background="@drawable/blank_photo" />
+            android:background="@drawable/logo" />
 
-        <TextView
-            android:id="@+id/notification_textView"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:layout_weight=".1"
-            android:text="Someone makes a proposal on your post"
-            android:textColor="@color/black"
-            android:textSize="19sp" />
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/notification_date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"
-            android:layout_weight="0"
-            android:gravity="end"
-            android:text="At Jun 16 2017 20:52:08"
-            android:textColor="@color/black"
-            android:textSize="10dp" />
+            <TextView
+                android:id="@+id/notification_textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_weight=".1"
+                android:text="Someone makes a proposal on your post"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/notification_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:layout_weight="0"
+                android:gravity="end"
+                android:text="At Jun 16 2017 20:52:08"
+                android:textColor="#2d52cc"
+                android:textSize="10dp" />
+        </LinearLayout>
 
     </LinearLayout>
 

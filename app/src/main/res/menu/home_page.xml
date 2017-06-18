@@ -2,7 +2,13 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/action_getNotification"
+        android:icon="@drawable/logo"
+        android:orderInCategory="100"
+        android:title="Notification"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/action_help"
         android:orderInCategory="100"
         android:title="Help" />
     <item

@@ -195,7 +195,12 @@
 
         <activity
             android:name=".NotificationActivity"
-            android:label="@string/title_activity_notifications" />
+            android:label="@string/title_activity_notifications"
+            android:parentActivityName=".HomePage">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".HomePage" />
+        </activity>
 
         <activity
             android:name=".SplashScreenActivity"

@@ -25,7 +25,7 @@ public class tour_rate extends AppCompatActivity implements View.OnClickListener
 
     @Override
     public void onClick(View v) {
-        Intent intent = new Intent(getApplicationContext(), win.class);
+        Intent intent = new Intent(getApplicationContext(), tour_win.class);
         startActivity(intent);
     }
 }

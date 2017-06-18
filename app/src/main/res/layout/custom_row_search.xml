@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_width="match_parent"
     android:layout_height="100dp"
+    android:orientation="horizontal"
     android:outlineProvider="bounds">
 
     <RelativeLayout
@@ -10,45 +11,45 @@
         android:background="@drawable/my_custom_background">
 
         <ImageView
+            android:id="@+id/customsearchrow_productpic_imageView"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:id="@+id/customsearchrow_productpic_imageView"
-            android:layout_alignParentTop="true"
+            android:layout_alignBottom="@+id/customsearchrow_loction_textView"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_alignBottom="@+id/customsearchrow_loction_textView" />
+            android:layout_alignParentTop="true" />
 
         <TextView
+            android:id="@+id/customsearchrow_productname_textview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Product"
-            android:id="@+id/customsearchrow_productname_textview"
             android:layout_alignParentTop="true"
+            android:layout_toEndOf="@+id/customsearchrow_productpic_imageView"
             android:layout_toRightOf="@+id/customsearchrow_productpic_imageView"
-            android:layout_toEndOf="@+id/customsearchrow_productpic_imageView" />
+            android:text="Product"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <TextView
+            android:id="@+id/customsearchrow_descproduct_textView"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="Des"
-            android:id="@+id/customsearchrow_descproduct_textView"
-            android:layout_alignParentRight="true"
             android:layout_alignParentEnd="false"
-            android:layout_below="@+id/customsearchrow_productname_textview"
+            android:layout_alignParentRight="true"
             android:layout_alignParentStart="false"
-            android:layout_toRightOf="@+id/customsearchrow_productpic_imageView" />
+            android:layout_below="@+id/customsearchrow_productname_textview"
+            android:layout_toRightOf="@+id/customsearchrow_productpic_imageView"
+            android:text="Des"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
 
         <TextView
+            android:id="@+id/customsearchrow_loction_textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="Fayoum"
-            android:id="@+id/customsearchrow_loction_textView"
-            android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/customsearchrow_descproduct_textView"
             android:layout_toRightOf="@+id/customsearchrow_productpic_imageView"
-            android:layout_below="@+id/customsearchrow_descproduct_textView" />
+            android:text="Fayoum"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
     </RelativeLayout>
 </LinearLayout>

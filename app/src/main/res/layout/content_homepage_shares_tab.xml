@@ -12,6 +12,7 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.khalid.sharektest.HomePage">
 
+
     <ListView
         android:id="@+id/homePage_shares"
         android:layout_width="match_parent"

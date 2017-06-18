@@ -30,7 +30,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Map;
 
@@ -41,6 +40,7 @@ public class Tab3 extends android.support.v4.app.Fragment implements AdapterView
 
 
     ListView listView;
+    TextView noProposals;
     ArrayList<Proposal> proposals = new ArrayList<>();
     ProposalCustomAdapter proposalCustomAdapter;
     String token, myUserName, price, duration, pieces, posterID, user, startDate;
@@ -53,19 +53,17 @@ public class Tab3 extends android.support.v4.app.Fragment implements AdapterView
         // Required empty public constructor
     }
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
 
 
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.tab3, container, false);
+
+
+        final View view = inflater.inflate(R.layout.tab3, container, false);
         listView = (ListView) view.findViewById(R.id.myProfile_listView);
         listView.setOnItemClickListener(this);
         listView.setOnItemClickListener(this);
@@ -73,7 +71,7 @@ public class Tab3 extends android.support.v4.app.Fragment implements AdapterView
         token = mypreference.getString("token", "value");
         myUserName = mypreference.getString("myUserName", "value");
         Log.i("Token in My proposals", token);
-
+        noProposals = (TextView) view.findViewById(R.id.ProductPage_Proposals_NoProposals);
 
         String tag_json_arry = "json_array_req";
 
@@ -90,7 +88,9 @@ public class Tab3 extends android.support.v4.app.Fragment implements AdapterView
                         Log.i("Response: ", response.toString());
 //                        pDialog.hide();
                         if (response.length() == 0) {
+                            noProposals.setVisibility(view.VISIBLE);
                             Toast.makeText(getContext(), "You have no proposals", Toast.LENGTH_LONG).show();
+
                         } else {
                             for (int i = 0; i < response.length(); i++) {
                                 try {
@@ -104,10 +104,11 @@ public class Tab3 extends android.support.v4.app.Fragment implements AdapterView
                                     posterID = jsonResponse.get("posterId").toString();
                                     user = jsonResponse.get("user").toString();
                                     isAccepted = jsonResponse.getBoolean("accepted");
-
-                                    Proposal proposal = new Proposal("Some one proposed to you", "Hey, I want to offer you a deal ", price, duration, pieces, startDate, posterID, isAccepted, user);
-                                    proposals.add(proposal);
-
+                                    if (isAccepted == false) {
+                                        Proposal proposal = new Proposal("Some one proposed to you", "Hey, I want to offer you a deal ", price, duration, pieces, startDate, posterID, isAccepted, user);
+                                        proposals.add(proposal);
+                                        noProposals.setVisibility(view.GONE);
+                                    }
 
                                 } catch (JSONException e) {
                                     e.printStackTrace();

@@ -1,16 +1,17 @@
 package com.example.khalid.sharektest;
 
-import android.app.Notification;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.location.LocationManager;
 import android.net.Uri;
+import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,29 +36,39 @@ import java.util.ArrayList;
 import java.util.Map;
 
 public class NotificationActivity extends AppCompatActivity implements AdapterView.OnItemClickListener, AdapterView.OnItemLongClickListener, View.OnClickListener {
+    public static final int MY_PERMISSIONS_REQUEST_CALL = 1;
     static ArrayList<com.example.khalid.sharektest.Utils.Notification> notifications = new ArrayList<>();
     ListView listView;
+    TextView noNotifications;
     NotificationAdaptor notificationAdaptor;
     JSONObject jsonObject;
     String token;
     String UserPhone;
-
+    LocationManager locationManager;
+    String provider;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        checkLocationPermission();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notification);
         listView = (ListView) findViewById(R.id.Notification_listView);
+        noNotifications = (TextView) findViewById(R.id.noNotifications);
+        //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        //setSupportActionBar(toolbar);
         Intent cameIntent = getIntent();
         try {
             if (cameIntent.getStringExtra("data") != null) {
-            jsonObject = new JSONObject(cameIntent.getStringExtra("data"));
-            Log.i("NotificationJson", jsonObject.toString());
-            com.example.khalid.sharektest.Utils.Notification notification = new com.example.khalid.sharektest.Utils.Notification(jsonObject.getString("userId"), jsonObject.getString("at"), jsonObject.getString("body"), jsonObject.getString("posterId"));
-            notifications.add(notification);
+                //  noNotifications.setVisibility(View.GONE);
+                jsonObject = new JSONObject(cameIntent.getStringExtra("data"));
+                Log.i("NotificationJson", jsonObject.toString());
+                com.example.khalid.sharektest.Utils.Notification notification = new com.example.khalid.sharektest.Utils.Notification(jsonObject.getString("userId"), jsonObject.getString("at"), jsonObject.getString("body"), jsonObject.getString("posterId"));
+                notifications.add(notification);
+
             }
 
         } catch (JSONException e) {
             e.printStackTrace();
+
         }
         notificationAdaptor = new NotificationAdaptor(getApplicationContext(), notifications);
         listView.setAdapter(notificationAdaptor);
@@ -266,5 +277,78 @@ public class NotificationActivity extends AppCompatActivity implements AdapterVi
         }
 
     }
+
+
+    public boolean checkLocationPermission() {
+        if (ContextCompat.checkSelfPermission(NotificationActivity.this,
+                android.Manifest.permission.CALL_PHONE)
+                != PackageManager.PERMISSION_GRANTED) {
+
+            // Should we show an explanation?
+            if (ActivityCompat.shouldShowRequestPermissionRationale(NotificationActivity.this,
+                    android.Manifest.permission.CALL_PHONE)) {
+
+                // Show an explanation to the user *asynchronously* -- don't block
+                // this thread waiting for the user's response! After the user
+                // sees the explanation, try again to request the permission.
+                new AlertDialog.Builder(NotificationActivity.this)
+                        .setTitle("Get Call phone ")
+                        .setMessage("we need to  call this number to contact")
+                        .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                //Prompt the user once explanation has been shown
+                                ActivityCompat.requestPermissions(NotificationActivity.this,
+                                        new String[]{android.Manifest.permission.CALL_PHONE},
+                                        MY_PERMISSIONS_REQUEST_CALL);
+                            }
+                        })
+                        .create()
+                        .show();
+
+
+            } else {
+                // No explanation needed, we can request the permission.
+                ActivityCompat.requestPermissions(NotificationActivity.this,
+                        new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
+                        MY_PERMISSIONS_REQUEST_CALL);
+            }
+            return false;
+        } else {
+            return true;
+        }
+
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case MY_PERMISSIONS_REQUEST_CALL: {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+                    return;
+
+
+                }
+                // permission was granted, yay! Do the
+                // location-related task you need to do.
+                if (ContextCompat.checkSelfPermission(NotificationActivity.this,
+                        android.Manifest.permission.ACCESS_FINE_LOCATION)
+                        == PackageManager.PERMISSION_GRANTED) {
+
+                    //Request location updates:
+                    locationManager.requestLocationUpdates(provider, 400, 1, (android.location.LocationListener) NotificationActivity.this);
+                    return;
+                }
+
+
+            }
+
+        }
+    }
+
 
 }

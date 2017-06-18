@@ -109,9 +109,10 @@ public class AddIntrest extends AppCompatActivity implements View.OnClickListene
 
     @Override
     public void onClick(View v) {
-        post.setOnClickListener(null);
         if (v == post) {
-//            if (!guarantee.getText().toString().isEmpty()) {
+
+            post.setOnClickListener(null);
+            if (!guarantee.getText().toString().isEmpty()) {
 
                 String title = interestTitle.getText().toString();
                 String interestDescription = description.getText().toString();
@@ -121,7 +122,7 @@ public class AddIntrest extends AppCompatActivity implements View.OnClickListene
                 String interestDuration = duration.getText().toString();
 //            String interstStartDate = startDate.getText().toString();
 //            String interstEndDate = endDate.getText().toString();
-//                int guaranteePayment = Integer.parseInt(guarantee.getText().toString());
+                int guaranteePayment = Integer.parseInt(guarantee.getText().toString());
 
 
                 ArrayList<String> tagsArr = new ArrayList<String>(Arrays.asList(interestTag.split("#")));
@@ -151,7 +152,7 @@ public class AddIntrest extends AppCompatActivity implements View.OnClickListene
                         jsonObject.put("description", interestDescription);
                         jsonObject.put("tags", tagsJsonArr);
                         jsonObject.put("pieces", interestPieces);
-                        jsonObject.put("guarantee", "0");
+                        jsonObject.put("guarantee", guaranteePayment);
                         jsonObject.put("negotiable", negotiable.isChecked());
                         jsonObject.getJSONObject("price").put("min", interestPrice);
                         jsonObject.getJSONObject("price").put("max", interestPrice);
@@ -220,9 +221,9 @@ public class AddIntrest extends AppCompatActivity implements View.OnClickListene
 //                    Toast.makeText(AddIntrest.this, "Please assure that you agree to the terms", Toast.LENGTH_SHORT).show();
 //                }
 
-//            } else {
-//                Toast.makeText(AddIntrest.this, "Please enter guarantee payment", Toast.LENGTH_LONG).show();
-//            }
+            } else {
+                Toast.makeText(AddIntrest.this, "Please enter guarantee payment", Toast.LENGTH_LONG).show();
+            }
         } else if (v == addImage) {
             AlertDialog.Builder builder = new AlertDialog.Builder(AddIntrest.this);
             builder.setTitle("Choose Option")

@@ -11,72 +11,93 @@
     <!--android:text="Owner Info"-->
     <!--android:textStyle="bold"-->
     <!--android:textSize="15sp"/>-->
-    <ImageView
-        android:id="@+id/ownerInfoDialog_image"
-        android:layout_width="130dp"
-        android:layout_height="130dp"
-        android:background="@drawable/logo" />
 
     <LinearLayout
-        android:id="@+id/e"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:layout_toRightOf="@id/ownerInfoDialog_image"
         android:orientation="vertical">
-    <TextView
-        android:id="@+id/ownerInfoDialog_name"
+
+        <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="8dp"
-        android:text="Owner name"
-        android:textSize="20sp"
-        android:textStyle="bold" />
+            android:layout_weight="1"
+            android:orientation="horizontal">
 
-    <TextView
+            <ImageView
+                android:id="@+id/ownerInfoDialog_image"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_weight=".8"
+                android:background="@drawable/logo" />
 
-        android:id="@+id/ownerInfoDialog_homeAddress"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="5dp"
-        android:text="Address"
-        android:textSize="18sp"
-        android:textStyle="bold" />
+            <LinearLayout
 
-    <TextView
+                android:id="@+id/e"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="0dp"
+                android:layout_toRightOf="@id/ownerInfoDialog_image"
+                android:layout_weight=".2"
+                android:orientation="vertical">
 
-        android:id="@+id/ownerInfoDialog_work"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="5dp"
-        android:text="Job title"
-        android:textSize="18sp"
-        android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/ownerInfoDialog_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="8dp"
+                    android:text="Owner name"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
-        <TextView
-        android:id="@+id/ownerInfoDialog_points"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="5dp"
-        android:text="25"
-        android:textSize="15sp"
-        android:textStyle="bold" />
+                <TextView
+
+                    android:id="@+id/ownerInfoDialog_homeAddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
+                    android:text="Address"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+
+                    android:id="@+id/ownerInfoDialog_work"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
+                    android:text="Job title"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/ownerInfoDialog_points"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
+                    android:text="25"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
     </LinearLayout>
 
     <Button
         android:id="@+id/ownerInfoDialog_Button_call"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/e"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="35dp"
-        android:background="#c22d2d"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="9dp"
+        android:layout_weight="1"
+        android:background="#e62828"
         android:gravity="center"
         android:text="Call"
         android:textColor="@color/white"
         android:visibility="gone" />
+    </LinearLayout>
 </RelativeLayout>

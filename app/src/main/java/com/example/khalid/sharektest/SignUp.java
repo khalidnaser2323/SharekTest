@@ -1,7 +1,6 @@
 package com.example.khalid.sharektest;
 
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -20,9 +19,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -46,6 +45,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener, A
     private static final int MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 0x8000000;
     private static int REQUEST_LOAD_poster_IMAGE = 2;
     EditText fname, lname, uname, email, phone, day, year, month, pass, repass, work, haddress;
+    TextView limit_haddress, limit_phone, limit_pass, limit_mail, limit_username;
     Spinner gender;
     Button sign, getlocation, uploadNationalID;
     String genderitem;
@@ -63,24 +63,35 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener, A
         setContentView(R.layout.activity_sign_up);
         fname = (EditText) findViewById(R.id.signup_fristname_editText);
         haddress = (EditText) findViewById(R.id.signup_address_editText);
+        haddress.setOnClickListener(this);
         lname = (EditText) findViewById(R.id.signup_lastname_editText);
         uname = (EditText) findViewById(R.id.signup_username_editText);
+        uname.setOnClickListener(this);
         email = (EditText) findViewById(R.id.signup_email_editText);
+        email.setOnClickListener(this);
         phone = (EditText) findViewById(R.id.signup_phone_editText);
+        phone.setOnClickListener(this);
         day = (EditText) findViewById(R.id.signup_day_editText);
         year = (EditText) findViewById(R.id.signup_year_editText);
         month = (EditText) findViewById(R.id.signup_month_editText);
         pass = (EditText) findViewById(R.id.signup_password_editText);
+        pass.setOnClickListener(this);
         repass = (EditText) findViewById(R.id.signup_repassword_editText2);
         gender = (Spinner) findViewById(R.id.signup_gender_spinner);
         work = (EditText) findViewById(R.id.signup_Work_editText);
         sign = (Button) findViewById(R.id.signup_signup_button);
         uploadNationalID = (Button) findViewById(R.id.signup_uploadNationalId_button);
         getlocation = (Button) findViewById(R.id.signup_getlocation_button);
+        limit_username = (TextView) findViewById(R.id.username);
+        limit_mail = (TextView) findViewById(R.id.mail);
+        limit_pass = (TextView) findViewById(R.id.pass);
+        limit_phone = (TextView) findViewById(R.id.phone);
+        limit_haddress = (TextView) findViewById(R.id.haddress);
         gender.setOnItemSelectedListener(this);
         sign.setOnClickListener(this);
         getlocation.setOnClickListener(this);
         uploadNationalID.setOnClickListener(this);
+
         SpinnerCustomArrayAdapter genderarr = new SpinnerCustomArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item);
 
         genderarr.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -133,7 +144,10 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener, A
                 gps.showSettingsAlert();
             }
         } else if (v == sign) {
+
             if (photo == null) {
+
+                sign.setOnClickListener(null);
                 if (pass.getText().toString().equals(repass.getText().toString())) {
 
                     Utils utils = new Utils();
@@ -341,23 +355,22 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener, A
                 if (grantResults.length > 0
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
 
-                    // permission was granted, yay! Do the
-                    // location-related task you need to do.
-                    if (ContextCompat.checkSelfPermission(SignUp.this,
-                            android.Manifest.permission.ACCESS_FINE_LOCATION)
-                            == PackageManager.PERMISSION_GRANTED) {
+                    return;
 
-                        //Request location updates:
-                        locationManager.requestLocationUpdates(provider, 400, 1, (android.location.LocationListener) SignUp.this);
-                    }
-
-                } else {
-
-                    // permission denied, boo! Disable the
-                    // functionality that depends on this permission.
 
                 }
-                return;
+                // permission was granted, yay! Do the
+                // location-related task you need to do.
+                if (ContextCompat.checkSelfPermission(SignUp.this,
+                        android.Manifest.permission.ACCESS_FINE_LOCATION)
+                        == PackageManager.PERMISSION_GRANTED) {
+
+                    //Request location updates:
+                    locationManager.requestLocationUpdates(provider, 400, 1, (android.location.LocationListener) SignUp.this);
+                    return;
+                }
+
+
             }
 
         }
