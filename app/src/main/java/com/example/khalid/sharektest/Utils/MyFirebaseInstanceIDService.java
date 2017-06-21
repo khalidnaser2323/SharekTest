@@ -47,26 +47,19 @@ package com.example.khalid.sharektest.Utils;
  * limitations under the License.
  */
 
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.example.khalid.sharektest.AddIntrest;
-import com.example.khalid.sharektest.HomePage;
-import com.example.khalid.sharektest.R;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.FirebaseInstanceIdService;
 
 import org.json.JSONObject;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.Map;
 
 
@@ -74,6 +67,7 @@ public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
 
     private static final String TAG = "MyFirebaseIIDService";
     JSONObject jsonObject;
+
 
     /**
      * Called if InstanceID token is updated. This may occur if the security of
@@ -87,12 +81,12 @@ public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
         String refreshedToken = FirebaseInstanceId.getInstance().getToken();
         Log.i(TAG, "Refreshed token: " + refreshedToken);
         SharedPreferences mypreference = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        mypreference.edit().putString("notificationToken",refreshedToken).apply();
+        mypreference.edit().putString("notificationToken", refreshedToken).apply();
 
         // If you want to send messages to this application instance or
         // manage this apps subscriptions on the server side, send the
         // Instance ID token to your app server.
-        sendRegistrationToServer(refreshedToken, mypreference.getString("token","token"));
+        sendRegistrationToServer(refreshedToken, mypreference.getString("token", "token"));
     }
     // [END refresh_token]
 
@@ -104,10 +98,9 @@ public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
      *
      * @param token The new token.
      */
-    public void sendRegistrationToServer(String notificationToken,String token) {
+    public void sendRegistrationToServer(String notificationToken, String token) {
         // TODO: Implement this method to send token to your app server.
-
-       final String userToken = token;
+        final String userToken = token;
         Log.i("Token_in_notification", userToken);
 
         try {
@@ -117,6 +110,7 @@ public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
 
         } catch (Exception e) {
             e.printStackTrace();
+
         }
         final String URL = "https://api.sharekeg.com/user/registration-token";
         final JsonObjectRequest req = new JsonObjectRequest(URL, jsonObject,
@@ -129,6 +123,7 @@ public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.i("error", error.toString());
+
             }
         }) {
 

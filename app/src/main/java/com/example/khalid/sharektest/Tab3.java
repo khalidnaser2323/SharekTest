@@ -63,6 +63,7 @@ public class Tab3 extends android.support.v4.app.Fragment implements AdapterView
         // Inflate the layout for this fragment
 
 
+
         final View view = inflater.inflate(R.layout.tab3, container, false);
         listView = (ListView) view.findViewById(R.id.myProfile_listView);
         listView.setOnItemClickListener(this);
@@ -92,6 +93,8 @@ public class Tab3 extends android.support.v4.app.Fragment implements AdapterView
                             Toast.makeText(getContext(), "You have no proposals", Toast.LENGTH_LONG).show();
 
                         } else {
+                            Toast.makeText(getContext(), "You have no proposals", Toast.LENGTH_LONG).show();
+
                             for (int i = 0; i < response.length(); i++) {
                                 try {
                                     JSONObject jsonResponse = response.getJSONObject(i);

@@ -7,11 +7,11 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -33,7 +33,6 @@ import org.json.JSONObject;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.Map;
 
 public class AddIntrest extends AppCompatActivity implements View.OnClickListener {
@@ -135,28 +134,28 @@ public class AddIntrest extends AppCompatActivity implements View.OnClickListene
 
 
 //                if (check = agreement.isChecked()) {
-                    try {
-                        //K.A: To make it easy to create a request, create a json file in resources and parse it
-
-                        InputStream is = getApplicationContext().getResources().openRawResource(R.raw.poster_request);
-                        int size = is.available();
-                        byte[] buffer = new byte[size];
-                        is.read(buffer);
-                        is.close();
-                        String string_request = new String(buffer, "UTF-8");
-                        Log.i("Parsed JSON file", string_request);
-                        jsonObject = new JSONObject(string_request);
-                        jsonObject.put("type", "request");
-                        jsonObject.put("title", title);
-                        jsonObject.put("description", interestDescription);
-                        jsonObject.put("tags", tagsJsonArr);
-                        jsonObject.put("pieces", interestPieces);
-                        jsonObject.put("guarantee", guaranteePayment);
-                        jsonObject.put("negotiable", negotiable.isChecked());
-                        jsonObject.getJSONObject("price").put("min", interestPrice);
-                        jsonObject.getJSONObject("price").put("max", interestPrice);
-                        jsonObject.getJSONObject("duration").put("max", interestDuration);
-                        jsonObject.getJSONObject("duration").put("min", "1");
+                try {
+                    //K.A: To make it easy to create a request, create a json file in resources and parse it
+                    loading.show();
+                    InputStream is = getApplicationContext().getResources().openRawResource(R.raw.poster_request);
+                    int size = is.available();
+                    byte[] buffer = new byte[size];
+                    is.read(buffer);
+                    is.close();
+                    String string_request = new String(buffer, "UTF-8");
+                    Log.i("Parsed JSON file", string_request);
+                    jsonObject = new JSONObject(string_request);
+                    jsonObject.put("type", "request");
+                    jsonObject.put("title", title);
+                    jsonObject.put("description", interestDescription);
+                    jsonObject.put("tags", tagsJsonArr);
+                    jsonObject.put("pieces", interestPieces);
+                    jsonObject.put("guarantee", guaranteePayment);
+                    jsonObject.put("negotiable", negotiable.isChecked());
+                    jsonObject.getJSONObject("price").put("min", interestPrice);
+                    jsonObject.getJSONObject("price").put("max", interestPrice);
+                    jsonObject.getJSONObject("duration").put("max", interestDuration);
+                    jsonObject.getJSONObject("duration").put("min", "1");
 //                    jsonObject.getJSONObject("availability").getJSONObject("days").put("sat",sat.isChecked());
 //                    jsonObject.getJSONObject("availability").getJSONObject("days").put("sun",sun.isChecked());
 //                    jsonObject.getJSONObject("availability").getJSONObject("days").put("mon",mon.isChecked());
@@ -164,64 +163,63 @@ public class AddIntrest extends AppCompatActivity implements View.OnClickListene
 //                    jsonObject.getJSONObject("availability").getJSONObject("days").put("wen",wen.isChecked());
 //                    jsonObject.getJSONObject("availability").getJSONObject("days").put("thu",thu.isChecked());
 //                    jsonObject.getJSONObject("availability").getJSONObject("days").put("fri",fri.isChecked());
-                        jsonObject.getJSONObject("availability").getJSONObject("from").put("hour", "12");
-                        jsonObject.getJSONObject("availability").getJSONObject("from").put("minute", "0");
-                        jsonObject.getJSONObject("availability").getJSONObject("to").put("hour", "11");
-                        jsonObject.getJSONObject("availability").getJSONObject("to").put("minute", "59");
-                        //Utils utils = new Utils();
-                        //jsonObject.put("image", utils.convertBitMapToString(photo));
-                        Log.i("Final_Poster_Request", jsonObject.toString());
+                    jsonObject.getJSONObject("availability").getJSONObject("from").put("hour", "12");
+                    jsonObject.getJSONObject("availability").getJSONObject("from").put("minute", "0");
+                    jsonObject.getJSONObject("availability").getJSONObject("to").put("hour", "11");
+                    jsonObject.getJSONObject("availability").getJSONObject("to").put("minute", "59");
+                    //Utils utils = new Utils();
+                    //jsonObject.put("image", utils.convertBitMapToString(photo));
+                    Log.i("Final_Poster_Request", jsonObject.toString());
 
-                        loading.show();
-                        final String URL = "https://api.sharekeg.com/poster";
 
-                        final JsonObjectRequest req = new JsonObjectRequest(URL, jsonObject,
-                                new Response.Listener<JSONObject>() {
-                                    @Override
-                                    public void onResponse(JSONObject response) {
-                                        loading.dismiss();
-                                        Log.i("response", response.toString());
-                                        Toast.makeText(AddIntrest.this, "Done", Toast.LENGTH_LONG).show();
-                                        Intent intent = new Intent(AddIntrest.this, HomePage.class);
-                                        startActivity(intent);
+                    final String URL = "https://api.sharekeg.com/poster";
 
-                                    }
-                                }, new Response.ErrorListener() {
-                            @Override
-                            public void onErrorResponse(VolleyError error) {
-                                // handle error
-                                loading.dismiss();
-                                Toast.makeText(AddIntrest.this, Utils.GetErrorDescription(error, AddIntrest.this), Toast.LENGTH_SHORT).show();
-                                Log.i("error", error.toString());
-                            }
-                        }) {
+                    final JsonObjectRequest req = new JsonObjectRequest(URL, jsonObject,
+                            new Response.Listener<JSONObject>() {
+                                @Override
+                                public void onResponse(JSONObject response) {
+                                    loading.dismiss();
+                                    Log.i("response", response.toString());
+                                    Toast.makeText(AddIntrest.this, "Done", Toast.LENGTH_LONG).show();
+                                    Intent intent = new Intent(AddIntrest.this, HomePage.class);
+                                    startActivity(intent);
 
-                            public String getBodyContentType() {
-                                return "application/json";
-                            }
+                                }
+                            }, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            // handle error
+                            loading.dismiss();
+                            Toast.makeText(AddIntrest.this, Utils.GetErrorDescription(error, AddIntrest.this), Toast.LENGTH_SHORT).show();
+                            Log.i("error", error.toString());
+                        }
+                    }) {
 
-                            @Override
-                            public Map<String, String> getHeaders() throws AuthFailureError {
-                                Utils utils = new Utils();
+                        public String getBodyContentType() {
+                            return "application/json";
+                        }
 
-                                return utils.getRequestHeaders(token);
-                            }
-                        };
-                        AppController.getInstance().addToRequestQueue(req);
+                        @Override
+                        public Map<String, String> getHeaders() throws AuthFailureError {
+                            Utils utils = new Utils();
 
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                        Toast.makeText(AddIntrest.this, "oops! Something went wrong", Toast.LENGTH_SHORT).show();
-                        Log.i("Error parsing JSON", e.toString());
-                    }
+                            return utils.getRequestHeaders(token);
+                        }
+                    };
+                    AppController.getInstance().addToRequestQueue(req);
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    Toast.makeText(AddIntrest.this, "oops! Something went wrong", Toast.LENGTH_SHORT).show();
+                    Log.i("Error parsing JSON", e.toString());
+                }
 
 
 //                } else {
 //                    Toast.makeText(AddIntrest.this, "Please assure that you agree to the terms", Toast.LENGTH_SHORT).show();
 //                }
-
             } else {
-                Toast.makeText(AddIntrest.this, "Please enter guarantee payment", Toast.LENGTH_LONG).show();
+                Toast.makeText(AddIntrest.this, "Please enter return payment", Toast.LENGTH_LONG).show();
             }
         } else if (v == addImage) {
             AlertDialog.Builder builder = new AlertDialog.Builder(AddIntrest.this);

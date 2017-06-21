@@ -8,16 +8,13 @@ import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.webkit.JavascriptInterface;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
-import com.android.volley.NetworkResponse;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.example.khalid.sharektest.Utils.AppController;
 import com.example.khalid.sharektest.Utils.Utils;
@@ -25,7 +22,6 @@ import com.example.khalid.sharektest.Utils.Utils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.HashMap;
 import java.util.Map;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -120,7 +116,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     public void onErrorResponse(VolleyError error) {
                         // handle error
                         pDialog.dismiss();
-//                        if(error.networkResponse != null){
+//                   if(error.networkResponse != null){
 //                        if (error.networkResponse.statusCode == 401) {
 //                            Toast.makeText(MainActivity.this, "Email or password is incorrect", Toast.LENGTH_SHORT).show();
 //

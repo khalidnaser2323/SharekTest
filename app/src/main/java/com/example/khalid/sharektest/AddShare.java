@@ -5,14 +5,13 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -29,7 +28,6 @@ import com.example.khalid.sharektest.Utils.AppController;
 import com.example.khalid.sharektest.Utils.Utils;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.InputStream;
@@ -46,6 +44,7 @@ public class AddShare extends AppCompatActivity implements View.OnClickListener 
     CheckBox agreement;
     Switch negotiable;
     Button post, addImage;
+    ProgressDialog pDialog;
     Boolean check;
     //    String genderitem, catitem;
     JSONObject jsonObject;
@@ -95,7 +94,9 @@ public class AddShare extends AppCompatActivity implements View.OnClickListener 
     public void onClick(View v) {
         if (v == post) {
             if (photo != null) {
+
                 if (!guarantee.getText().toString().isEmpty()) {
+
                     String title = interestTitle.getText().toString();
                     String interestDescription = description.getText().toString();
                     String interestTag = tags.getText().toString();
@@ -118,6 +119,7 @@ public class AddShare extends AppCompatActivity implements View.OnClickListener 
 
 //                if (check = agreement.isChecked()) {
                     try {
+                        loading.show();
                         //K.A: To make it easy to create a request, create a json file in resources and parse it
                         InputStream is = getApplicationContext().getResources().openRawResource(R.raw.poster_request);
                         int size = is.available();
@@ -153,7 +155,6 @@ public class AddShare extends AppCompatActivity implements View.OnClickListener 
                         Utils utils = new Utils();
                         jsonObject.put("image", utils.convertBitMapToString(photo));
                         Log.i("Final_Poster_Request", jsonObject.toString());
-                        loading.show();
 
                         final String URL = "https://api.sharekeg.com/poster";
 
@@ -201,7 +202,7 @@ public class AddShare extends AppCompatActivity implements View.OnClickListener 
 //                }
 
                 } else {
-                    Toast.makeText(AddShare.this, "Please enter guarantee payment", Toast.LENGTH_LONG).show();
+                    Toast.makeText(AddShare.this, "Please enter return payment", Toast.LENGTH_LONG).show();
                 }
             } else {
                 Toast.makeText(AddShare.this, "Please add the image", Toast.LENGTH_LONG).show();

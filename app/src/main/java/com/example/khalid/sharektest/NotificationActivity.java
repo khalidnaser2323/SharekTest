@@ -1,5 +1,6 @@
 package com.example.khalid.sharektest;
 
+import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -39,23 +40,24 @@ public class NotificationActivity extends AppCompatActivity implements AdapterVi
     public static final int MY_PERMISSIONS_REQUEST_CALL = 1;
     static ArrayList<com.example.khalid.sharektest.Utils.Notification> notifications = new ArrayList<>();
     ListView listView;
-    TextView noNotifications;
     NotificationAdaptor notificationAdaptor;
     JSONObject jsonObject;
     String token;
     String UserPhone;
     LocationManager locationManager;
     String provider;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         checkLocationPermission();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notification);
         listView = (ListView) findViewById(R.id.Notification_listView);
-        noNotifications = (TextView) findViewById(R.id.noNotifications);
+
         //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         //setSupportActionBar(toolbar);
         Intent cameIntent = getIntent();
+
         try {
             if (cameIntent.getStringExtra("data") != null) {
                 //  noNotifications.setVisibility(View.GONE);
@@ -310,7 +312,7 @@ public class NotificationActivity extends AppCompatActivity implements AdapterVi
             } else {
                 // No explanation needed, we can request the permission.
                 ActivityCompat.requestPermissions(NotificationActivity.this,
-                        new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
+                        new String[]{Manifest.permission.CALL_PHONE},
                         MY_PERMISSIONS_REQUEST_CALL);
             }
             return false;
@@ -336,7 +338,7 @@ public class NotificationActivity extends AppCompatActivity implements AdapterVi
                 // permission was granted, yay! Do the
                 // location-related task you need to do.
                 if (ContextCompat.checkSelfPermission(NotificationActivity.this,
-                        android.Manifest.permission.ACCESS_FINE_LOCATION)
+                        Manifest.permission.CALL_PHONE)
                         == PackageManager.PERMISSION_GRANTED) {
 
                     //Request location updates:

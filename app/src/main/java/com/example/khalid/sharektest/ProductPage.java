@@ -76,6 +76,7 @@ public class ProductPage extends AppCompatActivity implements View.OnClickListen
         showInfo.setOnClickListener(this);
         deletePoster.setOnClickListener(this);
         Pdescription.setMovementMethod(new ScrollingMovementMethod());
+        deletePoster.setVisibility(View.GONE);
 
         mypreference = PreferenceManager.getDefaultSharedPreferences(ProductPage.this);
         MaxPrice.setVisibility(View.GONE);
@@ -94,13 +95,14 @@ public class ProductPage extends AppCompatActivity implements View.OnClickListen
             conatct.setVisibility(View.GONE);
             showInfo.setVisibility(View.GONE);
 
+
         } else {
             conatct.setVisibility(View.VISIBLE);
             showInfo.setVisibility(View.VISIBLE);
+
         }
 
         //Todo: Use fetched posters, do not call server to get poster again
-        String tag_json_object = "json_object_req";
 
         String url = "https://api.sharekeg.com/poster/" + productId;
 
@@ -153,7 +155,6 @@ public class ProductPage extends AppCompatActivity implements View.OnClickListen
                             String type = response.get("type").toString();
                             PType.setText(type);
                             if (type.equals("request")) {
-                                conatct.setVisibility(View.GONE);
                                 Price.setVisibility(View.GONE);
                                 MaxPrice.setVisibility(View.VISIBLE);
                             }
@@ -164,6 +165,11 @@ public class ProductPage extends AppCompatActivity implements View.OnClickListen
                                 conatct.setVisibility(View.GONE);
                                 showInfo.setVisibility(View.GONE);
                                 deletePoster.setVisibility(View.VISIBLE);
+                            }
+                            if (response.has("guarantee")) {
+                                guaranteePayment.setText(String.valueOf(response.getInt("guarantee")));
+                            } else {
+                                guaranteePayment.setText("Not provided");
                             }
                             if (response.has("negotiable")) {
                             if (response.getBoolean("negotiable")) {
@@ -398,4 +404,6 @@ public class ProductPage extends AppCompatActivity implements View.OnClickListen
         }
 
     }
+
 }
+

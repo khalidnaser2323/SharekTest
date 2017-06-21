@@ -13,7 +13,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,7 +27,6 @@ import com.example.khalid.sharektest.Utils.Utils;
 
 import org.json.JSONObject;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import static android.app.Activity.RESULT_OK;
@@ -41,7 +39,6 @@ public class Tab1 extends android.support.v4.app.Fragment implements View.OnClic
     private static int REQUEST_LOAD_poster_IMAGE = 2;
     SharedPreferences mypreference;
     NetworkImageView imageView;
-    JSONObject jsonObject;
     String url;
     String token;
     TextView myPhone, myPoints, myMail, myUserName, myAddress, myWork;
@@ -69,7 +66,7 @@ public class Tab1 extends android.support.v4.app.Fragment implements View.OnClic
         myWork = (TextView) view.findViewById(R.id.myProfile_about_work);
         myUserName = (TextView) view.findViewById(R.id.myProfile_about_name);
         imageView = (NetworkImageView) view.findViewById(R.id.myProfile_imageView);
-        imageView.setOnClickListener(this);
+        //    imageView.setOnClickListener(this);
         mypreference = PreferenceManager.getDefaultSharedPreferences(getContext());
         url = "https://api.sharekeg.com/user/" + mypreference.getString("myUserName", "");
 
@@ -176,6 +173,7 @@ public class Tab1 extends android.support.v4.app.Fragment implements View.OnClic
             if (requestCode == REQUEST_TAKE_poster_PHOTO && resultCode == RESULT_OK && null != data) {
 
                 photo = (Bitmap) data.getExtras().get("data");
+
 
                 Toast.makeText(getContext(), "Your profile image  is selected Successfully", Toast.LENGTH_LONG).show();
 

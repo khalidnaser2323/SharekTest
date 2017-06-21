@@ -25,7 +25,7 @@ public class tour_approve extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        Intent intent = new Intent(getApplicationContext(), tour_rate.class);
+        Intent intent = new Intent(getApplicationContext(), tour_win.class);
         startActivity(intent);
     }
 

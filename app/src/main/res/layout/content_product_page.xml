@@ -24,7 +24,7 @@
             <com.android.volley.toolbox.NetworkImageView
                 android:id="@+id/Product_ImageView_ProductImage"
                 android:layout_width="wrap_content"
-                android:layout_height="130dp"
+                android:layout_height="170dp"
                 android:layout_gravity="center"
                 android:layout_marginLeft="30dp"
                 android:layout_marginRight="30dp"
@@ -294,7 +294,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:gravity="center"
-                            android:text="Guarantee payment"
+                            android:text="Return payment"
                             android:textStyle="bold" />
 
                         <TextView
@@ -409,8 +409,8 @@
                         android:id="@+id/Product_Button_Contact"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="30dp"
-                        android:layout_marginRight="30dp"
+                        android:layout_marginLeft="50dp"
+                        android:layout_marginRight="50dp"
                         android:layout_weight="1"
                         android:background="#ab8961"
                         android:text="Contact"
@@ -420,10 +420,9 @@
                         android:id="@+id/Product_Button_ShowInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="30dp"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginRight="30dp"
-                        android:layout_marginStart="20dp"
+
+                        android:layout_marginLeft="50dp"
+                        android:layout_marginRight="50dp"
                         android:layout_weight="1"
                         android:background="#c23338"
                         android:text="OWNER Info"
@@ -433,15 +432,12 @@
                         android:id="@+id/Product_Button_Delete"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="30dp"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginRight="30dp"
-                        android:layout_marginStart="20dp"
+                        android:layout_marginLeft="50dp"
+                        android:layout_marginRight="50dp"
                         android:layout_weight="1"
                         android:background="#c23338"
                         android:text="Delete"
-                        android:textColor="#FFFF"
-                        android:visibility="gone" />
+                        android:textColor="#FFFF" />
 
                 </LinearLayout>
             </LinearLayout>

@@ -28,4 +28,11 @@ public class tour_welcome extends AppCompatActivity implements View.OnClickListe
         Intent intent = new Intent(getApplicationContext(), tour_share.class);
         startActivity(intent);
     }
+
+
+    @Override
+    public void onBackPressed() {
+
+
+    }
 }

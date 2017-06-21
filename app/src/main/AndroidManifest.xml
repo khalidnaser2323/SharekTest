@@ -137,7 +137,7 @@
 
         <activity
             android:name=".help"
-              android:parentActivityName=".HomePage"
+            android:parentActivityName=".HomePage"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -227,7 +227,7 @@
             android:parentActivityName=".HomePage"
             android:theme="@style/Theme.AppCompat.Dialog">
             <meta-data
-                   android:name="android.support.PARENT_ACTIVITY"
+                android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.khalid.sharektest.HomePage" />
         </activity>
         <activity
@@ -254,7 +254,6 @@
         <activity
             android:name=".tour.tour_finish"
             android:label="@string/app_name" />
-
     </application>
 
 </manifest>

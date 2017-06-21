@@ -16,11 +16,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-
         <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
             android:layout_weight="1"
             android:orientation="horizontal">
 
@@ -84,20 +83,20 @@
                     android:textSize="15sp"
                     android:textStyle="bold" />
             </LinearLayout>
-    </LinearLayout>
+        </LinearLayout>
 
-    <Button
-        android:id="@+id/ownerInfoDialog_Button_call"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="9dp"
-        android:layout_weight="1"
-        android:background="#e62828"
-        android:gravity="center"
-        android:text="Call"
-        android:textColor="@color/white"
-        android:visibility="gone" />
+        <Button
+            android:id="@+id/ownerInfoDialog_Button_call"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="9dp"
+            android:layout_weight="1"
+            android:background="#e62828"
+            android:gravity="center"
+            android:text="Call"
+            android:textColor="@color/white"
+            android:visibility="gone" />
     </LinearLayout>
 </RelativeLayout>

@@ -30,6 +30,7 @@ public class Utils {
         NetworkResponse response = error.networkResponse;
         if (response != null && response.data != null) {
             switch (response.statusCode) {
+
                 case 400:
                     json = new String(response.data);
                     Log.i("Connection Error", json);
@@ -37,10 +38,13 @@ public class Utils {
                     json = GetErrorByKey(json, context);
                     break;
                 case 401:
+
                     Activity activity = (Activity) context;
                     Log.i("Error activity", activity.toString());
                     if (activity.toString().contains("MainActivity")) {
                         json = context.getResources().getString(R.string.error_401);
+                    } else if (activity.toString().contains("SignUp")) {
+                        json = context.getResources().getString(R.string.error_LowerCase);
                     } else {
                         json = context.getResources().getString(R.string.error_unauthorized);
                     }

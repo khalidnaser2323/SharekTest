@@ -17,14 +17,13 @@
     <string name="help">
         "is Sharek for me ? .. \n\n"
         "Sure, sharek is developed for all people to help them to share with neighbors.\n Each one of us has a lot of things not used , it is time to share them with others.\n\n "
-        "What are circles ? \n when  you register in sharek , automatically a circle is created around your location to get close with your neighbors , you are not allowed for sharing out od circle"
-        "\n\nHow can i share with others ? \n  you can search for interest the people and neighbors need  and match your own things  on interests tab, then make contact with the interest's owner \n\n"
-        "If I don't get an interest matches my possible shares, \n That is easy, add new share with all specifications and available duration to be shared with others \n\n "
-        "I need something , What should i do ? \n We are here to be with you all time , first search for your interest in shares tab and contact the share's owner \n\n "
-        "Do you trust me ? \n  Of course, We build this app just for you. \n\n"
-        "what are points? \n Ok, points are given to you with every share or interest you do based on the rate  of you"
+        "What are circles ? \n\n When  you register in sharek , automatically a circle is created around your location to get close with your neighbors , you are not allowed for sharing out od circle"
+        "\n\nHow can i share with others ? \n\n  you can search for interest the people and neighbors need  and match your own things  on interests tab, then make contact with the interest's owner \n\n"
+        "If I don't get an interest matches my possible shares, \n\n That is easy, add new share with all specifications and available duration to be shared with others \n\n "
+        "I need something , What should i do ? \n\n We are here to be with you all time , first search for your interest in shares tab and contact the share's owner \n\n "
+        "what are points? \n\n Ok, points are given to you with every share or interest you do based on the rate  of you"
         "all points of you is collected to help to get more smart features and promotions \n\n"
-        "wait, If i share something with some one and he don't give it me back, what wil happen ?? \n first, you will be given all information of him/her contain (national id - phone number - email - location) "
+        "wait, If i share something with some one and he don't give it me back, what wil happen ?? \n\n first, you will be given all information of him/her contain (national id - phone number - email - location) "
         "What are the terms and conditions i should follow? \n\n   First Our mission is to help people and link them with each other have the same interests .So, each ome is responsible for the things he/she give to the others.\n "
         "\n     If an user gets from you, he is legally responsible for the thing and its status  "
 
@@ -56,6 +55,7 @@
     <string name="error_500">Sorry, we have a system glitch, try again later</string>
     <string name="error_401">Username or password is incorrect</string>
     <string name="error_unauthorized">Login or register to use this feature</string>
+    <string name="error_LowerCase">User name should be in lower case</string>
     <string name="error_default">Please check your internet connection</string>
     <string name="title_activity_splash_screen">SplashScreenActivity</string>
     <string name="title_activity_rating">Rate</string>

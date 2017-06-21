@@ -123,8 +123,11 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener, A
         if (v == getlocation) {
             GPSTracker gps = new GPSTracker(this);
             if (gps.isGPSEnabled) {
+
                 latitude = gps.getLatitude();
                 longitude = gps.getLongitude();
+
+
                 Log.i("Sign Up activity", "Location button is clicked");
                 Log.i("Longitude", String.valueOf(longitude));
                 Log.i("latitude", String.valueOf(latitude));
@@ -145,115 +148,134 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener, A
             }
         } else if (v == sign) {
 
-            if (photo == null) {
+            boolean n = uname.getText().toString().toLowerCase().matches(uname.getText().toString());
 
-                sign.setOnClickListener(null);
-                if (pass.getText().toString().equals(repass.getText().toString())) {
+            if (n == true & uname.getText().toString().length() > 8) {
+                if (email.getText().toString().length() > 1) {
+                    if (photo == null) {
 
-                    Utils utils = new Utils();
-                    if (getLocationBtnClicked) {
-                        String params_Date =
-                                ("{"
-                                        + " \"user\":" + "\"" + uname.getText().toString() + "\"" + ","
-                                        + " \"pass\":" + "\"" + pass.getText().toString() + "\"" + ","
-                                        + "\"address\":" + "\"" + haddress.getText().toString() + "\"" + ","
-                                        + "     \"name\": {"
-                                        + " \"first\":" + "\"" + fname.getText().toString() + "\"" + ","
-                                        + "    \"last\":" + "\"" + lname.getText().toString() + "\""
-                                        + "},"
-                                        + "\"email\":" + "\"" + email.getText().toString() + "\"" + ","
-                                        + "    \"birth\": {"
-                                        + "\"day\":" + "\"" + day.getText().toString() + "\"" + ","
-                                        + "        \"month\":" + "\"" + month.getText().toString() + "\"" + ","
-                                        + "        \"year\":" + "\"" + year.getText().toString() + "\""
-                                        + "} ,"
-                                        + "\"location\": {"
-                                        + "\"latitude\":" + "\"" + 29.3202185 + "\"" + ","
-                                        + "        \"longitude\":" + "\"" + 30.8394507 + "\""
-                                        + "},"
-                                        + "\"phone\":" + "\"" + phone.getText().toString() + "\"" + ","
-                                        + "    \"gender\":" + "\"" + genderitem + "\"" + ","
-                                        + "    \"work\":" + "\"" + work.getText() + "\"" + ","
-                                        + "    \"image\":" + "\"" + "0" + "\""
-                                        + "}");
-                        try {
-                            jsonObject = new JSONObject(params_Date);
-                            Log.i("sign_up_request", jsonObject.toString());
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-
-                        final String URL = "https://api.sharekeg.com/user";
-
-                        final JsonObjectRequest req = new JsonObjectRequest(URL, jsonObject,
-                                new Response.Listener<JSONObject>() {
-                                    @Override
-                                    public void onResponse(JSONObject response) {
-                                        Log.i("response", response.toString());
-                                        Toast.makeText(SignUp.this, "Welcome to sharekeg", Toast.LENGTH_SHORT).show();
-
-                                        try {
-                                            token = response.getString("token");
-
-                                        } catch (JSONException e) {
-                                            e.printStackTrace();
-                                        }
-
-                                        SharedPreferences mypreference = PreferenceManager.getDefaultSharedPreferences(SignUp.this);
-                                        mypreference.edit().putBoolean("loggedIn", true).apply();
-                                        mypreference.edit().putString("token", token).apply();
-                                        mypreference.edit().putString("myUserName", uname.getText().toString()).apply();
-
-                                        // Go to tour guide
+                        if (pass.getText().toString().equals(repass.getText().toString())) {
 
 
-                                        Intent intent = new Intent(SignUp.this, tour_welcome.class);
+                            if (getLocationBtnClicked) {
+                                String params_Date =
+                                        ("{"
+                                                + " \"user\":" + "\"" + uname.getText().toString() + "\"" + ","
+                                                + " \"pass\":" + "\"" + pass.getText().toString() + "\"" + ","
+                                                + "\"address\":" + "\"" + haddress.getText().toString() + "\"" + ","
+                                                + "     \"name\": {"
+                                                + " \"first\":" + "\"" + fname.getText().toString() + "\"" + ","
+                                                + "    \"last\":" + "\"" + lname.getText().toString() + "\""
+                                                + "},"
+                                                + "\"email\":" + "\"" + email.getText().toString() + "\"" + ","
+                                                + "    \"birth\": {"
+                                                + "\"day\":" + "\"" + day.getText().toString() + "\"" + ","
+                                                + "        \"month\":" + "\"" + month.getText().toString() + "\"" + ","
+                                                + "        \"year\":" + "\"" + year.getText().toString() + "\""
+                                                + "} ,"
+                                                + "\"location\": {"
+                                                + "\"latitude\":" + "\"" + latitude + "\"" + ","
+                                                + "        \"longitude\":" + "\"" + longitude + "\""
+                                                + "},"
+                                                + "\"phone\":" + "\"" + phone.getText().toString() + "\"" + ","
+                                                + "    \"gender\":" + "\"" + genderitem + "\"" + ","
+                                                + "    \"work\":" + "\"" + work.getText() + "\"" + ","
+                                                + "    \"image\":" + "\"" + "0" + "\""
+                                                + "}");
+                                try {
+                                    jsonObject = new JSONObject(params_Date);
+                                    Log.i("sign_up_request", jsonObject.toString());
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+
+                                final String URL = "https://api.sharekeg.com/user";
+
+                                final JsonObjectRequest req = new JsonObjectRequest(URL, jsonObject,
+                                        new Response.Listener<JSONObject>() {
+                                            @Override
+                                            public void onResponse(JSONObject response) {
+                                                Log.i("response", response.toString());
+                                                Toast.makeText(SignUp.this, "Welcome to sharekeg", Toast.LENGTH_SHORT).show();
+
+                                                try {
+                                                    token = response.getString("token");
+                                                    Intent intent = new Intent(SignUp.this, tour_welcome.class);
+//                                    intent.putExtra("loggedIn", true);
+//                                    intent.putExtra("token", token);
+                                                    //   intent.putExtra("newAuthentication", true);
+                                                    startActivity(intent);
+
+                                                } catch (JSONException e) {
+                                                    e.printStackTrace();
+                                                }
+
+                                                SharedPreferences mypreference = PreferenceManager.getDefaultSharedPreferences(SignUp.this);
+                                                mypreference.edit().putBoolean("loggedIn", true).apply();
+                                                mypreference.edit().putString("token", token).apply();
+                                                mypreference.edit().putString("myUserName", uname.getText().toString()).apply();
+
+                                                // Go to tour guide
+
+
+                               /*         Intent intent = new Intent(SignUp.this, tour_welcome.class);
 //                                    intent.putExtra("loggedIn", true);
 //                                    intent.putExtra("token", token);
                                         //   intent.putExtra("newAuthentication", true);
                                         startActivity(intent);
-//
+//*/
 
 
-                                        // handle response
-                                    }
-                                }, new Response.ErrorListener() {
-                            @Override
-                            public void onErrorResponse(VolleyError error) {
-                                // handle error
+                                                // handle response
+                                            }
+                                        }, new Response.ErrorListener() {
+                                    @Override
+                                    public void onErrorResponse(VolleyError error) {
+                                        // handle error
 //                            String errorDescription = ;
 
-                                Toast.makeText(SignUp.this, Utils.GetErrorDescription(error, SignUp.this), Toast.LENGTH_LONG).show();
+                                        Toast.makeText(SignUp.this, "Be sure that User name,email and phone should be unique not used before", Toast.LENGTH_LONG).show();
 
 
-                            }
-                        }) {
+                                    }
+                                }) {
 
-                            public String getBodyContentType() {
-                                return "application/json";
-                            }
+                                    public String getBodyContentType() {
+                                        return "application/json";
+                                    }
 
-                            @Override
-                            public Map<String, String> getHeaders() throws AuthFailureError {
+                                    @Override
+                                    public Map<String, String> getHeaders() throws AuthFailureError {
 //                            HashMap<String, String> headers = new HashMap<String, String>();
 //                            headers.put("Content-Type", "application/json");
 //                            return headers;
-                                Utils utils = new Utils();
+                                        Utils utils = new Utils();
 
-                                return utils.getRequestHeaders(null);
+                                        return utils.getRequestHeaders(null);
+                                    }
+                                };
+                                AppController.getInstance().addToRequestQueue(req);
+                            } else {
+                                Toast.makeText(this, "Review your Data and Recheck your Location", Toast.LENGTH_LONG).show();
                             }
-                        };
-                        AppController.getInstance().addToRequestQueue(req);
+                        } else {
+                            Toast.makeText(SignUp.this, " Invalid Password ", Toast.LENGTH_LONG).show();
+                        }
                     } else {
-                        Toast.makeText(this, "Review your Data and Recheck your Location", Toast.LENGTH_LONG).show();
+                        Toast.makeText(SignUp.this, "Please upload your Profile picture", Toast.LENGTH_LONG).show();
                     }
                 } else {
-                    Toast.makeText(SignUp.this, " Invalid Password ", Toast.LENGTH_LONG).show();
+                    Toast.makeText(SignUp.this, "Please Home address should contain city district and street", Toast.LENGTH_LONG).show();
+
                 }
             } else {
-                Toast.makeText(SignUp.this, "Please upload your Profile picture", Toast.LENGTH_LONG).show();
+                Toast.makeText(SignUp.this, "Please Write user name correctly", Toast.LENGTH_LONG).show();
             }
-        } else if (v == uploadNationalID) {
+
+
+        } else if (v == uploadNationalID)
+
+        {
             AlertDialog.Builder builder = new AlertDialog.Builder(SignUp.this);
             builder.setTitle("Choose Option")
                     .setItems(new String[]{"Camera", "Gallery"}, new DialogInterface.OnClickListener() {
@@ -275,6 +297,8 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener, A
                         }
                     }).create().show();
         }
+
+
     }
 
     @Override
